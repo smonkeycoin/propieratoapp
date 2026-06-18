@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Propierato — Centro de control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF7EF; --panel:#FFFFFF; --panel-soft:#F6F1E5;
+    --ink:#15302B; --muted:#5C726D; --faint:#92A29D;
+    --line:#E8E0D0; --line-soft:#F0E8D9;
+    --marine:#0E5E57; --marine-deep:#0A4942; --turq:#16A89A;
+    --sand:#EADFC8; --sand-deep:#D9CBA8;
+    --coral:#E0694A; --amber:#D79A1B; --green:#2E9E6B;
+    --wa:#25563f; --wa-bubble:#dcf6e3; --wa-bg:#e7ded0;
+    --display:'Quicksand',Georgia,'Times New Roman',serif;
+    --ui:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+    --shadow:0 10px 34px rgba(14,94,87,.10);
+    --shadow-sm:0 2px 10px rgba(14,94,87,.06);
+    --r:16px; --r-sm:11px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .app{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
+
+  /* sidebar */
+  .side{position:sticky;top:0;height:100vh;padding:22px 16px;
+    background:linear-gradient(176deg,var(--marine),var(--marine-deep));
+    color:#dff0ec;display:flex;flex-direction:column;gap:6px}
+  .brand{display:flex;align-items:center;gap:11px;padding:4px 8px 20px}
+  .mark{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+    background:linear-gradient(150deg,var(--turq),#3ad0bf);color:#06302c;
+    font-family:var(--display);font-weight:600;font-size:22px;box-shadow:0 6px 18px rgba(0,0,0,.22)}
+  .brand .nm{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:.2px;color:#fff;line-height:1}
+  .brand .sb{font-size:10.5px;color:#8fc7bf;margin-top:3px;letter-spacing:.3px}
+  .nav-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6fb3aa;margin:14px 10px 5px}
+  .nav button{display:flex;align-items:center;gap:11px;width:100%;border:0;cursor:pointer;
+    background:transparent;color:#cfe7e2;padding:9px 11px;border-radius:10px;font:inherit;
+    font-size:13.5px;text-align:left;transition:background .15s,color .15s}
+  .nav button:hover{background:rgba(255,255,255,.07);color:#fff}
+  .nav button.on{background:rgba(255,255,255,.13);color:#fff;font-weight:600}
+  .nav .ic{width:18px;text-align:center;font-size:15px;opacity:.92}
+  .side-foot{margin-top:auto;padding:12px 10px 2px;border-top:1px solid rgba(255,255,255,.12);
+    font-size:11.5px;color:#9fcdc6;display:flex;align-items:center;gap:8px}
+  .chip-mx{background:rgba(255,255,255,.12);border-radius:999px;padding:2px 8px;font-weight:600;color:#eafff9}
+
+  /* main */
+  .main{padding:26px 30px 60px;max-width:1180px}
+  .top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+  .top h1{font-family:var(--display);font-weight:600;font-size:30px;margin:0;letter-spacing:.1px}
+  .top p{margin:5px 0 0;color:var(--muted);font-size:13.5px}
+  .top .sel{display:flex;gap:8px;align-items:center}
+  .pill{background:var(--panel);border:1px solid var(--line);border-radius:999px;
+    padding:8px 14px;font-size:12.5px;color:var(--ink);box-shadow:var(--shadow-sm);display:inline-flex;gap:7px;align-items:center}
+  .pill b{font-weight:600}
+  .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+
+  .view{display:none;animation:fade .35s ease}
+  .view.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm)}
+  .card-h{display:flex;align-items:center;justify-content:space-between;padding:15px 18px 0}
+  .card-h h3{margin:0;font-size:14px;font-weight:600;letter-spacing:.2px}
+  .card-h .lk{font-size:12px;color:var(--turq);cursor:pointer;font-weight:600;text-decoration:none}
+  .eyebrow{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600}
+
+  /* grids */
+  .g-hero{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;margin-bottom:18px}
+  .g-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .g-2{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-top:18px}
+
+  /* portfolio */
+  .prop-row{display:flex;align-items:center;gap:13px;padding:12px 18px;border-top:1px solid var(--line-soft)}
+  .prop-row:first-of-type{border-top:0}
+  .pin{width:34px;height:34px;border-radius:9px;background:var(--panel-soft);display:grid;place-items:center;font-size:15px;flex:0 0 auto}
+  .prop-row .nm{font-weight:600;font-size:13.5px}
+  .prop-row .lo{font-size:11.5px;color:var(--muted)}
+  .scorebadge{margin-left:auto;font-family:var(--display);font-weight:600;font-size:18px;
+    width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto}
+  .s-ok{background:#e6f5ee;color:#1f7d52} .s-mid{background:#fbf2dc;color:#9a7411} .s-bad{background:#fbe7e0;color:#bb462b}
+
+  /* home score signature */
+  .score-wrap{padding:20px 22px 22px;display:flex;flex-direction:column;align-items:center}
+  .ring{position:relative;width:172px;height:172px}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .ctr b{font-family:var(--display);font-weight:600;font-size:52px;line-height:1;color:var(--marine)}
+  .ring .ctr span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:4px}
+  .cats{display:grid;grid-template-columns:1fr 1fr;gap:9px 22px;width:100%;margin-top:20px}
+  .cat{display:flex;align-items:center;gap:9px;font-size:12.5px}
+  .cat .lab{color:var(--muted);flex:1}
+  .cat .bar{height:6px;border-radius:3px;background:var(--line);flex:0 0 64px;overflow:hidden;position:relative}
+  .cat .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+  .cat .v{font-weight:600;width:26px;text-align:right}
+
+  /* maintenance list */
+  .mlist{padding:6px 0 8px}
+  .m-row{display:grid;grid-template-columns:30px 1fr auto;gap:12px;align-items:center;padding:11px 18px;border-top:1px solid var(--line-soft)}
+  .m-row .ic{font-size:17px;text-align:center}
+  .m-row .t{font-weight:600;font-size:13.5px}
+  .m-row .s{font-size:11.5px;color:var(--muted);margin-top:1px}
+  .m-row .meta{text-align:right;font-size:11.5px;color:var(--muted)}
+  .m-row .meta b{display:block;color:var(--ink);font-size:12.5px}
+  .tag{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px;display:inline-block}
+  .t-urg{background:#fbe7e0;color:#bb462b} .t-soon{background:#fbf2dc;color:#9a7411} .t-ok{background:#e6f5ee;color:#1f7d52} .t-bad{background:#fbe7e0;color:#bb462b}
+  .note-salitre{margin:0 18px 14px;background:var(--panel-soft);border:1px dashed var(--sand-deep);
+    border-radius:10px;padding:9px 12px;font-size:11.5px;color:#7a6a3f;display:flex;gap:8px;align-items:center}
+
+  /* whatsapp panel */
+  .wa{background:var(--wa-bg);border-radius:0 0 var(--r) var(--r);padding:14px 16px 16px;
+    background-image:radial-gradient(rgba(255,255,255,.5) 1px,transparent 1px);background-size:16px 16px}
+  .wa-meta{display:flex;align-items:center;gap:9px;padding:11px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
+  .wa-av{width:30px;height:30px;border-radius:50%;background:var(--marine);color:#fff;display:grid;place-items:center;font-size:14px}
+  .wa-meta .nm{font-weight:600;font-size:13px} .wa-meta .st{font-size:11px;color:var(--green)}
+  .bub{max-width:80%;padding:8px 11px;border-radius:12px;font-size:12.5px;margin:7px 0;box-shadow:0 1px 1px rgba(0,0,0,.06);position:relative;line-height:1.4}
+  .bub .ti{font-size:9.5px;color:#7c8a82;text-align:right;margin-top:3px}
+  .bub.out{background:var(--wa-bubble);margin-left:auto;border-top-right-radius:3px}
+  .bub.in{background:#fff;border-top-left-radius:3px}
+  .bub .ph{margin:4px 0 2px;height:74px;border-radius:8px;
+    background:linear-gradient(135deg,#bfe3da,#7fc4b6);display:flex;align-items:flex-end;padding:6px;color:#063b34;font-size:10px;font-weight:600}
+  .wa-done{margin-top:10px;text-align:center;font-size:11.5px;color:var(--wa);font-weight:600}
+
+  /* owner report */
+  .rep{display:grid;grid-template-columns:1fr;gap:0}
+  .rep-head{background:linear-gradient(135deg,var(--marine),var(--turq));color:#fff;padding:18px 20px;border-radius:var(--r) var(--r) 0 0}
+  .rep-head .eb{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#bfeae3}
+  .rep-head h4{font-family:var(--display);font-weight:600;font-size:21px;margin:5px 0 2px}
+  .rep-head p{margin:0;font-size:12px;color:#d7f1ec}
+  .rep-body{padding:16px 20px 18px}
+  .rep-stat{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line-soft);font-size:13px}
+  .rep-stat:last-child{border-bottom:0}
+  .rep-stat b{font-weight:600}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--marine);color:#fff;border:0;
+    padding:10px 16px;border-radius:10px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;margin-top:12px}
+  .btn.ghost{background:transparent;color:var(--marine);border:1px solid var(--line)}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px;box-shadow:var(--shadow-sm)}
+  .kpi .lab{font-size:11.5px;color:var(--muted)}
+  .kpi .val{font-family:var(--display);font-weight:600;font-size:27px;margin-top:3px}
+  .kpi .sub{font-size:11px;margin-top:2px;color:var(--faint)}
+  .placeholder{padding:40px 22px;text-align:center;color:var(--muted)}
+  .placeholder .big{font-family:var(--display);font-size:20px;color:var(--ink);margin-bottom:6px}
+
+  /* benchmark SaaS */
+  .bm-stack{display:grid;gap:16px}
+  .bm-hero{background:linear-gradient(135deg,#FFFFFF 0%,#F6F1E5 58%,#E8F7F3 100%);
+    border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:20px;
+    display:grid;grid-template-columns:1.05fr 1.35fr;gap:18px;align-items:stretch}
+  .bm-verdict{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;min-height:214px}
+  .bm-verdict .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:700}
+  .bm-verdict .answer{font-family:var(--display);font-size:38px;line-height:1.05;font-weight:700;margin:12px 0 8px;color:var(--marine)}
+  .bm-verdict .answer.warn{color:#9a7411}.bm-verdict .answer.bad{color:#bb462b}
+  .bm-verdict .money{font-family:var(--display);font-size:30px;font-weight:700;color:var(--ink);line-height:1.05}
+  .bm-verdict .copy{color:var(--muted);font-size:13px;margin-top:8px;line-height:1.55}
+  .bm-metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .bm-tile{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;min-height:102px}
+  .bm-tile .lab{font-size:11px;color:var(--muted)}
+  .bm-tile .val{font-family:var(--display);font-size:24px;font-weight:700;line-height:1.1;margin-top:6px;color:var(--ink)}
+  .bm-tile .sub{font-size:11px;color:var(--faint);margin-top:5px}
+  .bm-panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden}
+  .bm-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line-soft)}
+  .bm-panel-head h3{margin:0;font-size:15px;font-weight:700}.bm-panel-head p{margin:3px 0 0;color:var(--muted);font-size:12px}
+  .bm-panel-body{padding:16px 18px}
+  .bm-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .bm-field{display:flex;flex-direction:column;gap:7px}
+  .bm-field span{font-size:11px;color:var(--muted);font-weight:600}
+  .bm-input{width:100%;height:42px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font:inherit;font-size:14px;padding:9px 11px;outline:none}
+  .bm-input:focus{border-color:var(--turq);box-shadow:0 0 0 3px rgba(22,168,154,.12)}
+  .bm-scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .bm-scenario{border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px;display:grid;gap:12px}
+  .bm-scenario.top{border-color:rgba(22,168,154,.55);box-shadow:0 8px 22px rgba(22,168,154,.10)}
+  .bm-scenario .name{font-weight:700;font-size:14px}.bm-scenario .net{font-family:var(--display);font-size:28px;font-weight:700;line-height:1.1}
+  .bm-scenario .meta{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .bm-mini{background:var(--panel-soft);border-radius:10px;padding:9px}.bm-mini span{display:block;font-size:10.5px;color:var(--muted)}.bm-mini b{font-size:13px}
+  .bm-list{display:grid;gap:10px}
+  .bm-row{display:grid;grid-template-columns:minmax(170px,1.3fr) repeat(6,minmax(90px,1fr)) auto;gap:10px;align-items:end;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .bm-row.top-row{grid-template-columns:minmax(190px,1.35fr) repeat(6,minmax(96px,1fr))}
+  .bm-row .row-title{font-weight:700;font-size:13.5px}.bm-row .row-sub{font-size:11px;color:var(--muted);margin-top:2px}
+  .bm-cell{display:flex;flex-direction:column;gap:5px}.bm-cell span{font-size:10.5px;color:var(--muted);font-weight:600}.bm-cell b{font-size:13px}
+  .bm-remove{height:38px;margin:0;padding:0 12px;border-radius:9px}
+  .bm-empty{padding:18px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px;background:#fff}
+
+  @media (max-width:880px){
+    .app{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center}
+    .nav-lbl,.side-foot{display:none}.nav button{width:auto}.g-hero,.g-3,.g-2{grid-template-columns:1fr}.kpis{grid-template-columns:1fr}
+    .bm-hero,.bm-metric-grid,.bm-form,.bm-scenario-grid,.bm-row,.bm-row.top-row{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  button:focus-visible,a:focus-visible{outline:2px solid var(--turq);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="side">
+    <div class="brand">
+      <div class="mark">
+        <svg viewBox="0 0 64 64" width="26" height="26" aria-hidden="true">
+          <polyline points="11,33 32,14 53,33" fill="none" stroke="#0E5E57" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="22,39 29,46 45,28" fill="none" stroke="#16A89A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div><div class="nm">Propierato</div><div class="sb">Airbnb · Riviera Maya</div></div>
+    </div>
+    <div class="nav-lbl">Operación</div>
+    <nav class="nav" id="nav">
+      <button class="on" data-v="inicio"><span class="ic">◧</span> Centro de control</button>
+      <button data-v="mant"><span class="ic">✦</span> Mantenimiento</button>
+      <button data-v="prov"><span class="ic">✆</span> Proveedores</button>
+      <button data-v="benchmark"><span class="ic">🏠</span> Benchmark Airbnb</button>
+      <button data-v="rep"><span class="ic">✉</span> Reporte al dueño</button>
+    </nav>
+    <div class="side-foot">
+      <span class="chip-mx">MXN</span> Factura CFDI · Soporte en español
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="top">
+      <div>
+        <h1 id="vtitle">Centro de control</h1>
+        <p id="vsub">Tu portafolio de un vistazo — salud, preventivos y proveedores.</p>
+      </div>
+      <div class="sel">
+        <span class="pill"><span class="dot" style="background:var(--turq)"></span> 8 propiedades</span>
+        <span class="pill"><b>Enero 2025</b> ›</span>
+      </div>
+      <div class="sel" style="margin-top:8px;gap:8px">
+        <button class="btn ghost" id="loadDemo">Cargar demo</button>
+        <button class="btn" id="saveStudy">Guardar estudio</button>
+        <button class="btn" id="exportJSON">Exportar JSON</button>
+        <button class="btn ghost" id="clearStudy">Limpiar estudio</button>
+        <button class="btn ghost" id="copySummary">Copiar resumen</button>
+      </div>
+    </div>
+
+    <!-- ===== INICIO ===== -->
+    <section class="view on" id="inicio">
+      <div class="g-hero">
+        <!-- portfolio -->
+        <div class="card">
+          <div class="card-h"><h3>Propiedades</h3><span class="eyebrow">Home Score</span></div>
+          <div id="propList"></div>
+        </div>
+        <!-- home score signature -->
+        <div class="card">
+          <div class="card-h"><h3>Home Score · Casa Akumal</h3><a class="lk">Ver activos ›</a></div>
+          <div class="score-wrap">
+            <div class="ring">
+              <svg width="172" height="172" viewBox="0 0 172 172">
+                <circle cx="86" cy="86" r="74" fill="none" stroke="#E6ECEA" stroke-width="14"/>
+                <circle cx="86" cy="86" r="74" fill="none" stroke="url(#g)" stroke-width="14"
+                  stroke-linecap="round" stroke-dasharray="465" stroke-dashoffset="60"/>
+                <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#16A89A"/><stop offset="1" stop-color="#0E5E57"/></linearGradient></defs>
+              </svg>
+              <div class="ctr"><b>87</b><span>Salud</span></div>
+            </div>
+            <div class="cats" id="cats"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <div class="card-h"><h3>Perfil de propiedad</h3><span class="eyebrow">Inputs del estudio (editable)</span></div>
+        <div class="card-body">
+          <div class="g-3" id="propertyForm"></div>
+        </div>
+      </div>
+
+      <div class="g-2">
+        <!-- preventive maintenance -->
+        <div class="card">
+          <div class="card-h"><h3>Próximos preventivos</h3><a class="lk" data-go="mant">Ver todos ›</a></div>
+          <div class="note-salitre">🌊 Calendario afinado a clima costero: el salitre y la humedad adelantan los servicios de A/A y boiler.</div>
+          <div class="mlist" id="prevList"></div>
+        </div>
+        <!-- whatsapp coordination -->
+        <div class="card" style="overflow:hidden">
+          <div class="card-h"><h3>Coordinación con proveedores</h3><span class="eyebrow">vía WhatsApp</span></div>
+          <div class="wa-meta">
+            <div class="wa-av">🔧</div>
+            <div><div class="nm">Aires del Caribe · Téc. Beto</div><div class="st">en línea</div></div>
+            <span class="tag t-ok" style="margin-left:auto">Orden #182</span>
+          </div>
+          <div class="wa">
+            <div class="bub out">Casa Akumal — cambio de filtro A/A (preventivo por salitre). ¿Puedes hoy 4pm? <div class="ti">3:10 pm ✓✓</div></div>
+            <div class="bub in">Va, confirmado 👍 <div class="ti">3:12 pm</div></div>
+            <div class="bub in" style="max-width:62%"><div class="ph">📷 Evidencia · filtro nuevo</div>Listo ✅ <div class="ti">5:48 pm</div></div>
+            <div class="wa-done">✓ Orden cerrada · evidencia guardada · costo $850 MXN</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="g-2" style="margin-top:14px">
+        <div class="card">
+          <div class="card-h"><h3>Benchmark de mercado</h3><a class="lk" href="#" id="addBenchmark">+ agregar comparable</a></div>
+          <div class="card-body" style="padding-top:8px">
+            <div class="table-wrap"><table class="table" id="benchmarkTable"></table></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-h"><h3>Top propiedades / Techo de mercado</h3><span class="eyebrow">5 propiedades de referencia</span></div>
+          <div class="card-body" style="padding:0">
+            <div class="table-wrap"><table class="table" id="topTable"></table></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MANTENIMIENTO ===== -->
+    <section class="view" id="benchmark">
+      <div class="bm-stack">
+        <div class="bm-hero" id="bmSummaryCards"></div>
+
+        <div class="bm-panel">
+          <div class="bm-panel-head">
+            <div><h3>Escenarios de rentabilidad</h3><p>Real, aspiracional y techo con las mismas fórmulas financieras.</p></div>
+          </div>
+          <div class="bm-panel-body">
+            <div id="bmScenarioGrid" class="bm-scenario-grid"></div>
+            <div id="bmFactTable" style="display:none"></div>
+          </div>
+        </div>
+
+        <div class="bm-panel">
+          <div class="bm-panel-head">
+            <div><h3>Perfil de propiedad</h3><p>Inputs principales para recalcular el estudio en vivo.</p></div>
+          </div>
+          <div class="bm-panel-body">
+            <div class="bm-form" id="bmPropertyForm"></div>
+          </div>
+        </div>
+
+        <div class="bm-panel">
+          <div class="bm-panel-head">
+            <div><h3>Comparables de mercado</h3><p>Filas editables tipo Airtable para el set competitivo.</p></div>
+            <a class="lk" href="#" id="bmAddComparable">+ agregar comparable</a>
+          </div>
+          <div class="bm-panel-body">
+            <div class="bm-list" id="bmComparablesTable"></div>
+          </div>
+        </div>
+
+        <div class="bm-panel">
+          <div class="bm-panel-head">
+            <div><h3>Top propiedades / techo de mercado</h3><p>Referencia aspiracional para ubicar el máximo defendible.</p></div>
+          </div>
+          <div class="bm-panel-body">
+            <div class="bm-list" id="bmTopTable"></div>
+          </div>
+        </div>
+
+        <div class="bm-panel">
+          <div class="bm-panel-head">
+            <div><h3>Resumen ejecutivo</h3><p>Lectura rápida para decidir si avanzar, ajustar o descartar.</p></div>
+          </div>
+          <div class="bm-panel-body">
+            <div id="bmSummaryGrid" class="bm-metric-grid"></div>
+            <div id="bmExecText" style="margin-top:14px;font-size:13.5px;line-height:1.65;color:var(--muted)"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MANTENIMIENTO ===== -->
+    <section class="view" id="mant">
+      <div class="kpis">
+        <div class="kpi"><div class="lab">Preventivos al día</div><div class="val">86%</div><div class="sub">del portafolio</div></div>
+        <div class="kpi"><div class="lab">Órdenes abiertas</div><div class="val">5</div><div class="sub">2 vencen esta semana</div></div>
+        <div class="kpi"><div class="lab">Costo del mes</div><div class="val">$16,213</div><div class="sub">MXN · con factura CFDI</div></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Activos y mantenimiento preventivo</h3><button class="btn ghost">+ Nueva orden</button></div>
+        <div class="note-salitre">🌊 Reglas locales activas: filtro A/A cada 45 días en costa · revisión de ánodo de boiler por agua dura · sellado de humedad pre-temporada de lluvias.</div>
+        <div class="mlist" id="mantFull"></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-h"><h3>Factibilidad financiera</h3><span class="eyebrow">3 escenarios · 12 meses</span></div>
+        <div class="card-body">
+          <div id="factGrid" class="g-3"></div>
+          <div style="margin-top:12px">
+            <div class="table-wrap">
+              <table class="table" id="factTable"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROVEEDORES ===== -->
+    <section class="view" id="prov">
+      <div class="kpis">
+        <div class="kpi"><div class="lab">Proveedores activos</div><div class="val">7</div><div class="sub">A/A, plomería, alberca, limpieza</div></div>
+        <div class="kpi"><div class="lab">Tiempo de respuesta</div><div class="val">38 min</div><div class="sub">promedio vía WhatsApp</div></div>
+        <div class="kpi"><div class="lab">Evidencias del mes</div><div class="val">94%</div><div class="sub">con foto antes/después</div></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Cuadrilla y proveedores</h3><span class="eyebrow">Todo corre por WhatsApp</span></div>
+        <div id="provList"></div>
+      </div>
+    </section>
+
+    <!-- ===== REPORTE ===== -->
+    <section class="view" id="rep">
+      <div class="g-2" style="margin-top:0">
+        <div class="card" style="overflow:hidden">
+          <div class="rep-head">
+            <div class="eb">Reporte mensual al propietario</div>
+            <h4>Casa Akumal — Enero 2025</h4>
+            <p>Para: Sr. Méndez · Generado por tu administrador</p>
+          </div>
+          <div class="rep-body">
+            <div class="rep-stat"><span>Home Score</span><b>87 / 100 · Estable</b></div>
+            <div class="rep-stat"><span>Mantenimientos realizados</span><b>4 (preventivos)</b></div>
+            <div class="rep-stat"><span>Incidencias resueltas</span><b>1 · fuga menor lavabo</b></div>
+            <div class="rep-stat"><span>Gasto de mantenimiento</span><b>$3,250 MXN</b></div>
+            <div class="rep-stat"><span>Próximo servicio</span><b>Filtro A/A · 12 feb</b></div>
+            <button class="btn">⬇ Generar PDF / enviar enlace</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-h"><h3>Por qué importa</h3></div>
+          <div style="padding:14px 18px 18px;font-size:13px;color:var(--muted);line-height:1.65">
+            <p style="margin-top:0">Este reporte es tu <b style="color:var(--ink)">gancho de retención</b>: le demuestra al dueño, mes con mes, que su propiedad está cuidada y protegida — sin que tenga que preguntar.</p>
+            <p>Justifica tu comisión, reduce la rotación de dueños-clientes, y construye el historial de salud del activo (el “Carfax de la casa”) que vale al vender o refinanciar.</p>
+            <p style="margin-bottom:0">Se envía por correo o <b style="color:var(--ink)">WhatsApp</b>, con tu marca, en español y pesos.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-h"><h3>Resumen ejecutivo</h3><span class="eyebrow">Decisión de viabilidad</span></div>
+        <div class="card-body">
+          <div class="grid-4" id="summaryTop"></div>
+          <div class="grid-4" id="summaryScen" style="margin-top:12px"></div>
+          <div id="summaryText" style="margin-top:12px;font-size:12.8px;line-height:1.6"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(() => {
+  const STORAGE_KEY = 'propierato.benchmark.airbnb.v1';
+  const STORAGE_KEY_LEGACY = 'propierato.benchmark.v1';
+  const fmt = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
+  const fmtPct = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 1 });
+
+  const props = [
+    ['🏖️', 'Casa Akumal', 'Akumal', 87, 's-ok'],
+    ['🌴', 'Villa Tulum', 'Tulum', 92, 's-ok'],
+    ['🏝️', 'Condo Playa 1', 'Playa del Carmen', 74, 's-mid'],
+    ['🐚', 'Suite Aldea', 'Akumal', 81, 's-ok'],
+    ['⛵', 'Casa del Mar', 'Tulum', 68, 's-bad'],
+    ['🌅', 'Loft Centro', 'Playa del Carmen', 89, 's-ok']
+  ];
+
+  const cats = [
+    ['Clima / A/A.', 72, 'var(--coral)'],
+    ['Agua', 96, 'var(--green)'],
+    ['Eléctrico', 88, 'var(--turq)'],
+    ['Alberca', 79, 'var(--amber)'],
+    ['Seguridad', 98, 'var(--green)'],
+    ['Estructura', 90, 'var(--green)']
+  ];
+
+  const prev = [
+    ['❄️', 'Filtro A/A — Casa Akumal', 'Preventivo · salitre', '12 feb', '$850', 't-urg', 'Vence pronto'],
+    ['🔥', 'Ánodo de boiler — Condo Playa 1', 'Preventivo · agua dura', '15 feb', '$1,400', 't-soon', 'Programado'],
+    ['💧', 'Sellado de humedad — Villa Tulum', 'Pre-lluvias', '22 feb', '$2,100', 't-soon', 'Programado'],
+    ['🏊', 'Bomba de alberca — Casa del Mar', 'Revisión', '24 feb', '$600', 't-ok', 'Asignado']
+  ];
+
+  const provs = [
+    ['🔧', 'Aires del Caribe', 'A/A y refrigeración · Beto', '38 min', 't-ok', 'Activo'],
+    ['🚰', 'HidroPro', 'Plomería · Sra. Lucía', '1.2 h', 't-ok', 'Activo'],
+    ['🏊', 'AlbercaClean', 'Mantenimiento de alberca', '45 min', 't-soon', 'Hoy'],
+    ['🧹', 'Limpieza Maya', 'Turnovers y profunda', '25 min', 't-ok', 'Activo'],
+    ['⚡', 'ElectroSur', 'Eléctrico · emergencias', '2.1 h', 't-ok', 'Activo']
+  ];
+
+  const defaultBenchmark = {
+    property: {
+      name: 'Casa Akumal',
+      areaM2: 180,
+      daysPerMonth: 30,
+      adr: 280,
+      occupancy: 76,
+      commission: 'Host Only Fee  (15.5% anfitrión)',
+      cleaningFee: 280,
+      monthlyReserve: 3800,
+      fixedCosts: 1200,
+      managementFee: 0,
+      variableCostRate: 4.5,
+      variableCost: 0,
+      traditionalRent: 4300,
+      investment: 95000
+    },
+    comparables: [
+      { name: 'Casa Akumal Frente', areaM2: 175, adr: 285, occupancy: 74, zone: 'Akumal', distanceKm: 3.1, condition: 91 },
+      { name: 'Villa Playa Norte', areaM2: 210, adr: 310, occupancy: 69, zone: 'Tulum', distanceKm: 6.2, condition: 88 },
+      { name: 'Condo Palm 2BR', areaM2: 142, adr: 260, occupancy: 72, zone: 'Playa del Carmen', distanceKm: 5.4, condition: 83 },
+      { name: 'Casa Jardines', areaM2: 205, adr: 330, occupancy: 77, zone: 'Tulum', distanceKm: 8.0, condition: 94 },
+      { name: 'Suite Marina', areaM2: 135, adr: 240, occupancy: 68, zone: 'Playa del Carmen', distanceKm: 4.1, condition: 80 }
+    ],
+    topProperties: [
+      { name: 'Condominio Riviera', areaM2: 145, adr: 350, occupancy: 84, zone: 'Playa del Carmen', distanceKm: 6.0, condition: 96 },
+      { name: 'Casa Costa Alta', areaM2: 190, adr: 360, occupancy: 82, zone: 'Akumal', distanceKm: 5.0, condition: 90 },
+      { name: 'Loft Atlántico', areaM2: 165, adr: 295, occupancy: 78, zone: 'Tulum', distanceKm: 4.3, condition: 86 },
+      { name: 'Suite Marina', areaM2: 135, adr: 255, occupancy: 76, zone: 'Tulum', distanceKm: 4.9, condition: 86 },
+      { name: 'Casa Palma', areaM2: 200, adr: 330, occupancy: 80, zone: 'Playa del Carmen', distanceKm: 3.4, condition: 91 }
+    ],
+    scenarios: [
+      { id: 'real', name: 'Real', occupancyAdj: 0, adrAdj: 0, fixedAdj: 1, cleaningAdj: 1, variableAdj: 1, reserveAdj: 1 },
+      { id: 'aspiracional', name: 'Aspiracional', occupancyAdj: 0.08, adrAdj: 0.07, fixedAdj: 0.97, cleaningAdj: 0.98, variableAdj: 0.95, reserveAdj: 1 },
+      { id: 'techo', name: 'Techo', occupancyAdj: 0.14, adrAdj: 0.12, fixedAdj: 1.02, cleaningAdj: 1.04, variableAdj: 1.05, reserveAdj: 1.03 }
+    ]
+  };
+
+  const $ = (s) => document.querySelector(s);
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  const number = (v) => {
+    const txt = String(v ?? '0').replace(/,/g, '.').replace(/[^0-9.\-]/g, '').trim();
+    return Number(txt) || 0;
+  };
+  const clampPositive = (v) => (Number.isFinite(v) ? Math.max(0, v) : 0);
+  const clone = (obj) => JSON.parse(JSON.stringify(obj));
+  const toMoney = (v) => {
+    const n = number(v);
+    return fmt.format(clampPositive(n));
+  };
+  const toMoneySigned = (v) => fmt.format(number(v));
+  const toPercent = (v) => `${fmtPct.format(Number.isFinite(v) ? v : 0)}%`;
+  const safeText = (v, d = '—') => {
+    if (v === null || v === undefined || (typeof v === 'number' && Number.isNaN(v))) return d;
+    const str = String(v).trim();
+    return str.length ? str : d;
+  };
+  const inputStyle = `
+    width:100%;background:transparent;border:1px solid var(--line);color:var(--ink);
+    border-radius:8px;padding:7px 9px;font:inherit;font-size:13px;outline:none`;
+
+  const titles = {
+    inicio: ['Centro de control', 'Tu portafolio de un vistazo — salud, preventivos y proveedores.'],
+    mant: ['Mantenimiento', 'Preventivo y predictivo, afinado al clima de la costa.'],
+    prov: ['Proveedores', 'Tu cuadrilla local, coordinada por WhatsApp.'],
+    benchmark: ['Benchmark Airbnb', 'Comparables, escenarios de factibilidad y veredicto financiero.'],
+    rep: ['Reporte al dueño', 'Tu gancho de retención: salud de la propiedad, cada mes.']
+  };
+
+  const parseCommission = (mode) => {
+    if (!mode) return 0.03;
+    if (String(mode).includes('15.5')) return 0.155;
+    if (String(mode).includes('15%')) return 0.15;
+    return 0.03;
+  };
+  const state = loadState();
+
+  function loadState() {
+    const legacy = localStorage.getItem(STORAGE_KEY_LEGACY);
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return normalizeState(parsed);
+      } catch {
+        // caer a defaults
+      }
+    }
+    if (legacy) {
+      try {
+        const parsed = JSON.parse(legacy);
+        if (parsed.property || parsed.benchmarks || parsed.topProperties) {
+          const migrated = {
+            property: {
+              ...defaultBenchmark.property,
+              ...(parsed.property || {}),
+              rent: undefined
+            },
+            comparables: Array.isArray(parsed.benchmarks) && parsed.benchmarks.length
+              ? parsed.benchmarks.map((b) => ({
+                name: b.name || 'Comparable',
+                areaM2: b.areaM2 || 0,
+                adr: clampPositive(number(b.rent) / 30 / 0.7),
+                occupancy: b.condition || b.ocupacion || 75,
+                zone: b.zone || 'Sin zona',
+                distanceKm: b.distanceKm || 0,
+                condition: b.condition || 80
+              }))
+              : defaultBenchmark.comparables,
+            topProperties: Array.isArray(parsed.topProperties) && parsed.topProperties.length
+              ? parsed.topProperties
+              : defaultBenchmark.topProperties,
+            scenarios: defaultBenchmark.scenarios
+          };
+          return normalizeState(migrated);
+        }
+      } catch {
+        // seguir a defaults
+      }
+    }
+    return clone(defaultBenchmark);
+  }
+
+  function normalizeState(parsed) {
+    return {
+      property: { ...defaultBenchmark.property, ...(parsed.property || {}) },
+      comparables: Array.isArray(parsed.comparables)
+        ? parsed.comparables
+        : clone(defaultBenchmark.comparables),
+      topProperties: Array.isArray(parsed.topProperties)
+        ? parsed.topProperties
+        : clone(defaultBenchmark.topProperties),
+      scenarios: Array.isArray(parsed.scenarios) && parsed.scenarios.length
+        ? parsed.scenarios
+        : clone(defaultBenchmark.scenarios)
+    };
+  }
+
+  const saveState = () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  };
+
+  function renderScenarioData(property = state.property) {
+    return (state.scenarios || defaultBenchmark.scenarios).map((s) => {
+      const days = clamp(number(property.daysPerMonth), 20, 31);
+      const adjOccupancy = clamp((number(property.occupancy) / 100) * (1 + s.occupancyAdj), 0.05, 0.98);
+      const adjAdr = Math.max(20, number(property.adr) * (1 + s.adrAdj));
+      const nights = days * adjOccupancy;
+      const grossMonthly = adjAdr * nights;
+      const airbnbCommission = grossMonthly * parseCommission(property.commission);
+      const cleaning = number(property.cleaningFee) * nights * s.cleaningAdj;
+      const fixedCosts = number(property.fixedCosts) * s.fixedAdj;
+      const variableRate = number(property.variableCostRate) / 100;
+      const variable = grossMonthly * variableRate * s.variableAdj;
+      const reserve = number(property.monthlyReserve) * s.reserveAdj;
+      const management = number(property.managementFee);
+      const costsTotal = cleaning + fixedCosts + variable + reserve + management;
+      const netMonth = grossMonthly - airbnbCommission - costsTotal;
+      const netYear = netMonth * 12;
+      const margin = grossMonthly ? (netMonth / grossMonthly) * 100 : 0;
+      const vsTraditionalMonth = netMonth - number(property.traditionalRent);
+      let verdict = 'no viable';
+      if (netMonth > 0 && margin > 12) verdict = 'viable';
+      else if (netMonth > 0) verdict = 'revisar';
+      return {
+        ...s,
+        days,
+        occupancyAdj: s.occupancyAdj,
+        adrAdj: s.adrAdj,
+        occupancy: adjOccupancy * 100,
+        nights: clamp(Math.round(nights), 0, 31),
+        adr: adjAdr,
+        grossMonthly,
+        grossAnnual: grossMonthly * 12,
+        commission: airbnbCommission,
+        cleaning,
+        fixedCosts: fixedCosts,
+        variable,
+        reserve,
+        management,
+        totalCosts: costsTotal,
+        netMonth,
+        netYear,
+        margin,
+        vsTraditionalMonth,
+        verdict
+      };
+    });
+  }
+
+  function computeMarketMetrics() {
+    const comps = (state.comparables || []).filter((c) => c && (number(c.adr) > 0 || number(c.rent) > 0));
+    if (!comps.length) return {
+      count: 0,
+      avgAdr: 0,
+      avgOccupancy: 0,
+      avgDailyIncome: 0,
+      avgMonthlyIncome: 0,
+      avgRentPerM2: 0
+    };
+    let totalAdr = 0;
+    let totalOcc = 0;
+    let totalRent = 0;
+    let totalRentM2 = 0;
+    comps.forEach((c) => {
+      const adr = number(c.adr || 0);
+      const occ = number(c.occupancy);
+      const area = Math.max(1, number(c.areaM2) || 1);
+      const days = clamp(number(state.property.daysPerMonth), 20, 31);
+      const monthly = adr * days * clamp(occ / 100, 0.05, 0.98);
+      totalAdr += adr;
+      totalOcc += occ;
+      totalRent += monthly;
+      totalRentM2 += monthly / area;
+    });
+    const count = comps.length;
+    return {
+      count,
+      avgAdr: totalAdr / count,
+      avgOccupancy: totalOcc / count,
+      avgDailyIncome: totalRent / count,
+      avgMonthlyIncome: totalRent / count,
+      avgRentPerM2: totalRentM2 / count
+    };
+  }
+
+  function computePropertyScore() {
+    const metric = computeMarketMetrics();
+    const propertyMonthly = number(state.property.adr) * clamp(number(state.property.daysPerMonth), 20, 31) * clamp(number(state.property.occupancy), 1, 95) / 100;
+    const propertyRentPerM2 = propertyMonthly / Math.max(1, number(state.property.areaM2));
+    const marketGap = metric.avgRentPerM2 ? ((propertyRentPerM2 / metric.avgRentPerM2) - 1) * 100 : 0;
+    const score = Math.round(clamp(64 + (marketGap * 0.8) + (clamp(number(state.property.occupancy), 20, 95) - 65) * 0.5, 58, 98));
+    const benchmarkPos = state.comparables.filter((c) => {
+      const monthly = number(c.adr) * clamp(number(state.property.daysPerMonth), 20, 31) * clamp(number(c.occupancy), 5, 100) / 100;
+      const cRentM2 = monthly / Math.max(1, number(c.areaM2));
+      return cRentM2 >= propertyRentPerM2;
+    }).length;
+    return { score, marketGap, propertyMonthly, propertyRentPerM2, metric, benchmarkPos };
+  }
+
+  function emptyStateTableMessage(cols) {
+    return `<tr><td colspan="${cols}" style="text-align:center;padding:10px;color:var(--muted)">Sin datos. Usa + agregar comparable para completar la grilla.</td></tr>`;
+  }
+
+  function renderLists() {
+    const metric = computePropertyScore();
+    $('#propList').innerHTML = props.map((p) => {
+      const score = p[1] === state.property.name ? metric.score : p[3];
+      const scoreCls = score >= 90 ? 's-ok' : score >= 75 ? 's-mid' : 's-bad';
+      return `<div class="prop-row">
+        <div class="pin">${p[0]}</div>
+        <div><div class="nm">${p[1]}</div><div class="lo">${p[2]}</div></div>
+        <div class="scorebadge ${scoreCls}">${score}</div>
+      </div>`;
+    }).join('');
+
+    $('#cats').innerHTML = cats.map((c) => `<div class="cat"><span class="lab">${c[0]}</span>
+      <span class="bar"><i style="width:${c[1]}%;background:${c[2]}"></i></span><span class="v">${c[1]}</span></div>`).join('');
+
+    const prevTemplate = (m) => `<div class="m-row"><div class="ic">${m[0]}</div>
+      <div><div class="t">${m[1]}</div><div class="s">${m[2]}</div></div>
+      <div class="meta"><b>${m[3]}</b>${m[4]} MXN · <span class="tag ${m[5]}">${m[6]}</span></div></div>`;
+    $('#prevList').innerHTML = prev.map(prevTemplate).join('');
+    $('#mantFull').innerHTML = prev.concat([
+      ['🧯', 'Detector de humo — Suite Aldea', 'Revisión anual', '28 feb', '$300', 't-ok', 'Asignado']
+    ]).map(prevTemplate).join('');
+
+    $('#provList').innerHTML = provs.map((p) => `<div class="m-row"><div class="ic">${p[0]}</div>
+      <div><div class="t">${p[1]}</div><div class="s">${p[2]}</div></div>
+      <div class="meta">resp. <b>${p[3]}</b><span class="tag ${p[4]}">${p[5]}</span></div></div>`).join('');
+  }
+
+  function renderPropertyInputs(selector) {
+    const isBenchmarkView = selector === '#bmPropertyForm';
+    const schema = [
+      ['name', 'Nombre', 'text', state.property.name],
+      ['areaM2', 'Área (m²)', 'number', state.property.areaM2],
+      ['daysPerMonth', 'Días del mes', 'number', state.property.daysPerMonth],
+      ['adr', 'ADR (MXN)', 'number', state.property.adr],
+      ['occupancy', 'Ocupación (%)', 'number', state.property.occupancy],
+      ['commission', 'Comisión Airbnb', 'select', state.property.commission],
+      ['cleaningFee', 'Precio limpieza / reserva', 'number', state.property.cleaningFee],
+      ['monthlyReserve', 'Reserva mensual', 'number', state.property.monthlyReserve],
+      ['fixedCosts', 'Costos fijos', 'number', state.property.fixedCosts],
+      ['variableCostRate', 'Costos variables (%)', 'number', state.property.variableCostRate],
+      ['traditionalRent', 'Renta tradicional', 'number', state.property.traditionalRent],
+      ['investment', 'Inversión', 'number', state.property.investment]
+    ];
+
+    const container = $(selector);
+    container.innerHTML = schema.map((row) => {
+      const safeValue = safeText(row[3], 0);
+      if (row[1] === 'Comisión Airbnb') {
+        return `<label class="${isBenchmarkView ? 'bm-field' : ''}" style="${isBenchmarkView ? '' : 'display:flex;flex-direction:column;gap:6px'}">
+          <span style="${isBenchmarkView ? '' : 'font-size:12px;color:var(--muted)'}">${row[1]}</span>
+          <select data-prop="${row[0]}" class="${isBenchmarkView ? 'bm-input' : ''}" style="${isBenchmarkView ? '' : inputStyle}">
+            <option value="Host Only Fee  (15.5% anfitrión)" ${safeValue === 'Host Only Fee  (15.5% anfitrión)' ? 'selected' : ''}>Host Only (15.5%)</option>
+            <option value="15% + limpieza" ${safeValue === '15% + limpieza' ? 'selected' : ''}>15% + limpieza</option>
+            <option value="Basic  (3% anfitrión)" ${safeValue === 'Basic  (3% anfitrión)' ? 'selected' : ''}>Basic (3%)</option>
+            <option value="Basic  (3% + limpieza)" ${safeValue === 'Basic  (3% + limpieza)' ? 'selected' : ''}>Basic + limpieza (3%)</option>
+          </select>
+        </label>`;
+      }
+      return `<label class="${isBenchmarkView ? 'bm-field' : ''}" style="${isBenchmarkView ? '' : 'display:flex;flex-direction:column;gap:6px'}">
+        <span style="${isBenchmarkView ? '' : 'font-size:12px;color:var(--muted)'}">${row[1]}</span>
+        <input data-prop="${row[0]}" type="${row[2]}" value="${safeValue}" step="${row[0] === 'daysPerMonth' ? '1' : ''}" class="${isBenchmarkView ? 'bm-input' : ''}" style="${isBenchmarkView ? '' : inputStyle}" />
+      </label>`;
+    }).join('');
+
+    container.oninput = (ev) => {
+      const field = ev.target.dataset?.prop;
+      if (!field) return;
+      state.property[field] = ev.target.value;
+      rerenderAll();
+      saveState();
+    };
+    container.onchange = container.oninput;
+  }
+
+  function renderComparables(selector, opts = {}) {
+    const table = $(selector);
+    if (!table) return;
+    const isBenchmarkView = selector === '#bmComparablesTable';
+    const headers = ['Comparable', 'm²', 'ADR', 'Ocupación', 'Zona', 'Distancia', 'Condición', 'Mensual', ''];
+    if (isBenchmarkView) {
+      const rows = (state.comparables || []).map((b, idx) => {
+        const monthly = number(b.adr) * clamp(number(state.property.daysPerMonth), 20, 31) * clamp(number(b.occupancy), 5, 100) / 100;
+        return `<div class="bm-row">
+          <div>
+            <input data-comp="${idx}" data-field="name" type="text" value="${safeText(b.name)}" class="bm-input" aria-label="Nombre comparable">
+            <div class="row-sub">${safeText(b.zone)} · ${safeText(number(b.distanceKm))} km</div>
+          </div>
+          <label class="bm-cell"><span>m²</span><input data-comp="${idx}" data-field="areaM2" type="number" value="${safeText(number(b.areaM2))}" class="bm-input"></label>
+          <label class="bm-cell"><span>ADR</span><input data-comp="${idx}" data-field="adr" type="number" value="${safeText(number(b.adr))}" class="bm-input"></label>
+          <label class="bm-cell"><span>Ocupación</span><input data-comp="${idx}" data-field="occupancy" type="number" min="1" max="100" value="${safeText(number(b.occupancy))}" class="bm-input"></label>
+          <label class="bm-cell"><span>Zona</span><input data-comp="${idx}" data-field="zone" type="text" value="${safeText(b.zone)}" class="bm-input"></label>
+          <label class="bm-cell"><span>Condición</span><input data-comp="${idx}" data-field="condition" type="number" min="40" max="100" value="${safeText(number(b.condition || 85))}" class="bm-input"></label>
+          <div class="bm-cell"><span>Ingreso mensual</span><b>${toMoney(monthly)}</b></div>
+          <button type="button" class="btn ghost bm-remove" data-remove="${idx}">Eliminar</button>
+        </div>`;
+      }).join('');
+      table.innerHTML = rows || '<div class="bm-empty">Sin datos. Agrega comparables para construir el benchmark.</div>';
+    } else {
+    const rows = (state.comparables || []).map((b, idx) => {
+      const monthly = number(b.adr) * clamp(number(state.property.daysPerMonth), 20, 31) * clamp(number(b.occupancy), 5, 100) / 100;
+      return `<tr>
+        <td><input data-comp="${idx}" data-scope="${opts.scope || 'home'}" data-field="name" type="text" value="${safeText(b.name)}" style="${inputStyle}"></td>
+        <td><input data-comp="${idx}" data-scope="${opts.scope || 'home'}" data-field="areaM2" type="number" value="${safeText(number(b.areaM2))}" style="${inputStyle}"></td>
+        <td><input data-comp="${idx}" data-scope="${opts.scope || 'home'}" data-field="adr" type="number" value="${safeText(number(b.adr))}" style="${inputStyle}"></td>
+        <td><input data-comp="${idx}" data-scope="${opts.scope || 'home'}" data-field="occupancy" type="number" min="1" max="100" value="${safeText(number(b.occupancy))}" style="${inputStyle}"></td>
+        <td><input data-comp="${idx}" data-scope="${opts.scope || 'home'}" data-field="zone" type="text" value="${safeText(b.zone)}" style="${inputStyle}"></td>
+        <td><input data-comp="${idx}" data-scope="${opts.scope || 'home'}" data-field="distanceKm" type="number" step="0.1" value="${safeText(number(b.distanceKm))}" style="${inputStyle}"></td>
+        <td><input data-comp="${idx}" data-scope="${opts.scope || 'home'}" data-field="condition" type="number" min="40" max="100" value="${safeText(number(b.condition || 85))}" style="${inputStyle}"></td>
+        <td>${toMoney(monthly)}</td>
+        <td><button type="button" class="btn ghost" data-remove="${idx}" style="padding:7px 10px">Eliminar</button></td>
+      </tr>`;
+    }).join('');
+
+    table.innerHTML = `<thead><tr>${headers.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows || ''}</tbody>`;
+    if (!rows) {
+      table.insertAdjacentHTML('beforeend', `<tbody>${emptyStateTableMessage(headers.length)}</tbody>`);
+    }
+    }
+
+    table.oninput = (ev) => {
+      if (!(ev.target.matches('[data-comp]'))) return;
+      const idx = Number(ev.target.dataset.comp);
+      if (Number.isNaN(idx) || !state.comparables[idx]) return;
+      const field = ev.target.dataset.field;
+      if (!field) return;
+      state.comparables[idx][field] = ev.target.value;
+      rerenderAll();
+      saveState();
+    };
+    table.onclick = (ev) => {
+      if (!ev.target.matches('[data-remove]')) return;
+      const idx = Number(ev.target.dataset.remove);
+      if (Number.isNaN(idx)) return;
+      state.comparables = state.comparables.filter((_, i) => i !== idx);
+      if (!state.comparables.length) state.comparables = clone(defaultBenchmark.comparables);
+      rerenderAll();
+      saveState();
+    };
+  }
+
+  function renderTop(selector) {
+    const metric = computeMarketMetrics();
+    const table = $(selector);
+    const isBenchmarkView = selector === '#bmTopTable';
+    const rows = (state.topProperties || []).slice(0, 5).map((p) => {
+      const adr = number(p.adr);
+      const area = Math.max(1, number(p.areaM2));
+      const monthly = adr * clamp(number(state.property.daysPerMonth), 20, 31) * clamp(number(p.occupancy), 5, 100) / 100;
+      const gap = metric.avgAdr ? ((adr / metric.avgAdr) - 1) * 100 : 0;
+      if (isBenchmarkView) {
+        return `<div class="bm-row top-row">
+          <div><div class="row-title">${safeText(p.name)}</div><div class="row-sub">${safeText(p.zone)} · ${safeText(number(p.distanceKm))} km</div></div>
+          <div class="bm-cell"><span>ADR</span><b>${toMoney(adr)}</b></div>
+          <div class="bm-cell"><span>Ingreso mensual</span><b>${toMoney(monthly)}</b></div>
+          <div class="bm-cell"><span>Ocupación</span><b>${safeText(number(p.occupancy))}%</b></div>
+          <div class="bm-cell"><span>Ingreso m²</span><b>${toMoney(monthly / area)}</b></div>
+          <div class="bm-cell"><span>Gap mercado</span><b>${gap >= 0 ? '+' : ''}${toPercent(gap)}</b></div>
+          <div class="bm-cell"><span>Condición</span><b>${safeText(number(p.condition || 90))}/100</b></div>
+        </div>`;
+      }
+      return `<tr>
+        <td>${safeText(p.name)}</td>
+        <td>${toMoney(adr)}</td>
+        <td>${toMoney(monthly)} / mes</td>
+        <td>${safeText(number(p.occupancy))}%</td>
+        <td>${toMoney(monthly / area)} /m²</td>
+        <td>${gap >= 0 ? '+' : ''}${toPercent(gap)}</td>
+      </tr>`;
+    }).join('');
+    if (isBenchmarkView) {
+      table.innerHTML = rows || '<div class="bm-empty">Sin top properties cargadas para calcular techo de mercado.</div>';
+      return;
+    }
+    table.innerHTML = `<thead><tr><th>Propiedad</th><th>ADR</th><th>Ingreso</th><th>Ocupación</th><th>Ingreso m²</th><th>Gap mercado</th></tr></thead><tbody>${rows || emptyStateTableMessage(6)}</tbody>`;
+  }
+
+  function renderFactibilidad(targetGrid, targetTable) {
+    const scenarios = renderScenarioData();
+    const isBenchmarkView = targetGrid === '#bmScenarioGrid';
+    if (isBenchmarkView) {
+      const best = scenarios.reduce((a, b) => (b.netMonth > a.netMonth ? b : a), scenarios[0]);
+      $(targetGrid).innerHTML = scenarios.map((s) => {
+        const isTop = s.id === best.id;
+        const tagClass = s.verdict === 'viable' ? 't-ok' : (s.verdict === 'revisar' ? 't-soon' : 't-bad');
+        return `<div class="bm-scenario ${isTop ? 'top' : ''}">
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+            <div class="name">${s.name}</div>
+            <span class="tag ${tagClass}">${s.verdict}</span>
+          </div>
+          <div class="net">${toMoneySigned(s.netMonth)}</div>
+          <div class="row-sub">Utilidad neta mensual · ${toMoneySigned(s.netYear)} anual</div>
+          <div class="bm-metric-grid" style="grid-template-columns:repeat(2,1fr)">
+            <div class="bm-mini"><span>Ingreso mensual</span><b>${toMoney(s.grossMonthly)}</b></div>
+            <div class="bm-mini"><span>Margen</span><b>${toPercent(s.margin)}</b></div>
+            <div class="bm-mini"><span>ADR</span><b>${toMoney(s.adr)}</b></div>
+            <div class="bm-mini"><span>Ocupación</span><b>${toPercent(s.occupancy)}</b></div>
+          </div>
+          <div class="bm-mini"><span>Contra renta tradicional</span><b>${s.vsTraditionalMonth >= 0 ? '+' : ''}${toMoneySigned(s.vsTraditionalMonth)}</b></div>
+        </div>`;
+      }).join('');
+      $(targetTable).innerHTML = '';
+      return;
+    }
+    $(targetGrid).innerHTML = scenarios.map((s) => {
+      return `<div class="kpi">
+        <div class="lab">${s.name}</div>
+        <div class="val">${toMoney(s.netMonth)}</div>
+        <div class="sub">Margen ${toPercent(s.margin)}</div>
+      </div>`;
+    }).join('');
+
+    $(targetTable).innerHTML = `<thead><tr>
+      <th>Escenario</th>
+      <th>ADR</th>
+      <th>Ocupación</th>
+      <th>Ingreso mensual</th>
+      <th>Comisión Airbnb</th>
+      <th>Reserva mensual</th>
+      <th>Utilidad neta</th>
+      <th>Margen</th>
+      <th>vs renta tradicional</th>
+      <th>Veredicto</th>
+    </tr></thead><tbody>` + scenarios.map((s) => `<tr>
+      <td>${s.name}</td>
+      <td>${toMoney(s.adr)}</td>
+      <td>${toPercent(s.occupancy)}</td>
+      <td>${toMoney(s.grossMonthly)}</td>
+      <td>${toMoney(s.commission)}</td>
+      <td>${toMoney(s.reserve)}</td>
+      <td>${toMoney(s.netMonth)}</td>
+      <td>${toPercent(s.margin)}</td>
+      <td>${toMoney(s.vsTraditionalMonth)}</td>
+      <td><span class="tag ${s.verdict === 'viable' ? 't-ok' : (s.verdict === 'revisar' ? 't-soon' : 't-bad')}">${s.verdict}</span></td>
+    </tr>`).join('') + '</tbody>';
+  }
+
+  function renderSummary() {
+    const propertyMetric = computePropertyScore();
+    const scenarios = renderScenarioData();
+    const best = scenarios.reduce((a, b) => (b.netYear > a.netYear ? b : a), scenarios[0]);
+
+    const summaryCards = [
+      ['Airbnb ADR', toMoney(number(state.property.adr)), 'Precio promedio por noche'],
+      ['Ocupación media', toPercent(number(state.property.occupancy)), 'Promedio editable'],
+      ['Benchmark', `${propertyMetric.marketGap >= 0 ? '+' : ''}${fmtPct.format(propertyMetric.marketGap)}%`, 'vs mercado editable'],
+      ['Ingresos mkt (propiedad)', toMoney(propertyMetric.propertyMonthly), 'Con días y ocupación actual']
+    ];
+    $('#summaryTop').innerHTML = summaryCards.map((c) => `<div class="kpi"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('');
+
+    const scenarioCards = [
+      ['Real', toMoney(scenarios[0].netMonth), `Ingreso mensual · ${scenarios[0].verdict}`],
+      ['Aspiracional', toMoney(scenarios[1].netMonth), `Ingreso mensual · ${scenarios[1].verdict}`],
+      ['Techo', toMoney(scenarios[2].netMonth), `Ingreso mensual · ${scenarios[2].verdict}`]
+    ];
+    $('#summaryScen').innerHTML = scenarioCards.map((c) => `<div class="kpi"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('');
+
+    refreshRing(propertyMetric.score);
+    $('#summaryText').textContent =
+      `Benchmark Airbnb (${state.property.name}): ADR ${toMoney(state.property.adr)} y ocupación ${toPercent(number(state.property.occupancy))}. ` +
+      `Escenario real: ${toMoney(scenarios[0].netMonth)}/mes · Aspiracional: ${toMoney(scenarios[1].netMonth)}/mes · Techo: ${toMoney(scenarios[2].netMonth)}/mes. ` +
+      `Mejor escenario: ${best.name} con utilidad anual ${toMoney(best.netYear)}.`;
+  }
+
+  function renderBenchmarkCardsForSidebar() {
+    const propertyMetric = computePropertyScore();
+    const scenarios = renderScenarioData();
+    const best = scenarios.reduce((a, b) => (b.netYear > a.netYear ? b : a), scenarios[0]);
+    const real = scenarios[0];
+    const answer = real.verdict === 'viable'
+      ? 'Sí, es rentable'
+      : (real.verdict === 'revisar' ? 'Rentable, pero sensible' : 'No es rentable');
+    const answerClass = real.verdict === 'viable' ? '' : (real.verdict === 'revisar' ? 'warn' : 'bad');
+    const verdictNote = real.verdict === 'viable'
+      ? 'El escenario real deja utilidad positiva con margen sano.'
+      : (real.verdict === 'revisar'
+        ? 'La utilidad es positiva, pero el margen exige cuidar precio, costos o ocupación.'
+        : 'El escenario real no cubre costos y renta tradicional de forma atractiva.');
+
+    $('#bmSummaryCards').innerHTML = `<div class="bm-verdict">
+      <div>
+        <div class="label">Respuesta rápida</div>
+        <div class="answer ${answerClass}">${answer}</div>
+        <div class="money">${toMoneySigned(real.netMonth)} / mes</div>
+        <div class="copy">${verdictNote}</div>
+      </div>
+      <div style="margin-top:14px"><span class="tag ${real.verdict === 'viable' ? 't-ok' : (real.verdict === 'revisar' ? 't-soon' : 't-bad')}">${real.verdict}</span></div>
+    </div>
+    <div class="bm-metric-grid">
+      ${[
+        ['ADR', toMoney(number(state.property.adr)), 'Precio promedio por noche'],
+        ['Ocupación', toPercent(number(state.property.occupancy)), 'Escenario real'],
+        ['Ingreso mensual', toMoney(real.grossMonthly), 'Antes de costos'],
+        ['Margen', toPercent(real.margin), 'Utilidad / ingreso'],
+        ['Costos', toMoney(real.totalCosts + real.commission), 'Con comisión Airbnb'],
+        ['vs tradicional', `${real.vsTraditionalMonth >= 0 ? '+' : ''}${toMoneySigned(real.vsTraditionalMonth)}`, 'Utilidad Airbnb menos renta'],
+        ['Gap mercado', `${propertyMetric.marketGap >= 0 ? '+' : ''}${fmtPct.format(propertyMetric.marketGap)}%`, 'vs comparables'],
+        ['Mejor escenario', best.name, `${best.verdict} · ${toMoneySigned(best.netMonth)}/mes`]
+      ].map((c) => `<div class="bm-tile"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('')}
+    </div>`;
+
+    $('#bmSummaryGrid').innerHTML = [
+      ['Utilidad anual real', toMoneySigned(scenarios[0].netYear), `Escenario ${scenarios[0].verdict}`],
+      ['Utilidad anual aspiracional', toMoneySigned(scenarios[1].netYear), `Escenario ${scenarios[1].verdict}`],
+      ['Utilidad anual techo', toMoneySigned(scenarios[2].netYear), `Escenario ${scenarios[2].verdict}`],
+      ['Decisión', answer, `${toMoneySigned(real.netMonth)} de utilidad mensual`]
+    ].map((c) => `<div class="bm-tile"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('');
+
+    $('#bmExecText').textContent =
+      `${state.property.name} — veredicto por escenarios: ` +
+      `${scenarios.map((s) => `${s.name}: ${s.verdict} · ${toMoneySigned(s.netMonth)}/m`).join(' · ')}. ` +
+      `Comparativa renta tradicional muestra ${(scenarios[0].vsTraditionalMonth >= 0 ? 'ventaja' : 'desventaja')} en escenario real.`;
+  }
+
+  function refreshRing(score) {
+    const ring = $('.score-wrap .ctr b');
+    const path = Array.from(document.querySelectorAll('.score-wrap svg circle')).find((el) => el.getAttribute('stroke') === 'url(#g)');
+    if (ring) ring.textContent = String(score);
+    if (path) {
+      const R = 74;
+      const circumference = 2 * Math.PI * R;
+      const offset = circumference * (1 - score / 100);
+      path.setAttribute('stroke-dasharray', circumference);
+      path.setAttribute('stroke-dashoffset', `${offset}`);
+    }
+  }
+
+  function rerenderAll() {
+    renderLists();
+    renderPropertyInputs('#propertyForm');
+    renderPropertyInputs('#bmPropertyForm');
+    renderComparables('#benchmarkTable');
+    renderComparables('#bmComparablesTable', { scope: 'bm' });
+    renderTop('#topTable');
+    renderTop('#bmTopTable');
+    renderFactibilidad('#factGrid', '#factTable');
+    renderFactibilidad('#bmScenarioGrid', '#bmFactTable');
+    renderSummary();
+    renderBenchmarkCardsForSidebar();
+  }
+
+  function go(v) {
+    document.querySelectorAll('.view').forEach((s) => s.classList.toggle('on', s.id === v));
+    document.querySelectorAll('#nav button').forEach((b) => b.classList.toggle('on', b.dataset.v === v));
+    const title = titles[v] ? titles[v][0] : 'Propierato';
+    const sub = titles[v] ? titles[v][1] : '';
+    $('#vtitle').textContent = title;
+    $('#vsub').textContent = sub;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function exportState() {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `propierato-benchmark-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function copySummary() {
+    const txt = $('#bmExecText').textContent || $('#summaryText').textContent || '';
+    if (!txt.trim()) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt);
+      return;
+    }
+    const t = document.createElement('textarea');
+    t.value = txt;
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand('copy');
+    t.remove();
+  }
+
+  function setDemo() {
+    Object.assign(state, clone(defaultBenchmark));
+    rerenderAll();
+    saveState();
+  }
+
+  function reset() {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_KEY_LEGACY);
+    Object.assign(state, clone(defaultBenchmark));
+    rerenderAll();
+  }
+
+  function addComparable() {
+    const next = {
+      name: 'Nuevo comparable',
+      areaM2: 150,
+      adr: 250,
+      occupancy: 72,
+      zone: 'Playa',
+      distanceKm: 5,
+      condition: 85
+    };
+    state.comparables.push(next);
+    rerenderAll();
+    saveState();
+  }
+
+  function init() {
+    document.querySelectorAll('#nav button').forEach((b) => b.onclick = () => go(b.dataset.v));
+    document.querySelectorAll('[data-go]').forEach((b) => b.onclick = () => go(b.dataset.go));
+
+    $('#addBenchmark').addEventListener('click', (e) => { e.preventDefault(); addComparable(); });
+    $('#bmAddComparable').addEventListener('click', (e) => { e.preventDefault(); addComparable(); });
+    $('#loadDemo').addEventListener('click', () => setDemo());
+    $('#saveStudy').addEventListener('click', () => { saveState(); alert('Estudio guardado en este navegador.'); });
+    $('#exportJSON').addEventListener('click', exportState);
+    $('#clearStudy').addEventListener('click', () => { if (confirm('¿Limpiar estudio y volver a demo?')) reset(); });
+    $('#copySummary').addEventListener('click', copySummary);
+    go('inicio');
+    rerenderAll();
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
