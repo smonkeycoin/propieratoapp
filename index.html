@@ -121,6 +121,35 @@
   .m-row .meta b{display:block;color:var(--ink);font-size:12.5px}
   .tag{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px;display:inline-block}
   .t-urg{background:#fbe7e0;color:#bb462b} .t-soon{background:#fbf2dc;color:#9a7411} .t-ok{background:#e6f5ee;color:#1f7d52} .t-bad{background:#fbe7e0;color:#bb462b}
+  .ops-hero{background:linear-gradient(135deg,#fff,#f7f1e6);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow-sm);display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:14px}
+  .ops-hero h3{margin:0 0 6px;font-family:var(--display);font-size:24px;color:var(--marine)}
+  .ops-hero p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.55;max-width:720px}
+  .ops-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .ops-grid{display:grid;grid-template-columns:1.45fr .95fr;gap:14px;margin-top:14px}
+  .ops-panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden}
+  .ops-panel-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line-soft)}
+  .ops-panel-head h3{margin:0;font-size:15px}
+  .ops-body{padding:14px 18px;display:grid;gap:12px}
+  .ops-pipeline{display:grid;gap:12px}
+  .turnover-card{border:1px solid var(--line);border-radius:14px;background:var(--panel-soft);padding:13px;display:grid;gap:11px}
+  .turnover-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+  .turnover-top b{display:block;font-size:14px}.turnover-top span{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+  .pipeline-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
+  .pipe-step{border-radius:10px;border:1px solid var(--line);background:#fff;padding:8px;text-align:center;font-size:10.5px;color:var(--muted);font-weight:700;min-height:44px;display:grid;place-items:center}
+  .pipe-step.done{background:#e6f5ee;color:#1f7d52;border-color:#b9dec8}.pipe-step.current{background:#e5f2ff;color:#1d5f98;border-color:#a9cceb}.pipe-step.warn{background:#fbf2dc;color:#9a7411;border-color:#ecd28d}.pipe-step.crit{background:#fbe7e0;color:#bb462b;border-color:#efb09d}
+  .ops-list{display:grid;gap:10px}
+  .finding-card,.wo-card,.health-row,.owner-row,.wa-row{border:1px solid var(--line);border-radius:12px;background:#fff;padding:12px;font-size:13px}
+  .finding-card,.wo-card{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+  .finding-card h4,.wo-card h4{margin:0 0 4px;font-size:13.5px}.finding-card p,.wo-card p{margin:0;color:var(--muted);line-height:1.45}
+  .ops-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .ops-badge{display:inline-flex;align-items:center;border-radius:999px;padding:3px 8px;font-size:10.5px;font-weight:750;background:var(--panel-soft);color:var(--muted)}
+  .ops-badge.ok{background:#e6f5ee;color:#1f7d52}.ops-badge.warn{background:#fbf2dc;color:#9a7411}.ops-badge.crit{background:#fbe7e0;color:#bb462b}.ops-badge.info{background:#e5f2ff;color:#1d5f98}
+  .checklist-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+  .check-item{border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px;display:flex;gap:8px;align-items:center;font-size:13px}
+  .mock-photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .mock-photo{height:70px;border-radius:12px;background:linear-gradient(135deg,#dceae5,#f8efe1);border:1px solid var(--line);display:grid;place-items:center;color:var(--muted);font-size:11px}
+  .health-row{display:flex;justify-content:space-between;gap:10px;align-items:center}.health-row b{font-size:13.5px}.health-score{font-weight:800;color:var(--marine)}
+  .wa-row{background:#f0f7f3;border-color:#d8eadf}.wa-row b{display:block;margin-bottom:3px}
   .integration-row{display:grid;grid-template-columns:32px 1fr auto;gap:12px;align-items:center;padding:13px 18px;border-top:1px solid var(--line-soft)}
   .integration-row:first-child{border-top:0}
   .integration-row .logo{width:32px;height:32px;border-radius:9px;background:var(--panel-soft);display:grid;place-items:center;font-weight:700;color:var(--marine)}
@@ -229,7 +258,8 @@
     .app{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center}
     .main{padding:18px 14px 44px}.nav-lbl,.side-foot{display:none}.nav button{width:auto}.g-hero,.g-3,.g-2{grid-template-columns:1fr}.kpis{grid-template-columns:1fr}
     .cats{grid-template-columns:1fr}
-    .bm-hero,.bm-metric-grid,.bm-form,.bm-scenario-grid,.bm-row,.bm-row.top-row{grid-template-columns:1fr}
+    .bm-hero,.bm-metric-grid,.bm-form,.bm-scenario-grid,.bm-row,.bm-row.top-row,.ops-grid,.pipeline-steps,.checklist-grid{grid-template-columns:1fr}
+    .ops-hero{display:grid}.ops-actions{justify-content:flex-start}
     .hub-hero,.hub-actions{display:grid}.hub-grid,.funnel,.lead-card{grid-template-columns:1fr}
     .proppy-float{right:14px;bottom:14px}.proppy-drawer{right:14px;bottom:68px}
   }
@@ -500,9 +530,60 @@
 
     <!-- ===== MANTENIMIENTO ===== -->
     <section class="view" id="mant">
+      <div class="ops-hero">
+        <div>
+          <h3>Operaciones STR</h3>
+          <p>Checkout → limpieza → inspección → hallazgos → work order → ready for guest. Mantenimiento nace del turnover, no de tickets aislados.</p>
+        </div>
+        <div class="ops-actions">
+          <button class="btn" type="button" onclick="window.createTurnover && window.createTurnover('p-305')">+ Crear turnover</button>
+          <button class="btn ghost" type="button" onclick="window.simulateVisionAI && window.simulateVisionAI('t-305')">Analizar fotos con IA</button>
+        </div>
+      </div>
       <div class="kpis" id="maintenanceKpis"></div>
-      <div class="card">
-        <div class="card-h"><h3>Activos y mantenimiento preventivo</h3><button class="btn ghost">+ Nueva orden</button></div>
+      <div class="ops-grid">
+        <div class="ops-panel">
+          <div class="ops-panel-head"><h3>Pipeline de turnovers</h3><span class="eyebrow">Checkout to ready</span></div>
+          <div class="ops-body" id="opsPipeline"></div>
+        </div>
+        <div class="ops-panel">
+          <div class="ops-panel-head"><h3>Property Health Score</h3><span class="eyebrow">0–100</span></div>
+          <div class="ops-body" id="opsHealthScores"></div>
+        </div>
+      </div>
+      <div class="ops-grid">
+        <div class="ops-panel">
+          <div class="ops-panel-head"><h3>Checklist de inspección</h3><button class="btn ghost" type="button" onclick="window.simulateVisionAI && window.simulateVisionAI('t-305')">Analizar fotos con IA</button></div>
+          <div class="ops-body">
+            <div class="checklist-grid" id="inspectionChecklist"></div>
+            <div class="mock-photo-grid">
+              <div class="mock-photo">Foto baño</div>
+              <div class="mock-photo">Foto sala</div>
+              <div class="mock-photo">Foto cocina</div>
+            </div>
+          </div>
+        </div>
+        <div class="ops-panel">
+          <div class="ops-panel-head"><h3>WhatsApp Agent mock</h3><span class="eyebrow">sin integración real</span></div>
+          <div class="ops-body" id="whatsappMock"></div>
+        </div>
+      </div>
+      <div class="ops-grid">
+        <div class="ops-panel">
+          <div class="ops-panel-head"><h3>Hallazgos</h3><span class="eyebrow">inspección + IA</span></div>
+          <div class="ops-body" id="opsFindings"></div>
+        </div>
+        <div class="ops-panel">
+          <div class="ops-panel-head"><h3>Work Orders</h3><span class="eyebrow">mantenimiento accionable</span></div>
+          <div class="ops-body" id="opsWorkOrders"></div>
+        </div>
+      </div>
+      <div class="ops-panel" style="margin-top:14px">
+        <div class="ops-panel-head"><h3>Owner Hub operativo</h3><span class="eyebrow">resumen para propietario</span></div>
+        <div class="ops-body" id="ownerHubOps"></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-h"><h3>Mantenimiento preventivo existente</h3><span class="eyebrow">reglas locales</span></div>
         <div class="note-salitre">🌊 Reglas locales activas: filtro A/A cada 45 días en costa · revisión de ánodo de boiler por agua dura · sellado de humedad pre-temporada de lluvias.</div>
         <div class="mlist" id="mantFull"></div>
       </div>
@@ -844,7 +925,7 @@
 
   const titles = {
     inicio: ['Centro de control', 'Tu portafolio de un vistazo — salud, preventivos y proveedores.'],
-    mant: ['Mantenimiento', 'Preventivo y predictivo, afinado al clima de la costa.'],
+    mant: ['Operaciones', 'Turnovers, limpieza, inspección, hallazgos y work orders en un solo flujo.'],
     prov: ['Proveedores', 'Tu cuadrilla local, coordinada por WhatsApp.'],
     benchmark: ['Benchmark Airbnb', 'Comparables, escenarios de factibilidad y veredicto financiero.'],
     rep: ['Reporte al dueño', 'Tu gancho de retención: salud de la propiedad, cada mes.'],
@@ -859,6 +940,244 @@
     return 0.03;
   };
   const state = loadState();
+
+  const opsStatusOrder = ['Checkout pendiente', 'Limpieza asignada', 'Limpieza en progreso', 'Inspección pendiente', 'Hallazgos detectados', 'Mantenimiento pendiente', 'Lista para check-in'];
+  const opsPipelineSteps = ['Checkout', 'Limpieza', 'Inspección', 'Hallazgos', 'Mantenimiento', 'Ready'];
+  const operations = {
+    properties: [
+      { id: 'p-305', name: 'Unidad 305', owner: 'Sra. Méndez', nextCheckIn: dateInMonth(state.selectedYear, state.selectedMonth, 19), status: 'Inspección pendiente' },
+      { id: 'p-302', name: 'Villa 302', owner: 'Sr. Aranda', nextCheckIn: dateInMonth(state.selectedYear, state.selectedMonth, 22), status: 'Lista para check-in' },
+      { id: 'p-akumal', name: 'Casa Akumal', owner: 'Sr. Méndez', nextCheckIn: dateInMonth(state.selectedYear, state.selectedMonth, 24), status: 'Mantenimiento pendiente' }
+    ],
+    turnovers: [
+      { id: 't-305', propertyId: 'p-305', checkout: dateInMonth(state.selectedYear, state.selectedMonth, 18), checkin: dateInMonth(state.selectedYear, state.selectedMonth, 19), cleaner: 'Lupita', inspector: 'Mariela', status: 'Inspección pendiente', checklist: { Recámara: true, Baño: false, Cocina: true, Sala: true, 'Terraza/Balcón': false, Amenidades: true } },
+      { id: 't-302', propertyId: 'p-302', checkout: dateInMonth(state.selectedYear, state.selectedMonth, 20), checkin: dateInMonth(state.selectedYear, state.selectedMonth, 22), cleaner: 'Equipo Norte', inspector: 'Oscar', status: 'Lista para check-in', checklist: { Recámara: true, Baño: true, Cocina: true, Sala: true, 'Terraza/Balcón': true, Amenidades: true } }
+    ],
+    findings: [
+      { id: 'f-001', turnoverId: 't-305', propertyId: 'p-305', area: 'Baño', type: 'Foco fundido', priority: 'media', status: 'nuevo', photos: ['mock-bano'], owner: 'Juan eléctrico', cost: 450, due: dateInMonth(state.selectedYear, state.selectedMonth, 19), maintenance: true },
+      { id: 'f-002', turnoverId: 't-305', propertyId: 'p-305', area: 'Sala', type: 'Control remoto faltante', priority: 'alta', status: 'asignado', photos: ['mock-sala'], owner: 'Host team', cost: 650, due: dateInMonth(state.selectedYear, state.selectedMonth, 19), maintenance: false },
+      { id: 'f-003', turnoverId: 't-akumal', propertyId: 'p-akumal', area: 'Amenidades', type: 'Aire acondicionado no enfría', priority: 'crítica', status: 'en progreso', photos: ['mock-aa'], owner: 'Climas Playa', cost: 1800, due: dateInMonth(state.selectedYear, state.selectedMonth, 24), maintenance: true }
+    ],
+    workOrders: [
+      { id: 'WO-001', findingId: 'f-003', turnoverId: 't-akumal', propertyId: 'p-akumal', description: 'Aire acondicionado no enfría en suite principal', category: 'electrodoméstico', priority: 'crítica', owner: 'Climas Playa', status: 'en progreso', cost: 1800, photos: ['mock-aa'] }
+    ],
+    ownerSummaries: [
+      { propertyId: 'p-305', lastInspection: dateInMonth(state.selectedYear, state.selectedMonth, 18), recentPhotos: ['Baño', 'Sala', 'Cocina'] },
+      { propertyId: 'p-302', lastInspection: dateInMonth(state.selectedYear, state.selectedMonth, 20), recentPhotos: ['Terraza', 'Alberca', 'Recámara'] },
+      { propertyId: 'p-akumal', lastInspection: dateInMonth(state.selectedYear, state.selectedMonth, 12), recentPhotos: ['A/A', 'Boiler', 'Cocina'] }
+    ],
+    whatsapp: [
+      'Unidad 305 lista para inspección',
+      'Se detectó foco fundido en baño',
+      'WO-001 asignado a Juan',
+      'Villa 302 lista para check-in'
+    ]
+  };
+
+  const opsProperty = (id) => operations.properties.find((p) => p.id === id) || operations.properties[0];
+  const priorityClass = (priority) => priority === 'crítica' ? 'crit' : priority === 'alta' ? 'warn' : priority === 'media' ? 'info' : 'ok';
+  const statusClass = (status) => /lista|resuelto/i.test(status) ? 'ok' : /progreso/i.test(status) ? 'info' : /crítica|pendiente|nuevo/i.test(status) ? 'warn' : 'info';
+  const setHtml = (selector, html) => { const el = $(selector); if (el) el.innerHTML = html; };
+
+  function createTurnover(propertyId) {
+    const property = opsProperty(propertyId || 'p-305');
+    const id = `t-${Date.now().toString().slice(-5)}`;
+    operations.turnovers.unshift({
+      id,
+      propertyId: property.id,
+      checkout: new Date(),
+      checkin: property.nextCheckIn,
+      cleaner: 'Por asignar',
+      inspector: 'Por asignar',
+      status: 'Checkout pendiente',
+      checklist: { Recámara: false, Baño: false, Cocina: false, Sala: false, 'Terraza/Balcón': false, Amenidades: false }
+    });
+    operations.whatsapp.unshift(`${property.name} creó turnover desde checkout`);
+    renderOperationsDashboard();
+  }
+
+  function updateTurnoverStatus(turnoverId, status) {
+    const turnover = operations.turnovers.find((t) => t.id === turnoverId);
+    if (!turnover) return;
+    turnover.status = status;
+    operations.whatsapp.unshift(`${opsProperty(turnover.propertyId).name}: ${status}`);
+    renderOperationsDashboard();
+  }
+
+  function addFinding(turnoverId, findingData) {
+    const turnover = operations.turnovers.find((t) => t.id === turnoverId) || operations.turnovers[0];
+    if (!turnover) return;
+    const id = `f-${String(operations.findings.length + 1).padStart(3, '0')}`;
+    operations.findings.unshift({
+      id,
+      turnoverId: turnover.id,
+      propertyId: turnover.propertyId,
+      area: findingData.area || 'Inspección',
+      type: findingData.type || 'Hallazgo operativo',
+      priority: findingData.priority || 'media',
+      status: findingData.status || 'nuevo',
+      photos: findingData.photos || ['mock-ai'],
+      owner: findingData.owner || 'Por asignar',
+      cost: Number(findingData.cost) || 0,
+      due: findingData.due || turnover.checkin,
+      maintenance: findingData.maintenance !== false
+    });
+    updateTurnoverStatus(turnover.id, 'Hallazgos detectados');
+  }
+
+  function convertFindingToWorkOrder(findingId) {
+    const finding = operations.findings.find((f) => f.id === findingId);
+    if (!finding) return;
+    const existing = operations.workOrders.find((wo) => wo.findingId === findingId);
+    if (existing) return;
+    const id = `WO-${String(operations.workOrders.length + 1).padStart(3, '0')}`;
+    const categoryMap = { Baño: 'plomería', Cocina: 'electrodoméstico', Sala: 'mobiliario', Amenidades: 'electrodoméstico', Recámara: 'general', 'Terraza/Balcón': 'seguridad' };
+    operations.workOrders.unshift({
+      id,
+      findingId,
+      turnoverId: finding.turnoverId,
+      propertyId: finding.propertyId,
+      description: `${finding.type} en ${finding.area}`,
+      category: categoryMap[finding.area] || 'general',
+      priority: finding.priority,
+      owner: finding.owner || 'Por asignar',
+      status: 'asignado',
+      cost: finding.cost,
+      photos: finding.photos
+    });
+    finding.status = 'asignado';
+    const turnover = operations.turnovers.find((t) => t.id === finding.turnoverId);
+    if (turnover) turnover.status = 'Mantenimiento pendiente';
+    operations.whatsapp.unshift(`${id} asignado a ${finding.owner || 'proveedor'}`);
+    renderOperationsDashboard();
+  }
+
+  function updateWorkOrderStatus(workOrderId, status) {
+    const wo = operations.workOrders.find((item) => item.id === workOrderId);
+    if (!wo) return;
+    wo.status = status;
+    const finding = operations.findings.find((f) => f.id === wo.findingId);
+    if (finding && status === 'resuelto') finding.status = 'resuelto';
+    operations.whatsapp.unshift(`${wo.id} marcado como ${status}`);
+    renderOperationsDashboard();
+  }
+
+  function calculatePropertyHealth(propertyId) {
+    const openWos = operations.workOrders.filter((wo) => wo.propertyId === propertyId && wo.status !== 'resuelto').length;
+    const criticalFindings = operations.findings.filter((f) => f.propertyId === propertyId && f.priority === 'crítica' && f.status !== 'resuelto').length;
+    const incompleteInspections = operations.turnovers.filter((t) => t.propertyId === propertyId && Object.values(t.checklist || {}).some((done) => !done)).length;
+    return Math.max(0, 100 - (openWos * 10) - (criticalFindings * 20) - (incompleteInspections * 5));
+  }
+
+  function simulateVisionAI(turnoverId) {
+    const samples = [
+      { area: 'Baño', type: 'Foco fundido', priority: 'media', owner: 'Juan eléctrico', cost: 450, maintenance: true },
+      { area: 'Sala', type: 'Mancha en sofá', priority: 'alta', owner: 'Tapicería Express', cost: 900, maintenance: true },
+      { area: 'Cocina', type: 'Toalla faltante', priority: 'baja', owner: 'Host team', cost: 220, maintenance: false }
+    ];
+    samples.slice(0, 2).forEach((finding) => addFinding(turnoverId, finding));
+    operations.whatsapp.unshift('Vision AI detectó 2 hallazgos mock');
+    renderOperationsDashboard();
+  }
+
+  function renderTurnoverPipeline() {
+    const rows = operations.turnovers.map((turnover) => {
+      const property = opsProperty(turnover.propertyId);
+      const currentIndex = Math.max(0, Math.min(opsPipelineSteps.length - 1, Math.floor(Math.max(0, opsStatusOrder.indexOf(turnover.status)) * (opsPipelineSteps.length - 1) / (opsStatusOrder.length - 1))));
+      const steps = opsPipelineSteps.map((step, idx) => `<div class="pipe-step ${idx < currentIndex ? 'done' : idx === currentIndex ? statusClass(turnover.status) + ' current' : ''}">${step}</div>`).join('');
+      return `<div class="turnover-card">
+        <div class="turnover-top">
+          <div><b>${property.name}</b><span>Checkout ${formatShortDate(turnover.checkout)} · Check-in ${formatShortDate(turnover.checkin)}</span></div>
+          <span class="ops-badge ${statusClass(turnover.status)}">${turnover.status}</span>
+        </div>
+        <div class="pipeline-steps">${steps}</div>
+        <div class="ops-badges"><span class="ops-badge info">Limpieza: ${safeText(turnover.cleaner)}</span><span class="ops-badge">Inspección: ${safeText(turnover.inspector)}</span></div>
+      </div>`;
+    }).join('');
+    setHtml('#opsPipeline', rows || '<div class="placeholder"><div class="big">Sin turnovers</div><div>No hay checkouts activos.</div></div>');
+  }
+
+  function renderInspectionChecklist() {
+    const turnover = operations.turnovers[0];
+    const checklist = turnover?.checklist || {};
+    setHtml('#inspectionChecklist', Object.entries(checklist).map(([area, done]) => `<label class="check-item"><input type="checkbox" ${done ? 'checked' : ''} onchange="window.updateTurnoverStatus && window.updateTurnoverStatus('${turnover.id}','${done ? 'Inspección pendiente' : 'Hallazgos detectados'}')"> ${area}</label>`).join(''));
+  }
+
+  function renderFindings() {
+    const rows = operations.findings.map((finding) => {
+      const property = opsProperty(finding.propertyId);
+      const canConvert = finding.maintenance && !operations.workOrders.some((wo) => wo.findingId === finding.id);
+      return `<div class="finding-card">
+        <div>
+          <h4>${finding.type}</h4>
+          <p>${property.name} · ${finding.area} · vence antes de ${formatShortDate(finding.due)}</p>
+          <div class="ops-badges"><span class="ops-badge ${priorityClass(finding.priority)}">${finding.priority}</span><span class="ops-badge ${statusClass(finding.status)}">${finding.status}</span><span class="ops-badge">${toMoney(finding.cost)} MXN</span></div>
+        </div>
+        ${canConvert ? `<button class="btn ghost" type="button" onclick="window.convertFindingToWorkOrder && window.convertFindingToWorkOrder('${finding.id}')">Crear WO</button>` : '<span class="ops-badge ok">WO listo</span>'}
+      </div>`;
+    }).join('');
+    setHtml('#opsFindings', rows || '<div class="placeholder"><div class="big">Sin hallazgos</div><div>La inspección no ha detectado incidencias.</div></div>');
+  }
+
+  function renderWorkOrders() {
+    const rows = operations.workOrders.map((wo) => {
+      const property = opsProperty(wo.propertyId);
+      return `<div class="wo-card">
+        <div>
+          <h4>${wo.id} · ${wo.description}</h4>
+          <p>${property.name} · ${wo.category} · turnover ${wo.turnoverId}</p>
+          <div class="ops-badges"><span class="ops-badge ${priorityClass(wo.priority)}">${wo.priority}</span><span class="ops-badge ${statusClass(wo.status)}">${wo.status}</span><span class="ops-badge">${safeText(wo.owner)}</span><span class="ops-badge">${toMoney(wo.cost)} MXN</span></div>
+        </div>
+        ${wo.status !== 'resuelto' ? `<button class="btn ghost" type="button" onclick="window.updateWorkOrderStatus && window.updateWorkOrderStatus('${wo.id}','resuelto')">Marcar resuelto</button>` : '<span class="ops-badge ok">Resuelto</span>'}
+      </div>`;
+    }).join('');
+    setHtml('#opsWorkOrders', rows || '<div class="placeholder"><div class="big">Sin work orders</div><div>Los hallazgos de mantenimiento aparecerán aquí.</div></div>');
+  }
+
+  function renderOwnerHubSummary() {
+    const rows = operations.ownerSummaries.map((summary) => {
+      const property = opsProperty(summary.propertyId);
+      const open = operations.findings.filter((f) => f.propertyId === property.id && f.status !== 'resuelto').length;
+      const resolved = operations.findings.filter((f) => f.propertyId === property.id && f.status === 'resuelto').length;
+      const spend = operations.workOrders.filter((wo) => wo.propertyId === property.id).reduce((sum, wo) => sum + Number(wo.cost || 0), 0);
+      return `<div class="owner-row"><b>${property.name}</b><div class="ops-badges"><span class="ops-badge ${open ? 'warn' : 'ok'}">${open} abiertas</span><span class="ops-badge ok">${resolved} resueltas mes</span><span class="ops-badge">${toMoney(spend)} MXN</span><span class="ops-badge info">Última inspección ${formatShortDate(summary.lastInspection)}</span><span class="ops-badge">${property.status}</span></div><div class="mock-photo-grid" style="margin-top:10px">${summary.recentPhotos.map((photo) => `<div class="mock-photo">${photo}</div>`).join('')}</div></div>`;
+    }).join('');
+    setHtml('#ownerHubOps', rows);
+  }
+
+  function renderOperationsDashboard() {
+    const activeTurnovers = operations.turnovers.filter((t) => t.status !== 'Lista para check-in').length;
+    const ready = operations.turnovers.filter((t) => t.status === 'Lista para check-in').length;
+    const openFindings = operations.findings.filter((f) => f.status !== 'resuelto').length;
+    const pendingWos = operations.workOrders.filter((wo) => wo.status !== 'resuelto').length;
+    const cost = operations.workOrders.reduce((sum, wo) => sum + Number(wo.cost || 0), 0);
+    setHtml('#maintenanceKpis', [
+      ['Turnovers activos hoy', activeTurnovers, 'checkout → ready'],
+      ['Listas para check-in', ready, 'sin bloqueos'],
+      ['Hallazgos abiertos', openFindings, `${pendingWos} WO pendientes`],
+      ['Costo estimado mes', toMoney(cost), 'mantenimiento']
+    ].map((c) => `<div class="kpi"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join(''));
+    renderTurnoverPipeline();
+    renderInspectionChecklist();
+    renderFindings();
+    renderWorkOrders();
+    renderOwnerHubSummary();
+    setHtml('#opsHealthScores', operations.properties.map((property) => `<div class="health-row"><b>${property.name}</b><span class="health-score">${calculatePropertyHealth(property.id)}/100</span></div>`).join(''));
+    setHtml('#whatsappMock', operations.whatsapp.slice(0, 5).map((msg) => `<div class="wa-row"><b>WhatsApp Agent</b>${msg}</div>`).join(''));
+  }
+
+  window.createTurnover = createTurnover;
+  window.updateTurnoverStatus = updateTurnoverStatus;
+  window.addFinding = addFinding;
+  window.convertFindingToWorkOrder = convertFindingToWorkOrder;
+  window.updateWorkOrderStatus = updateWorkOrderStatus;
+  window.calculatePropertyHealth = calculatePropertyHealth;
+  window.simulateVisionAI = simulateVisionAI;
+  window.renderOperationsDashboard = renderOperationsDashboard;
+  window.renderTurnoverPipeline = renderTurnoverPipeline;
+  window.renderFindings = renderFindings;
+  window.renderWorkOrders = renderWorkOrders;
+  window.renderOwnerHubSummary = renderOwnerHubSummary;
   const hubState = loadFounderHub();
 
   function seedFounderDemo() {
@@ -1363,6 +1682,7 @@
       : '<div class="placeholder"><div class="big">Sin mantenimientos</div><div>No hay servicios programados para este mes.</div></div>';
     $('#prevList').innerHTML = maintenanceRows;
     $('#mantFull').innerHTML = maintenanceRows;
+    renderOperationsDashboard();
 
     $('#provList').innerHTML = provs.map((p) => `<div class="m-row"><div class="ic">${p[0]}</div>
       <div><div class="t">${p[1]}</div><div class="s">${p[2]}</div></div>
