@@ -35,11 +35,12 @@
     background:linear-gradient(176deg,var(--marine),var(--marine-deep));
     color:#dff0ec;display:flex;flex-direction:column;gap:6px}
   .brand{display:flex;align-items:center;gap:11px;padding:4px 8px 20px}
-  .mark{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
-    background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
-    box-shadow:0 6px 18px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.12)}
-  .brand-logo{width:29px;height:29px;display:block;filter:drop-shadow(0 2px 5px rgba(0,0,0,.22))}
-  .brand .nm{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:.2px;color:#fff;line-height:1}
+  .mark{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
+    background:radial-gradient(circle at 28% 20%,rgba(39,215,196,.24),transparent 34%),linear-gradient(145deg,#0F172A,#111827 52%,#0B1220);
+    border:1px solid rgba(143,244,234,.34);
+    box-shadow:0 8px 22px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.18)}
+  .brand-logo{width:31px;height:31px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.30))}
+  .brand .nm{font-family:var(--display);font-size:20px;font-weight:700;letter-spacing:.35px;color:#fff;line-height:1}
   .brand .sb{font-size:10.5px;color:#8fc7bf;margin-top:3px;letter-spacing:.3px}
   .nav-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6fb3aa;margin:14px 10px 5px}
   .nav button{display:flex;align-items:center;gap:11px;width:100%;border:0;cursor:pointer;
@@ -238,8 +239,9 @@
       backdrop-filter:blur(14px)}
     .mobile-menu{width:42px;height:42px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--marine);
       font:inherit;font-size:22px;font-weight:700;box-shadow:var(--shadow-sm);cursor:pointer;display:grid;place-items:center}
-    .mobile-title{font-family:var(--display);font-size:18px;font-weight:700;color:var(--marine);display:flex;align-items:center;gap:8px}
-    .mobile-title .brand-logo{width:24px;height:24px;filter:none}
+    .mobile-title{font-family:var(--display);font-size:18px;font-weight:700;letter-spacing:.25px;color:var(--marine);display:flex;align-items:center;gap:8px}
+    .mobile-title .brand-logo{width:30px;height:30px;padding:3px;border-radius:10px;background:linear-gradient(145deg,#0F172A,#111827 52%,#0B1220);
+      border:1px solid rgba(14,94,87,.18);filter:drop-shadow(0 2px 5px rgba(14,94,87,.18))}
     .mobile-spacer{width:42px;height:42px}
     .mobile-backdrop{position:fixed;inset:0;z-index:28;background:rgba(5,30,27,.48);backdrop-filter:blur(2px)}
     .mobile-backdrop.on{display:block}
@@ -284,10 +286,10 @@
     <div class="brand">
       <div class="mark">
         <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M10 34 L32 14 L54 34" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M18 35 L18 52 L46 52 L46 35" fill="none" stroke="#EAFBF8" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" opacity=".96"/>
-          <path d="M23 39 L30 47 L46 28" fill="none" stroke="#27D7C4" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M43 23 L50 17" fill="none" stroke="#8FF4EA" stroke-width="5" stroke-linecap="round"/>
+          <path d="M9 34 L32 13 L55 34" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 35 L18 52 L46 52 L46 35" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>
+          <path d="M22 39 L30 48 L47 28" fill="none" stroke="#16A89A" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M43 23 L51 16" fill="none" stroke="#8FF4EA" stroke-width="5.5" stroke-linecap="round"/>
         </svg>
       </div>
       <div><div class="nm">Propierato</div><div class="sb">Airbnb · Riviera Maya</div></div>
@@ -316,10 +318,10 @@
       <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Abrir menú">☰</button>
       <div class="mobile-title">
         <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M10 34 L32 14 L54 34" fill="none" stroke="#0E5E57" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M18 35 L18 52 L46 52 L46 35" fill="none" stroke="#15302B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>
-          <path d="M23 39 L30 47 L46 28" fill="none" stroke="#16A89A" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M43 23 L50 17" fill="none" stroke="#27D7C4" stroke-width="5" stroke-linecap="round"/>
+          <path d="M9 34 L32 13 L55 34" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 35 L18 52 L46 52 L46 35" fill="none" stroke="#FFFFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>
+          <path d="M22 39 L30 48 L47 28" fill="none" stroke="#16A89A" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M43 23 L51 16" fill="none" stroke="#8FF4EA" stroke-width="5.5" stroke-linecap="round"/>
         </svg>
         Propierato
       </div>
@@ -1789,10 +1791,25 @@
     $('#proppyChat').scrollTop = $('#proppyChat').scrollHeight;
   }
 
-  function init() {
-    $('#mobileMenu')?.addEventListener('click', openMobileNav);
-    $('#sideClose')?.addEventListener('click', closeMobileNav);
-    $('#mobileBackdrop')?.addEventListener('click', closeMobileNav);
+  function safeOn(el, eventName, handler, options) {
+    if (!el || !el.addEventListener) return;
+    el.addEventListener(eventName, handler, options);
+  }
+
+  function setupMobileNav() {
+    const mobileMenu = $('#mobileMenu');
+    const sideClose = $('#sideClose');
+    const mobileBackdrop = $('#mobileBackdrop');
+    safeOn(mobileMenu, 'click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openMobileNav();
+    });
+    safeOn(sideClose, 'click', (e) => {
+      e.preventDefault();
+      closeMobileNav();
+    });
+    safeOn(mobileBackdrop, 'click', closeMobileNav);
     window.addEventListener('resize', () => { if (!isMobile()) closeMobileNav(); });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -1800,6 +1817,43 @@
         closeProppy();
       }
     });
+  }
+
+  function setupProppyDrawer() {
+    const proppyToggle = $('#proppyToggle');
+    const proppyDrawer = $('#proppyDrawer');
+    const proppyClose = $('#proppyClose');
+    const proppyForm = $('#proppyForm');
+    const proppyInput = $('#proppyInput');
+    let proppyStartY = null;
+    const maybeCloseProppyBySwipe = (endY) => {
+      if (proppyStartY === null) return;
+      if (endY - proppyStartY > 64) closeProppy();
+      proppyStartY = null;
+    };
+    safeOn(proppyToggle, 'click', (e) => {
+      e.preventDefault();
+      proppyDrawer?.classList.toggle('on');
+    });
+    safeOn(proppyClose, 'click', (e) => {
+      e.preventDefault();
+      closeProppy();
+    });
+    safeOn(proppyDrawer, 'touchstart', (e) => { proppyStartY = e.touches[0]?.clientY ?? null; }, { passive: true });
+    safeOn(proppyDrawer, 'touchend', (e) => {
+      maybeCloseProppyBySwipe(e.changedTouches[0]?.clientY ?? proppyStartY);
+    }, { passive: true });
+    safeOn(proppyDrawer, 'pointerdown', (e) => { if (isMobile()) proppyStartY = e.clientY; });
+    safeOn(proppyDrawer, 'pointerup', (e) => { if (isMobile()) maybeCloseProppyBySwipe(e.clientY); });
+    safeOn(proppyForm, 'submit', (e) => {
+      e.preventDefault();
+      askProppy(proppyInput?.value || '');
+    });
+  }
+
+  function init() {
+    setupMobileNav();
+    setupProppyDrawer();
     document.querySelectorAll('#nav button').forEach((b) => b.onclick = () => { go(b.dataset.v); closeMobileNav(); });
     document.querySelectorAll('[data-go]').forEach((b) => b.onclick = () => { go(b.dataset.go); closeMobileNav(); });
     document.querySelectorAll('[data-month-offset]').forEach((b) => {
@@ -1855,25 +1909,10 @@
       }
       const ask = e.target.dataset?.proppyAsk;
       if (ask) {
-        $('#proppyDrawer').classList.add('on');
+        $('#proppyDrawer')?.classList.add('on');
         askProppy(ask);
       }
     });
-    $('#proppyToggle').addEventListener('click', () => $('#proppyDrawer').classList.toggle('on'));
-    $('#proppyClose').addEventListener('click', closeProppy);
-    let proppyStartY = null;
-    const maybeCloseProppyBySwipe = (endY) => {
-      if (proppyStartY === null) return;
-      if (endY - proppyStartY > 64) closeProppy();
-      proppyStartY = null;
-    };
-    $('#proppyDrawer').addEventListener('touchstart', (e) => { proppyStartY = e.touches[0]?.clientY ?? null; }, { passive: true });
-    $('#proppyDrawer').addEventListener('touchend', (e) => {
-      maybeCloseProppyBySwipe(e.changedTouches[0]?.clientY ?? proppyStartY);
-    }, { passive: true });
-    $('#proppyDrawer').addEventListener('pointerdown', (e) => { if (isMobile()) proppyStartY = e.clientY; });
-    $('#proppyDrawer').addEventListener('pointerup', (e) => { if (isMobile()) maybeCloseProppyBySwipe(e.clientY); });
-    $('#proppyForm').addEventListener('submit', (e) => { e.preventDefault(); askProppy($('#proppyInput').value); });
 
     $('#addBenchmark').addEventListener('click', (e) => { e.preventDefault(); addComparable(); });
     $('#bmAddComparable').addEventListener('click', (e) => { e.preventDefault(); addComparable(); });
@@ -1886,7 +1925,11 @@
     rerenderAll();
   }
 
-  init();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
 })();
 </script>
 </body>
