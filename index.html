@@ -279,6 +279,17 @@
     .proppy-body{max-height:calc(78dvh - 128px)}
     .proppy-form{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
   }
+  body.debug-mobile #mobileMenu{outline:3px solid #ef4444!important;outline-offset:3px}
+  body.debug-mobile #proppyToggle{outline:3px solid #2563eb!important;outline-offset:3px;bottom:186px!important;z-index:13000!important}
+  body.debug-mobile #mobileBackdrop{outline:3px solid #facc15!important;outline-offset:-6px}
+  body.debug-mobile #side{outline:3px solid #22c55e!important;outline-offset:-6px}
+  .mobile-debug-panel{display:none;position:fixed;left:8px;right:8px;bottom:8px;z-index:12000;
+    background:rgba(15,23,42,.94);color:#fff;border:1px solid rgba(143,244,234,.35);border-radius:12px;
+    padding:8px;font:11px/1.35 var(--ui);box-shadow:0 12px 36px rgba(0,0,0,.28)}
+  body.debug-mobile .mobile-debug-panel{display:block}
+  .mobile-debug-panel .debug-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 8px;margin-bottom:7px}
+  .mobile-debug-panel button{border:1px solid rgba(255,255,255,.24);border-radius:8px;background:#fff;color:#0f172a;
+    font:inherit;font-weight:700;padding:6px 7px;margin:2px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   button:focus-visible,a:focus-visible{outline:2px solid var(--turq);outline-offset:2px}
 </style>
@@ -321,7 +332,7 @@
   <!-- MAIN -->
   <main class="main">
     <div class="mobile-topbar">
-      <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Abrir menú">☰</button>
+      <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Abrir menú" onclick="window.openMobileSidebar && window.openMobileSidebar()">☰</button>
       <div class="mobile-title">
         <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
           <path d="M9 34 L32 13 L55 34" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
@@ -641,7 +652,7 @@
   </main>
 </div>
 
-<button class="proppy-float" id="proppyToggle" type="button">Proppy</button>
+<button class="proppy-float" id="proppyToggle" type="button" onclick="window.openProppy && window.openProppy()">Proppy</button>
 <div class="proppy-drawer" id="proppyDrawer">
   <div class="proppy-head"><h3>Proppy</h3><button class="btn ghost" id="proppyClose" type="button" style="margin:0;color:#fff;border-color:rgba(255,255,255,.38)">Cerrar</button></div>
   <div class="proppy-body" id="proppyChat"></div>
@@ -896,23 +907,108 @@
 
   const saveFounderHub = () => localStorage.setItem(HUB_STORAGE_KEY, JSON.stringify(hubState));
   const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
+  const IOS_DEBUG_BUILD = 'ios-debug-2';
+  const debugMobile = new URLSearchParams(window.location.search).get('debugMobile') === '1';
+  const mobileDebugState = {
+    lastTap: 'none',
+    lastTarget: 'none',
+    activeLayer: 'none',
+    lastX: 0,
+    lastY: 0
+  };
+  console.log('Propierato iOS debug build', new Date().toISOString());
+
+  function describeTarget(el) {
+    if (!el) return 'none';
+    const id = el.id ? `#${el.id}` : '';
+    const cls = typeof el.className === 'string' && el.className.trim()
+      ? `.${el.className.trim().split(/\s+/).slice(0, 2).join('.')}`
+      : '';
+    return `${el.tagName || 'el'}${id}${cls}`;
+  }
+
+  function recordMobileDebug(action, event) {
+    if (!debugMobile) return;
+    const touch = event?.changedTouches?.[0] || event?.touches?.[0];
+    const x = touch?.clientX ?? event?.clientX ?? mobileDebugState.lastX ?? Math.round(window.innerWidth / 2);
+    const y = touch?.clientY ?? event?.clientY ?? mobileDebugState.lastY ?? Math.round(window.innerHeight / 2);
+    const layer = document.elementFromPoint(Math.max(0, Math.min(window.innerWidth - 1, x)), Math.max(0, Math.min(window.innerHeight - 1, y)));
+    mobileDebugState.lastTap = `${action} ${new Date().toLocaleTimeString()}`;
+    mobileDebugState.lastTarget = describeTarget(event?.target || layer);
+    mobileDebugState.activeLayer = `${describeTarget(layer)} z:${layer ? getComputedStyle(layer).zIndex : 'n/a'}`;
+    mobileDebugState.lastX = x;
+    mobileDebugState.lastY = y;
+    updateMobileDebugPanel();
+  }
+
+  function updateMobileDebugPanel() {
+    if (!debugMobile) return;
+    const panel = $('#mobileDebugPanel');
+    if (!panel) return;
+    const ua = navigator.userAgent.replace(/\s+/g, ' ').slice(0, 82);
+    panel.querySelector('[data-debug="size"]').textContent = `${window.innerWidth}x${window.innerHeight}`;
+    panel.querySelector('[data-debug="ua"]').textContent = ua;
+    panel.querySelector('[data-debug="tap"]').textContent = mobileDebugState.lastTap;
+    panel.querySelector('[data-debug="target"]').textContent = mobileDebugState.lastTarget;
+    panel.querySelector('[data-debug="menu"]').textContent = $('#side')?.classList.contains('open') ? 'open' : 'closed';
+    panel.querySelector('[data-debug="proppy"]').textContent = $('#proppyDrawer')?.classList.contains('on') ? 'open' : 'closed';
+    panel.querySelector('[data-debug="layer"]').textContent = mobileDebugState.activeLayer;
+  }
+
+  function setupMobileDebugPanel() {
+    if (!debugMobile) return;
+    document.body.classList.add('debug-mobile');
+    if (!$('#mobileDebugPanel')) {
+      document.body.insertAdjacentHTML('beforeend', `<div class="mobile-debug-panel" id="mobileDebugPanel">
+        <div><b>Build: ${IOS_DEBUG_BUILD}</b></div>
+        <div class="debug-grid">
+          <span>size</span><b data-debug="size">-</b>
+          <span>ua</span><b data-debug="ua">-</b>
+          <span>lastTap</span><b data-debug="tap">none</b>
+          <span>lastTarget</span><b data-debug="target">none</b>
+          <span>menuState</span><b data-debug="menu">-</b>
+          <span>proppyState</span><b data-debug="proppy">-</b>
+          <span>active layer</span><b data-debug="layer">none</b>
+        </div>
+        <button type="button" onclick="window.openMobileSidebar && window.openMobileSidebar()">Abrir menú</button>
+        <button type="button" onclick="window.closeMobileSidebar && window.closeMobileSidebar()">Cerrar menú</button>
+        <button type="button" onclick="window.openProppy && window.openProppy()">Abrir Proppy</button>
+        <button type="button" onclick="window.closeProppy && window.closeProppy()">Cerrar Proppy</button>
+      </div>`);
+    }
+    updateMobileDebugPanel();
+    window.addEventListener('resize', updateMobileDebugPanel);
+  }
 
   function openMobileNav() {
     if (!isMobile()) return;
     $('#side')?.classList.add('open');
     $('#mobileBackdrop')?.classList.add('on');
     document.body.classList.add('nav-open');
+    updateMobileDebugPanel();
   }
 
   function closeMobileNav() {
     $('#side')?.classList.remove('open');
     $('#mobileBackdrop')?.classList.remove('on');
     document.body.classList.remove('nav-open');
+    updateMobileDebugPanel();
+  }
+
+  function openProppy() {
+    $('#proppyDrawer')?.classList.add('on');
+    updateMobileDebugPanel();
   }
 
   function closeProppy() {
     $('#proppyDrawer')?.classList.remove('on');
+    updateMobileDebugPanel();
   }
+
+  window.openMobileSidebar = () => { recordMobileDebug('global open menu'); openMobileNav(); };
+  window.closeMobileSidebar = () => { recordMobileDebug('global close menu'); closeMobileNav(); };
+  window.openProppy = () => { recordMobileDebug('global open proppy'); openProppy(); };
+  window.closeProppy = () => { recordMobileDebug('global close proppy'); closeProppy(); };
 
   function loadState() {
     const legacy = localStorage.getItem(STORAGE_KEY_LEGACY);
@@ -1814,7 +1910,7 @@
     }, 500);
   }
 
-  function bindTap(el, handler) {
+  function bindTap(el, handler, label = 'tap') {
     if (!el) return;
     let lastTouch = 0;
     const run = (e) => {
@@ -1825,6 +1921,7 @@
         lastTouch = now;
       }
       e.stopPropagation();
+      recordMobileDebug(label, e);
       handler(e);
     };
     safeOn(el, 'touchend', run, { passive: true });
@@ -1842,11 +1939,11 @@
     bindTap(mobileMenu, () => {
       flashTap(mobileMenu);
       openMobileNav();
-    });
+    }, 'hamburger');
     bindTap(sideClose, () => {
       closeMobileNav();
-    });
-    bindTap(mobileBackdrop, closeMobileNav);
+    }, 'close menu');
+    bindTap(mobileBackdrop, closeMobileNav, 'backdrop');
     window.addEventListener('resize', () => { if (!isMobile()) closeMobileNav(); });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -1870,11 +1967,11 @@
     };
     bindTap(proppyToggle, () => {
       flashTap(proppyToggle);
-      proppyDrawer?.classList.toggle('on');
-    });
+      openProppy();
+    }, 'proppy fab');
     bindTap(proppyClose, () => {
       closeProppy();
-    });
+    }, 'close proppy');
     safeOn(proppyDrawer, 'touchstart', (e) => { proppyStartY = e.touches[0]?.clientY ?? null; }, { passive: true });
     safeOn(proppyDrawer, 'touchend', (e) => {
       maybeCloseProppyBySwipe(e.changedTouches[0]?.clientY ?? proppyStartY);
@@ -1888,6 +1985,7 @@
   }
 
   function init() {
+    setupMobileDebugPanel();
     setupMobileNav();
     setupProppyDrawer();
     document.querySelectorAll('#nav button').forEach((b) => b.onclick = () => { go(b.dataset.v); closeMobileNav(); });
