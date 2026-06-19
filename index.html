@@ -221,6 +221,7 @@
   .activity-list,.alert-list{display:grid;gap:9px}.activity-item,.alert-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px}.alert-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.alert-item.warning{border-color:#ead09a}.alert-item.urgent{border-color:#efb09d}.alert-item.success{border-color:#a9dbc3}.alert-item.info{border-color:#b8ded8}
   .proppy-float{position:fixed;right:20px;bottom:20px;z-index:20;border:0;border-radius:999px;background:var(--marine);color:#fff;padding:12px 17px;font:inherit;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
   .proppy-drawer{position:fixed;right:20px;bottom:76px;width:min(380px,calc(100vw - 28px));max-height:70vh;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);z-index:21;display:none;overflow:hidden}.proppy-drawer.on{display:block}
+  #mobileNavBackdrop,#mobileNavSheet{display:none}
   .proppy-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:linear-gradient(135deg,var(--marine),var(--turq));color:#fff}.proppy-head h3{margin:0;font-size:15px}
   .proppy-body{padding:14px;display:grid;gap:10px;max-height:54vh;overflow:auto}.chat-line{padding:9px 11px;border-radius:12px;background:var(--panel-soft);font-size:13px}.chat-line.user{background:#e6f5ee;margin-left:18px}.chat-line.bot{margin-right:18px}
   .proppy-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
@@ -251,6 +252,41 @@
       transform:translateZ(0);-webkit-transform:translateZ(0)}
     .mobile-backdrop:not(.show):not(.on){pointer-events:none;opacity:0;visibility:hidden}
     .mobile-backdrop.show,.mobile-backdrop.on{display:block;pointer-events:auto;opacity:1;visibility:visible}
+    #mobileNavBackdrop,#mobileNavSheet{display:block}
+    #side{display:none!important;visibility:hidden!important;pointer-events:none!important}
+    #mobileNavBackdrop{position:fixed;inset:0;z-index:2147482990;background:rgba(5,30,27,.50);opacity:0;visibility:hidden;pointer-events:none}
+    body.mobile-nav-open #mobileNavBackdrop{opacity:1;visibility:visible;pointer-events:auto}
+    #mobileNavSheet{
+      position:fixed;
+      top:0;
+      left:0;
+      width:86vw;
+      max-width:360px;
+      height:100vh;
+      height:-webkit-fill-available;
+      z-index:2147483000;
+      transform:translateX(-110%);
+      visibility:hidden;
+      pointer-events:none;
+      background:linear-gradient(180deg,#0f172a,#111827 62%,#0b1220);
+      color:#fff;
+      padding:18px 16px 24px;
+      box-shadow:24px 0 60px rgba(0,0,0,.32);
+      transition:transform .22s ease;
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    body.mobile-nav-open #mobileNavSheet{
+      transform:translateX(0);
+      visibility:visible;
+      pointer-events:auto;
+    }
+    #mobileNavSheet .mobile-nav-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    #mobileNavSheet .mobile-nav-title{font-family:var(--display);font-size:20px;font-weight:750;letter-spacing:.18px}
+    #mobileNavSheet .mobile-nav-sub{font-size:12px;color:rgba(255,255,255,.64);margin-top:2px}
+    #mobileNavSheet .mobile-nav-close{width:40px;height:40px;border:1px solid rgba(255,255,255,.22);border-radius:12px;background:rgba(255,255,255,.10);color:#fff;font-size:24px;line-height:1}
+    #mobileNavSheet button{width:100%;min-height:48px;margin:0 0 8px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.08);color:#fff;text-align:left;padding:0 14px;font:700 14px var(--ui);pointer-events:auto!important;touch-action:manipulation}
+    #mobileNavSheet button:active{background:rgba(143,244,234,.18);border-color:rgba(143,244,234,.42)}
     .side{position:fixed;inset:0 auto 0 0;left:0;z-index:10011;width:min(84vw,320px);height:100vh;height:-webkit-fill-available;height:100dvh;
       max-height:100vh;max-height:-webkit-fill-available;max-height:100dvh;
       padding:18px 16px 22px;display:flex;flex-direction:column;align-items:stretch;flex-wrap:nowrap;overflow-y:auto;
@@ -352,7 +388,7 @@
   <!-- MAIN -->
   <main class="main">
     <div class="mobile-topbar">
-      <button class="mobile-menu mobile-menu-btn" id="mobileMenu" type="button" aria-label="Abrir menú" data-mobile-menu-open onclick="document.body.classList.toggle('mobile-sidebar-open')">☰</button>
+      <button class="mobile-menu mobile-menu-btn" id="mobileMenu" type="button" aria-label="Abrir menú" data-mobile-menu-open onclick="document.body.classList.add('mobile-nav-open')">☰</button>
       <div class="mobile-title">
         <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
           <path d="M9 34 L32 13 L55 34" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
@@ -681,6 +717,24 @@
     <button class="btn" type="submit" style="margin:0">Enviar</button>
   </form>
 </div>
+
+<div id="mobileNavBackdrop" onclick="document.body.classList.remove('mobile-nav-open')"></div>
+<nav id="mobileNavSheet" aria-label="Navegación móvil">
+  <div class="mobile-nav-head">
+    <div>
+      <div class="mobile-nav-title">Propierato</div>
+      <div class="mobile-nav-sub">Airbnb · Riviera Maya</div>
+    </div>
+    <button class="mobile-nav-close" type="button" aria-label="Cerrar navegación" onclick="document.body.classList.remove('mobile-nav-open')">×</button>
+  </div>
+  <button type="button" onclick="window.go('inicio'); document.body.classList.remove('mobile-nav-open')">Centro de control</button>
+  <button type="button" onclick="window.go('mant'); document.body.classList.remove('mobile-nav-open')">Mantenimiento</button>
+  <button type="button" onclick="window.go('prov'); document.body.classList.remove('mobile-nav-open')">Proveedores</button>
+  <button type="button" onclick="window.go('benchmark'); document.body.classList.remove('mobile-nav-open')">Benchmark Airbnb</button>
+  <button type="button" onclick="window.go('rep'); document.body.classList.remove('mobile-nav-open')">Reporte al dueño</button>
+  <button type="button" onclick="window.go('founderHub'); document.body.classList.remove('mobile-nav-open')">Founder Hub</button>
+  <button type="button" onclick="window.go('proppy'); document.body.classList.remove('mobile-nav-open')">Proppy IA</button>
+</nav>
 
 <script>
 (() => {
