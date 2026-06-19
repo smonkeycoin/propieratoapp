@@ -333,16 +333,16 @@
     </div>
     <div class="nav-lbl">Operación</div>
     <nav class="nav" id="nav">
-      <button class="on" data-v="inicio" data-nav-item onclick="document.body.classList.remove('mobile-sidebar-open')"><span class="ic">◧</span> Centro de control</button>
-      <button data-v="mant" data-nav-item onclick="document.body.classList.remove('mobile-sidebar-open')"><span class="ic">✦</span> Mantenimiento</button>
-      <button data-v="prov" data-nav-item onclick="document.body.classList.remove('mobile-sidebar-open')"><span class="ic">✆</span> Proveedores</button>
+      <button class="on" type="button" data-v="inicio" data-nav-item onclick="window.go && window.go('inicio'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('inicio')"><span class="ic">◧</span> Centro de control</button>
+      <button type="button" data-v="mant" data-nav-item onclick="window.go && window.go('mant'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('mant')"><span class="ic">✦</span> Mantenimiento</button>
+      <button type="button" data-v="prov" data-nav-item onclick="window.go && window.go('prov'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('prov')"><span class="ic">✆</span> Proveedores</button>
       <div class="nav-lbl">Inversión</div>
-      <button data-v="benchmark" data-nav-item onclick="document.body.classList.remove('mobile-sidebar-open')"><span class="ic">🏠</span> Benchmark Airbnb</button>
+      <button type="button" data-v="benchmark" data-nav-item onclick="window.go && window.go('benchmark'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('benchmark')"><span class="ic">🏠</span> Benchmark Airbnb</button>
       <div class="nav-lbl">Conectores</div>
-      <button data-v="rep" data-nav-item onclick="document.body.classList.remove('mobile-sidebar-open')"><span class="ic">✉</span> Reporte al dueño</button>
+      <button type="button" data-v="rep" data-nav-item onclick="window.go && window.go('rep'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('rep')"><span class="ic">✉</span> Reporte al dueño</button>
       <div class="nav-lbl">Interno</div>
-      <button data-v="founderHub" data-nav-item onclick="document.body.classList.remove('mobile-sidebar-open')"><span class="ic">◆</span> Founder Hub</button>
-      <button data-v="proppy" data-nav-item onclick="document.body.classList.remove('mobile-sidebar-open')"><span class="ic">✦</span> Proppy IA</button>
+      <button type="button" data-v="founderHub" data-nav-item onclick="window.go && window.go('founderHub'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('founderHub')"><span class="ic">◆</span> Founder Hub</button>
+      <button type="button" data-v="proppy" data-nav-item onclick="window.go && window.go('proppy'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('proppy')"><span class="ic">✦</span> Proppy IA</button>
     </nav>
     <div class="side-foot">
       <span class="chip-mx">MXN</span> Factura CFDI · Soporte en español
@@ -932,6 +932,7 @@
   const mobileDebugState = {
     lastTap: 'none',
     lastTarget: 'none',
+    lastNav: 'none',
     activeLayer: 'none',
     lastX: 0,
     lastY: 0
@@ -970,6 +971,7 @@
     panel.querySelector('[data-debug="ua"]').textContent = ua;
     panel.querySelector('[data-debug="tap"]').textContent = mobileDebugState.lastTap;
     panel.querySelector('[data-debug="target"]').textContent = mobileDebugState.lastTarget;
+    panel.querySelector('[data-debug="nav"]').textContent = mobileDebugState.lastNav;
     panel.querySelector('[data-debug="menu"]').textContent = $('#side')?.classList.contains('open') ? 'open' : 'closed';
     panel.querySelector('[data-debug="proppy"]').textContent = $('#proppyDrawer')?.classList.contains('on') ? 'open' : 'closed';
     panel.querySelector('[data-debug="layer"]').textContent = mobileDebugState.activeLayer;
@@ -986,6 +988,7 @@
           <span>ua</span><b data-debug="ua">-</b>
           <span>lastTap</span><b data-debug="tap">none</b>
           <span>lastTarget</span><b data-debug="target">none</b>
+          <span>lastNav</span><b data-debug="nav">none</b>
           <span>menuState</span><b data-debug="menu">-</b>
           <span>proppyState</span><b data-debug="proppy">-</b>
           <span>active layer</span><b data-debug="layer">none</b>
@@ -1032,6 +1035,10 @@
   window.closeMobileSidebar = () => { recordMobileDebug('global close menu'); closeMobileNav(); };
   window.openProppy = () => { recordMobileDebug('global open proppy'); openProppy(); };
   window.closeProppy = () => { recordMobileDebug('global close proppy'); closeProppy(); };
+  window.__propieratoLastNav = (view) => {
+    mobileDebugState.lastNav = view || 'none';
+    recordMobileDebug(`nav ${mobileDebugState.lastNav}`);
+  };
   window.__propieratoTapTest = () => {
     recordMobileDebug('tap test');
     alert('tap ok');
@@ -1807,6 +1814,7 @@
     $('#vsub').textContent = sub;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  window.go = go;
 
   function exportState() {
     const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
@@ -2028,7 +2036,10 @@
     setupGlobalTapDelegation();
     setupMobileNav();
     setupProppyDrawer();
-    document.querySelectorAll('#nav button').forEach((b) => b.onclick = () => { go(b.dataset.v); closeMobileNav(); });
+    document.querySelectorAll('#nav button').forEach((b) => {
+      b.type = 'button';
+      safeOn(b, 'touchend', (e) => recordMobileDebug(`nav inline ${b.dataset.v || 'unknown'}`, e), { passive: true });
+    });
     document.querySelectorAll('[data-go]').forEach((b) => b.onclick = () => { go(b.dataset.go); closeMobileNav(); });
     document.querySelectorAll('[data-month-offset]').forEach((b) => {
       b.addEventListener('click', () => setSelectedMonth(Number(b.dataset.monthOffset) || 0));
