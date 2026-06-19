@@ -31,6 +31,20 @@
   .app{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
   .mobile-topbar,.mobile-backdrop,.side-close{display:none}
 
+  /* WhatsApp Station Command Center v2 */
+  .app{align-items:stretch;background:linear-gradient(90deg,var(--marine) 0 236px,var(--bg) 236px)}
+  .side{align-self:stretch;height:100vh;min-height:100vh}
+  .main{max-width:none}
+  .ws-hero{grid-template-columns:minmax(0,1.25fr) auto;background:radial-gradient(circle at 8% 0%,rgba(37,211,102,.16),transparent 28%),linear-gradient(135deg,#fff,#f8fbf9 54%,#f1ecff);border-color:#e4ded0;padding:20px 22px}
+  .ws-wa-icon{background:linear-gradient(135deg,#25D366,#128C7E);font-size:26px}.ws-title h3{font-size:28px}.ws-kpi{min-width:128px;border-color:#e6e0f4;box-shadow:0 8px 20px rgba(91,63,208,.06)}.ws-kpi b{font-size:26px}.ws-hero .btn{background:#6b4fe0;box-shadow:0 12px 28px rgba(107,79,224,.22)}
+  .ws-layout{grid-template-columns:260px minmax(390px,1.45fr) minmax(270px,.9fr) 292px;gap:12px;align-items:stretch}.ws-panel{border-color:#e7e2d7;border-radius:18px;box-shadow:0 12px 36px rgba(14,94,87,.07)}.ws-panel-head{min-height:54px;background:linear-gradient(180deg,#fff,#fffdf9)}
+  .ws-conv{min-height:64px}.ws-conv.on{background:linear-gradient(135deg,#effaf5,#f0edff);box-shadow:inset 3px 0 #25D366}.ws-conv-title{font-size:13px}.ws-conv-msg{max-width:132px}.ws-chat-panel{display:flex;flex-direction:column;min-height:680px}.ws-chat-head{min-height:66px;background:#fff}.ws-tabs{padding:12px 14px;border-bottom:1px solid var(--line-soft)}.ws-chat{min-height:570px;flex:1}.ws-msg{font-size:13px}.ws-msg b{color:#16806f}.ws-input{margin:12px 4px 0;box-shadow:0 8px 24px rgba(14,94,87,.08)}.ws-send{background:linear-gradient(135deg,#7d5df2,#5b3fd0)}
+  .ws-events-panel .ws-panel-body{max-height:626px;overflow:auto}.ws-event{align-items:start;grid-template-columns:38px 1fr;position:relative}.ws-event small{position:absolute;right:12px;top:12px}.ws-event .ops-badge{margin-top:8px}.ws-event-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.ws-event-actions .btn{margin:0;padding:6px 9px;font-size:10.5px}.ws-event-ic{width:38px;height:38px}.ws-side{display:grid;gap:10px;align-content:start}.ws-side-card{border-color:#e7e2d7;box-shadow:0 6px 20px rgba(14,94,87,.04)}.ws-side-card h4{display:flex;justify-content:space-between;align-items:center;gap:8px}.ws-supervisor{color:var(--ink)}.ws-activity{max-height:220px;overflow:auto}.ws-activity div{background:#fbfdfb}.ws-bottom{grid-template-columns:1fr;margin-top:12px}.ws-quick{grid-template-columns:repeat(5,minmax(0,1fr))}.ws-quick button:hover{border-color:#cfc4f5;box-shadow:0 8px 20px rgba(107,79,224,.08)}
+  .ws-workflow.on{display:block}.ws-flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.ws-flow{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;box-shadow:var(--shadow-sm)}.ws-flow h4{margin:0 0 10px;font-size:13px}.ws-node{border:1px solid #e4def5;background:linear-gradient(135deg,#fff,#fbf9ff);border-radius:12px;padding:9px;font-size:12px;font-weight:700;color:#2c2850}.ws-arrow{text-align:center;color:#6b4fe0;font-weight:900;padding:5px 0}.ws-tools{display:flex;gap:8px;flex-wrap:wrap}.ws-tools .btn{margin-top:0}
+  @media (max-width:1180px){.ws-layout{grid-template-columns:1fr 1.2fr}.ws-side{grid-column:auto}.ws-events-panel .ws-panel-body{max-height:none}.ws-chat-panel{min-height:620px}.ws-flow-grid,.ws-quick{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:767px){.app{background:var(--bg)}.main{max-width:none}.ws-layout,.ws-flow-grid,.ws-quick{grid-template-columns:1fr}.ws-hero{grid-template-columns:1fr}.ws-hero-side{justify-content:flex-start}.ws-chat-panel{min-height:auto}.ws-chat{min-height:430px}.ws-panel{border-radius:15px}.ws-kpis{width:100%}.ws-kpi{flex:1;min-width:96px}.ws-title h3{font-size:23px}}
+
+
   /* sidebar */
   .side{position:sticky;top:0;height:100vh;padding:22px 16px;
     background:linear-gradient(176deg,var(--marine),var(--marine-deep));
@@ -174,6 +188,19 @@
     background:linear-gradient(135deg,#bfe3da,#7fc4b6);display:flex;align-items:flex-end;padding:6px;color:#063b34;font-size:10px;font-weight:600}
   .wa-done{margin-top:10px;text-align:center;font-size:11.5px;color:var(--wa);font-weight:600}
 
+  /* WhatsApp Station */
+  .ws-hero{display:grid;grid-template-columns:1.4fr auto;gap:18px;align-items:center;background:linear-gradient(135deg,#fff,#f5f8f6);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-sm);padding:18px;margin-bottom:14px}
+  .ws-title{display:flex;gap:13px;align-items:flex-start}.ws-wa-icon{width:44px;height:44px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;font-size:24px;box-shadow:0 10px 24px rgba(37,211,102,.22)}
+  .ws-title h3{margin:0;font-family:var(--display);font-size:25px;color:var(--ink)}.ws-title p{margin:4px 0 0;color:var(--muted);font-size:13.5px;line-height:1.5}
+  .ws-hero-side{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}.ws-kpis{display:flex;gap:10px;flex-wrap:wrap}.ws-kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;min-width:112px}.ws-kpi b{display:block;font-family:var(--display);font-size:22px;color:var(--ink)}.ws-kpi span{font-size:11px;color:var(--muted)}
+  .ws-layout{display:grid;grid-template-columns:270px minmax(0,1fr) 285px;gap:14px;align-items:start}.ws-panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden}.ws-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line-soft)}.ws-panel-head h3{margin:0;font-size:14.5px}.ws-panel-body{padding:12px;display:grid;gap:10px}
+  .ws-conv{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;border:0;background:transparent;width:100%;text-align:left;padding:10px;border-radius:13px;cursor:pointer;color:var(--ink)}.ws-conv:hover,.ws-conv.on{background:var(--panel-soft)}.ws-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#bde6df,#5ab3a4);position:relative;display:grid;place-items:center;font-weight:800;color:#0b4942}.ws-avatar:after{content:'◔';position:absolute;right:-2px;bottom:-2px;width:16px;height:16px;border-radius:50%;background:#25D366;color:#fff;border:2px solid #fff;font-size:9px;display:grid;place-items:center}.ws-conv-title{font-weight:750;font-size:12.8px}.ws-conv-msg{font-size:11.3px;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}.ws-time{font-size:10.5px;color:var(--faint);text-align:right}.ws-count{display:inline-grid;place-items:center;min-width:18px;height:18px;border-radius:999px;background:#6b4fe0;color:#fff;font-size:10px;font-weight:800;margin-top:5px}
+  .ws-chat-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line-soft)}.ws-chat-id{display:flex;gap:10px;align-items:center}.ws-chat-id b{display:block}.ws-chat-id span{font-size:11.5px;color:var(--muted)}.ws-tabs{display:flex;gap:8px;padding:12px 12px 0}.ws-tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font:inherit;font-size:11.5px;font-weight:700;color:var(--muted)}.ws-tabs button.on{background:#efe9ff;color:#5b3fd0;border-color:#d8cdfb}
+  .ws-center-grid{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:0}.ws-chat{background:#eee5d8;background-image:radial-gradient(rgba(255,255,255,.55) 1px,transparent 1px);background-size:16px 16px;min-height:474px;padding:14px;display:flex;flex-direction:column}.ws-msg{max-width:78%;background:#fff;border-radius:13px;padding:9px 12px;margin:6px 0;box-shadow:0 1px 2px rgba(0,0,0,.06);font-size:12.8px}.ws-msg.out{margin-left:auto;background:#dcf6e3}.ws-msg b{display:block;font-size:11px;color:var(--turq);margin-bottom:3px}.ws-msg .tm{display:block;text-align:right;color:var(--faint);font-size:10px;margin-top:4px}.ws-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}.ws-photo{height:76px;border-radius:10px;background:linear-gradient(135deg,#d4c3aa,#faf6ed);display:grid;place-items:end start;padding:6px;font-size:10px;color:#6b5a43;font-weight:700}.ws-input{margin-top:auto;display:flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 8px}.ws-input input{border:0;outline:0;flex:1;font:inherit;font-size:12.5px;min-width:0}.ws-send{width:34px;height:34px;border:0;border-radius:50%;background:#6b4fe0;color:#fff;cursor:pointer}
+  .ws-event{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;border:1px solid var(--line-soft);border-radius:13px;padding:11px;background:#fff}.ws-event-ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#e6f5ee;color:#1f7d52;font-weight:900}.ws-event-ic.warn{background:#fff0d9;color:#d98416}.ws-event-ic.act{background:#efe9ff;color:#6b4fe0}.ws-event b{font-size:12.6px}.ws-event p{margin:2px 0 0;color:var(--muted);font-size:11.3px}.ws-event small{color:var(--faint);font-size:10px}.ws-event .btn{margin:6px 0 0;padding:7px 10px;font-size:11px}
+  .ws-side-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px}.ws-side-card h4{margin:0 0 8px;font-size:13px}.ws-supervisor{font-size:12.5px;color:var(--muted);line-height:1.55}.ws-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line-soft);font-size:12.2px}.ws-toggle:first-of-type{border-top:0}.ws-switch{width:38px;height:22px;border:0;border-radius:999px;background:#d9e2dc;position:relative;cursor:pointer}.ws-switch:after{content:'';position:absolute;width:18px;height:18px;left:2px;top:2px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}.ws-switch.on{background:#38c172}.ws-switch.on:after{left:18px}.ws-attn{border-radius:12px;padding:10px;border:1px solid #f0d4ca;background:#fff4f0}.ws-attn.warn{border-color:#f2ddaa;background:#fff9eb}.ws-attn b{display:block;font-size:12.5px}.ws-attn span{display:block;color:var(--muted);font-size:11.4px;margin-top:2px}.ws-bottom{display:grid;grid-template-columns:1.4fr .9fr;gap:14px;margin-top:14px}.ws-quick{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.ws-quick button{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:left;font:inherit;font-size:12px;cursor:pointer}.ws-quick b{display:block;margin-bottom:2px}.ws-activity{display:grid;gap:9px}.ws-activity div{border:1px solid var(--line-soft);border-radius:12px;background:#fff;padding:10px;font-size:12px}.ws-workflow{display:none;margin-bottom:14px}.ws-workflow.on{display:block}
+
+
   /* owner report */
   .rep{display:grid;grid-template-columns:1fr;gap:0}
   .rep-head{background:linear-gradient(135deg,var(--marine),var(--turq));color:#fff;padding:18px 20px;border-radius:var(--r) var(--r) 0 0}
@@ -258,9 +285,9 @@
     .app{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center}
     .main{padding:18px 14px 44px}.nav-lbl,.side-foot{display:none}.nav button{width:auto}.g-hero,.g-3,.g-2{grid-template-columns:1fr}.kpis{grid-template-columns:1fr}
     .cats{grid-template-columns:1fr}
-    .bm-hero,.bm-metric-grid,.bm-form,.bm-scenario-grid,.bm-row,.bm-row.top-row,.ops-grid,.pipeline-steps,.checklist-grid{grid-template-columns:1fr}
+    .bm-hero,.bm-metric-grid,.bm-form,.bm-scenario-grid,.bm-row,.bm-row.top-row,.ops-grid,.pipeline-steps,.checklist-grid,.ws-layout,.ws-center-grid,.ws-bottom,.ws-quick{grid-template-columns:1fr}
     .ops-hero{display:grid}.ops-actions{justify-content:flex-start}
-    .hub-hero,.hub-actions{display:grid}.hub-grid,.funnel,.lead-card{grid-template-columns:1fr}
+    .hub-hero,.hub-actions{display:grid}.hub-grid,.funnel,.lead-card{grid-template-columns:1fr}.ws-hero{grid-template-columns:1fr}.ws-hero-side{justify-content:flex-start}.ws-chat{min-height:420px}.ws-conv-msg{max-width:220px}
     .proppy-float{right:14px;bottom:14px}.proppy-drawer{right:14px;bottom:68px}
   }
   @media (max-width:767px){
@@ -348,7 +375,8 @@
     <div class="nav-lbl">Operación</div>
     <nav class="nav" id="nav">
       <button class="on" data-v="inicio" data-nav-item><span class="ic">◧</span> Centro de control</button>
-      <button data-v="mant" data-nav-item><span class="ic">✦</span> Mantenimiento</button>
+      <button data-v="mant" data-nav-item><span class="ic">✦</span> Operaciones</button>
+      <button data-v="whatsappStation" data-nav-item><span class="ic">☘</span> WhatsApp Station</button>
       <button data-v="prov" data-nav-item><span class="ic">✆</span> Proveedores</button>
       <div class="nav-lbl">Inversión</div>
       <button data-v="benchmark" data-nav-item><span class="ic">🏠</span> Benchmark Airbnb</button>
@@ -544,7 +572,7 @@
       <div class="ops-grid">
         <div class="ops-panel">
           <div class="ops-panel-head"><h3>Pipeline de turnovers</h3><span class="eyebrow">Checkout to ready</span></div>
-          <div class="ops-body" id="opsPipeline"></div>
+          <div class="ops-body"><div id="opsAttention"></div><div id="opsPipeline" class="ops-pipeline"></div></div>
         </div>
         <div class="ops-panel">
           <div class="ops-panel-head"><h3>Property Health Score</h3><span class="eyebrow">0–100</span></div>
@@ -599,6 +627,60 @@
         </div>
       </div>
     </section>
+
+
+    <!-- ===== WHATSAPP STATION ===== -->
+    <section class="view" id="whatsappStation">
+      <div class="ws-hero">
+        <div class="ws-title">
+          <div class="ws-wa-icon">◔</div>
+          <div>
+            <h3>WhatsApp Workflow Station</h3>
+            <p>Tu operación, en el canal que todos usan. IA que entiende, organiza y ejecuta. WhatsApp no se reemplaza. Se convierte en operación estructurada.</p>
+          </div>
+        </div>
+        <div class="ws-hero-side">
+          <div class="ws-kpis" id="wsKpis"></div>
+          <div class="ws-tools"><button class="btn" type="button" onclick="window.toggleWorkflowPanel && window.toggleWorkflowPanel()">Configurar Workflows</button></div>
+        </div>
+      </div>
+      <div class="ws-workflow" id="wsWorkflowPanel">
+        <div class="ws-panel">
+          <div class="ws-panel-head"><h3>Workflow Builder</h3><span class="eyebrow">mock visual</span></div>
+          <div class="ws-panel-body">
+            <div class="ws-flow-grid">
+              <div class="ws-flow"><h4>Limpieza completada</h4><div class="ws-node">Mensaje contiene: “terminé”</div><div class="ws-arrow">↓</div><div class="ws-node">Mover turnover a: Limpieza completada</div><div class="ws-arrow">↓</div><div class="ws-node">Solicitar fotos</div><div class="ws-arrow">↓</div><div class="ws-node">Notificar supervisor</div></div>
+              <div class="ws-flow"><h4>Hallazgo operativo</h4><div class="ws-node">Detectar “foco fundido”</div><div class="ws-arrow">↓</div><div class="ws-node">Crear hallazgo</div><div class="ws-arrow">↓</div><div class="ws-node">Sugerir WO</div></div>
+              <div class="ws-flow"><h4>Check-in próximo</h4><div class="ws-node">Check-in hoy</div><div class="ws-arrow">↓</div><div class="ws-node">Recordar inspección</div><div class="ws-arrow">↓</div><div class="ws-node">Escalar si no hay checklist</div></div>
+              <div class="ws-flow"><h4>WO crítico</h4><div class="ws-node">Prioridad crítica</div><div class="ws-arrow">↓</div><div class="ws-node">Notificar supervisor</div><div class="ws-arrow">↓</div><div class="ws-node">Registrar bitácora</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ws-layout">
+        <div class="ws-panel">
+          <div class="ws-panel-head"><h3>Conversaciones</h3><span class="ops-badge info" id="wsConversationCount">0 activas</span></div>
+          <div class="ws-panel-body" id="wsConversations"></div>
+        </div>
+        <div class="ws-panel ws-chat-panel">
+          <div class="ws-chat-head"><div class="ws-chat-id"><div class="ws-avatar" id="wsActiveAvatar">VC</div><div><b id="wsActiveTitle">Limpieza - Villa Coral</b><span id="wsActiveSub">6 participantes</span></div></div><span class="eyebrow">IA supervisando</span></div>
+          <div class="ws-tabs"><button class="on" type="button">Todos</button><button type="button">Mensajes</button><button type="button">Eventos</button><button type="button">Acciones</button></div>
+          <div class="ws-chat"><div id="wsMessages"></div><div class="ws-input"><input id="wsMessageInput" placeholder="Escribe un mensaje..." autocomplete="off"><button class="ws-send" type="button" onclick="window.sendWhatsAppMock && window.sendWhatsAppMock()">➤</button></div></div>
+        </div>
+        <div class="ws-panel ws-events-panel">
+          <div class="ws-panel-head"><h3>Eventos detectados por IA</h3><span class="eyebrow">accionables</span></div>
+          <div class="ws-panel-body"><div class="ops-list" id="wsEvents"></div></div>
+        </div>
+        <div class="ws-side">
+          <div class="ws-panel"><div class="ws-panel-body"><div id="wsAISupervisor"></div><div id="wsAutomations"></div><div id="wsAttention"></div></div></div>
+          <div class="ws-panel"><div class="ws-panel-head"><h3>Actividad reciente</h3><span class="eyebrow">bitácora</span></div><div class="ws-panel-body"><div class="ws-activity" id="wsActivity"></div></div></div>
+        </div>
+      </div>
+      <div class="ws-bottom">
+        <div class="ws-panel"><div class="ws-panel-head"><h3>Acciones rápidas</h3><span class="eyebrow">operación diaria</span></div><div class="ws-panel-body"><div class="ws-quick" id="wsQuickActions"></div></div></div>
+      </div>
+    </section>
+
 
     <!-- ===== PROVEEDORES ===== -->
     <section class="view" id="prov">
@@ -752,6 +834,8 @@
   const STORAGE_KEY = 'propierato.benchmark.airbnb.v1';
   const STORAGE_KEY_LEGACY = 'propierato.benchmark.v1';
   const HUB_STORAGE_KEY = 'propierato.founderHub.v1';
+  const OPS_STORAGE_KEY = 'propierato.operations.v2';
+  const WHATSAPP_STORAGE_KEY = 'propierato.whatsapp.station.v1';
   const fmt = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
   const fmtPct = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 1 });
 
@@ -926,6 +1010,7 @@
   const titles = {
     inicio: ['Centro de control', 'Tu portafolio de un vistazo — salud, preventivos y proveedores.'],
     mant: ['Operaciones', 'Turnovers, limpieza, inspección, hallazgos y work orders en un solo flujo.'],
+    whatsappStation: ['WhatsApp Station', 'WhatsApp no se reemplaza: se convierte en operación estructurada.'],
     prov: ['Proveedores', 'Tu cuadrilla local, coordinada por WhatsApp.'],
     benchmark: ['Benchmark Airbnb', 'Comparables, escenarios de factibilidad y veredicto financiero.'],
     rep: ['Reporte al dueño', 'Tu gancho de retención: salud de la propiedad, cada mes.'],
@@ -941,43 +1026,98 @@
   };
   const state = loadState();
 
-  const opsStatusOrder = ['Checkout pendiente', 'Limpieza asignada', 'Limpieza en progreso', 'Inspección pendiente', 'Hallazgos detectados', 'Mantenimiento pendiente', 'Lista para check-in'];
+  const opsStatuses = ['checkout', 'cleaning_assigned', 'cleaning_in_progress', 'inspection_pending', 'findings_detected', 'maintenance_pending', 'ready'];
+  const opsStatusLabels = {
+    checkout: 'Checkout pendiente',
+    cleaning_assigned: 'Limpieza asignada',
+    cleaning_in_progress: 'Limpieza en progreso',
+    inspection_pending: 'Inspección pendiente',
+    findings_detected: 'Hallazgos detectados',
+    maintenance_pending: 'Mantenimiento pendiente',
+    ready: 'Lista para check-in'
+  };
   const opsPipelineSteps = ['Checkout', 'Limpieza', 'Inspección', 'Hallazgos', 'Mantenimiento', 'Ready'];
-  const operations = {
+  const opsSeed = () => ({
     properties: [
-      { id: 'p-305', name: 'Unidad 305', owner: 'Sra. Méndez', nextCheckIn: dateInMonth(state.selectedYear, state.selectedMonth, 19), status: 'Inspección pendiente' },
-      { id: 'p-302', name: 'Villa 302', owner: 'Sr. Aranda', nextCheckIn: dateInMonth(state.selectedYear, state.selectedMonth, 22), status: 'Lista para check-in' },
-      { id: 'p-akumal', name: 'Casa Akumal', owner: 'Sr. Méndez', nextCheckIn: dateInMonth(state.selectedYear, state.selectedMonth, 24), status: 'Mantenimiento pendiente' }
+      { id: 'p-305', name: 'Unidad 305', owner: 'Sra. Méndez', nextCheckIn: dateInMonth(state.selectedYear, state.selectedMonth, 19).toISOString(), status: 'inspection_pending' },
+      { id: 'p-302', name: 'Villa 302', owner: 'Sr. Aranda', nextCheckIn: dateInMonth(state.selectedYear, state.selectedMonth, 22).toISOString(), status: 'ready' },
+      { id: 'p-akumal', name: 'Casa Akumal', owner: 'Sr. Méndez', nextCheckIn: dateInMonth(state.selectedYear, state.selectedMonth, 24).toISOString(), status: 'maintenance_pending' }
     ],
     turnovers: [
-      { id: 't-305', propertyId: 'p-305', checkout: dateInMonth(state.selectedYear, state.selectedMonth, 18), checkin: dateInMonth(state.selectedYear, state.selectedMonth, 19), cleaner: 'Lupita', inspector: 'Mariela', status: 'Inspección pendiente', checklist: { Recámara: true, Baño: false, Cocina: true, Sala: true, 'Terraza/Balcón': false, Amenidades: true } },
-      { id: 't-302', propertyId: 'p-302', checkout: dateInMonth(state.selectedYear, state.selectedMonth, 20), checkin: dateInMonth(state.selectedYear, state.selectedMonth, 22), cleaner: 'Equipo Norte', inspector: 'Oscar', status: 'Lista para check-in', checklist: { Recámara: true, Baño: true, Cocina: true, Sala: true, 'Terraza/Balcón': true, Amenidades: true } }
+      { id: 't-305', propertyId: 'p-305', checkout: dateInMonth(state.selectedYear, state.selectedMonth, 18).toISOString(), checkin: dateInMonth(state.selectedYear, state.selectedMonth, 19).toISOString(), cleaner: 'Lupita', inspector: 'Mariela', status: 'inspection_pending', checklist: { Recámara: true, Baño: false, Cocina: true, Sala: true, 'Terraza/Balcón': false, Amenidades: true } },
+      { id: 't-302', propertyId: 'p-302', checkout: dateInMonth(state.selectedYear, state.selectedMonth, 20).toISOString(), checkin: dateInMonth(state.selectedYear, state.selectedMonth, 22).toISOString(), cleaner: 'Equipo Norte', inspector: 'Oscar', status: 'ready', checklist: { Recámara: true, Baño: true, Cocina: true, Sala: true, 'Terraza/Balcón': true, Amenidades: true } }
     ],
     findings: [
-      { id: 'f-001', turnoverId: 't-305', propertyId: 'p-305', area: 'Baño', type: 'Foco fundido', priority: 'media', status: 'nuevo', photos: ['mock-bano'], owner: 'Juan eléctrico', cost: 450, due: dateInMonth(state.selectedYear, state.selectedMonth, 19), maintenance: true },
-      { id: 'f-002', turnoverId: 't-305', propertyId: 'p-305', area: 'Sala', type: 'Control remoto faltante', priority: 'alta', status: 'asignado', photos: ['mock-sala'], owner: 'Host team', cost: 650, due: dateInMonth(state.selectedYear, state.selectedMonth, 19), maintenance: false },
-      { id: 'f-003', turnoverId: 't-akumal', propertyId: 'p-akumal', area: 'Amenidades', type: 'Aire acondicionado no enfría', priority: 'crítica', status: 'en progreso', photos: ['mock-aa'], owner: 'Climas Playa', cost: 1800, due: dateInMonth(state.selectedYear, state.selectedMonth, 24), maintenance: true }
+      { id: 'f-001', turnoverId: 't-305', propertyId: 'p-305', area: 'Baño', type: 'Foco fundido', priority: 'media', status: 'nuevo', photos: ['mock-bano'], owner: 'Juan eléctrico', cost: 450, due: dateInMonth(state.selectedYear, state.selectedMonth, 19).toISOString(), maintenance: true },
+      { id: 'f-002', turnoverId: 't-305', propertyId: 'p-305', area: 'Sala', type: 'Control remoto faltante', priority: 'alta', status: 'asignado', photos: ['mock-sala'], owner: 'Host team', cost: 650, due: dateInMonth(state.selectedYear, state.selectedMonth, 19).toISOString(), maintenance: false },
+      { id: 'f-003', turnoverId: 't-akumal', propertyId: 'p-akumal', area: 'Amenidades', type: 'Aire acondicionado no enfría', priority: 'crítica', status: 'en progreso', photos: ['mock-aa'], owner: 'Climas Playa', cost: 1800, due: dateInMonth(state.selectedYear, state.selectedMonth, 24).toISOString(), maintenance: true }
     ],
     workOrders: [
       { id: 'WO-001', findingId: 'f-003', turnoverId: 't-akumal', propertyId: 'p-akumal', description: 'Aire acondicionado no enfría en suite principal', category: 'electrodoméstico', priority: 'crítica', owner: 'Climas Playa', status: 'en progreso', cost: 1800, photos: ['mock-aa'] }
     ],
     ownerSummaries: [
-      { propertyId: 'p-305', lastInspection: dateInMonth(state.selectedYear, state.selectedMonth, 18), recentPhotos: ['Baño', 'Sala', 'Cocina'] },
-      { propertyId: 'p-302', lastInspection: dateInMonth(state.selectedYear, state.selectedMonth, 20), recentPhotos: ['Terraza', 'Alberca', 'Recámara'] },
-      { propertyId: 'p-akumal', lastInspection: dateInMonth(state.selectedYear, state.selectedMonth, 12), recentPhotos: ['A/A', 'Boiler', 'Cocina'] }
+      { propertyId: 'p-305', lastInspection: dateInMonth(state.selectedYear, state.selectedMonth, 18).toISOString(), recentPhotos: ['Baño', 'Sala', 'Cocina'] },
+      { propertyId: 'p-302', lastInspection: dateInMonth(state.selectedYear, state.selectedMonth, 20).toISOString(), recentPhotos: ['Terraza', 'Alberca', 'Recámara'] },
+      { propertyId: 'p-akumal', lastInspection: dateInMonth(state.selectedYear, state.selectedMonth, 12).toISOString(), recentPhotos: ['A/A', 'Boiler', 'Cocina'] }
     ],
     whatsapp: [
-      'Unidad 305 lista para inspección',
-      'Se detectó foco fundido en baño',
-      'WO-001 asignado a Juan',
-      'Villa 302 lista para check-in'
+      { text: 'Unidad 305 lista para inspección', at: new Date().toISOString() },
+      { text: 'Se detectó foco fundido en baño', at: new Date().toISOString() },
+      { text: 'WO-001 asignado a Juan', at: new Date().toISOString() },
+      { text: 'Villa 302 lista para check-in', at: new Date().toISOString() }
     ]
-  };
+  });
 
+  function loadOperations() {
+    const seed = opsSeed();
+    const saved = localStorage.getItem(OPS_STORAGE_KEY);
+    if (!saved) return seed;
+    try {
+      const parsed = JSON.parse(saved);
+      return {
+        ...seed,
+        ...parsed,
+        properties: Array.isArray(parsed.properties) ? parsed.properties : seed.properties,
+        turnovers: Array.isArray(parsed.turnovers) ? parsed.turnovers : seed.turnovers,
+        findings: Array.isArray(parsed.findings) ? parsed.findings : seed.findings,
+        workOrders: Array.isArray(parsed.workOrders) ? parsed.workOrders : seed.workOrders,
+        ownerSummaries: Array.isArray(parsed.ownerSummaries) ? parsed.ownerSummaries : seed.ownerSummaries,
+        whatsapp: Array.isArray(parsed.whatsapp) ? parsed.whatsapp : seed.whatsapp
+      };
+    } catch (_) {
+      return seed;
+    }
+  }
+
+  const operations = loadOperations();
+  const opsDate = (value) => value instanceof Date ? value : new Date(value || Date.now());
+  const opsLabel = (status) => opsStatusLabels[status] || safeText(status);
   const opsProperty = (id) => operations.properties.find((p) => p.id === id) || operations.properties[0];
   const priorityClass = (priority) => priority === 'crítica' ? 'crit' : priority === 'alta' ? 'warn' : priority === 'media' ? 'info' : 'ok';
-  const statusClass = (status) => /lista|resuelto/i.test(status) ? 'ok' : /progreso/i.test(status) ? 'info' : /crítica|pendiente|nuevo/i.test(status) ? 'warn' : 'info';
+  const statusClass = (status) => /ready|lista|resuelto/i.test(status) ? 'ok' : /progress|progreso/i.test(status) ? 'info' : /crítica|pending|pendiente|nuevo|detect/i.test(status) ? 'warn' : 'info';
   const setHtml = (selector, html) => { const el = $(selector); if (el) el.innerHTML = html; };
+
+  function saveOperations() {
+    localStorage.setItem(OPS_STORAGE_KEY, JSON.stringify({
+      properties: operations.properties,
+      turnovers: operations.turnovers,
+      findings: operations.findings,
+      workOrders: operations.workOrders,
+      ownerSummaries: operations.ownerSummaries,
+      whatsapp: operations.whatsapp
+    }));
+  }
+
+  function logOps(message) {
+    operations.whatsapp.unshift({ text: message, at: new Date().toISOString() });
+    operations.whatsapp = operations.whatsapp.slice(0, 30);
+  }
+
+  function syncPropertyStatus(propertyId) {
+    const property = opsProperty(propertyId);
+    const latest = operations.turnovers.find((t) => t.propertyId === propertyId);
+    if (property && latest) property.status = latest.status;
+  }
 
   function createTurnover(propertyId) {
     const property = opsProperty(propertyId || 'p-305');
@@ -985,30 +1125,52 @@
     operations.turnovers.unshift({
       id,
       propertyId: property.id,
-      checkout: new Date(),
+      checkout: new Date().toISOString(),
       checkin: property.nextCheckIn,
       cleaner: 'Por asignar',
       inspector: 'Por asignar',
-      status: 'Checkout pendiente',
+      status: 'checkout',
       checklist: { Recámara: false, Baño: false, Cocina: false, Sala: false, 'Terraza/Balcón': false, Amenidades: false }
     });
-    operations.whatsapp.unshift(`${property.name} creó turnover desde checkout`);
+    syncPropertyStatus(property.id);
+    logOps(`${property.name}: turnover creado desde checkout`);
+    saveOperations();
     renderOperationsDashboard();
   }
 
   function updateTurnoverStatus(turnoverId, status) {
     const turnover = operations.turnovers.find((t) => t.id === turnoverId);
-    if (!turnover) return;
+    if (!turnover || !opsStatuses.includes(status)) return;
     turnover.status = status;
-    operations.whatsapp.unshift(`${opsProperty(turnover.propertyId).name}: ${status}`);
+    syncPropertyStatus(turnover.propertyId);
+    logOps(`${opsProperty(turnover.propertyId).name}: ${opsLabel(status)}`);
+    if (status === 'ready') logOps(`${opsProperty(turnover.propertyId).name} lista para check-in`);
+    saveOperations();
     renderOperationsDashboard();
+  }
+
+  function advanceTurnoverStatus(turnoverId) {
+    const turnover = operations.turnovers.find((t) => t.id === turnoverId);
+    if (!turnover) return;
+    const idx = Math.max(0, opsStatuses.indexOf(turnover.status));
+    updateTurnoverStatus(turnoverId, opsStatuses[Math.min(opsStatuses.length - 1, idx + 1)]);
+  }
+
+  function reopenTurnover(turnoverId) {
+    updateTurnoverStatus(turnoverId, 'inspection_pending');
+  }
+
+  function markReady(turnoverId) {
+    updateTurnoverStatus(turnoverId, 'ready');
   }
 
   function addFinding(turnoverId, findingData) {
     const turnover = operations.turnovers.find((t) => t.id === turnoverId) || operations.turnovers[0];
-    if (!turnover) return;
+    if (!turnover) return null;
+    const duplicate = operations.findings.find((f) => f.turnoverId === turnover.id && f.area === findingData.area && f.type === findingData.type && f.status !== 'resuelto');
+    if (duplicate) return duplicate;
     const id = `f-${String(operations.findings.length + 1).padStart(3, '0')}`;
-    operations.findings.unshift({
+    const finding = {
       id,
       turnoverId: turnover.id,
       propertyId: turnover.propertyId,
@@ -1021,8 +1183,14 @@
       cost: Number(findingData.cost) || 0,
       due: findingData.due || turnover.checkin,
       maintenance: findingData.maintenance !== false
-    });
-    updateTurnoverStatus(turnover.id, 'Hallazgos detectados');
+    };
+    operations.findings.unshift(finding);
+    turnover.status = 'findings_detected';
+    syncPropertyStatus(turnover.propertyId);
+    logOps(`IA detectó hallazgo: ${finding.type} en ${opsProperty(finding.propertyId).name}`);
+    saveOperations();
+    renderOperationsDashboard();
+    return finding;
   }
 
   function convertFindingToWorkOrder(findingId) {
@@ -1047,8 +1215,10 @@
     });
     finding.status = 'asignado';
     const turnover = operations.turnovers.find((t) => t.id === finding.turnoverId);
-    if (turnover) turnover.status = 'Mantenimiento pendiente';
-    operations.whatsapp.unshift(`${id} asignado a ${finding.owner || 'proveedor'}`);
+    if (turnover) turnover.status = 'maintenance_pending';
+    syncPropertyStatus(finding.propertyId);
+    logOps(`${id} creado y asignado a ${finding.owner || 'proveedor'}`);
+    saveOperations();
     renderOperationsDashboard();
   }
 
@@ -1058,7 +1228,8 @@
     wo.status = status;
     const finding = operations.findings.find((f) => f.id === wo.findingId);
     if (finding && status === 'resuelto') finding.status = 'resuelto';
-    operations.whatsapp.unshift(`${wo.id} marcado como ${status}`);
+    logOps(`${wo.id} ${status === 'resuelto' ? 'resuelto' : 'actualizado a ' + status}`);
+    saveOperations();
     renderOperationsDashboard();
   }
 
@@ -1070,37 +1241,65 @@
   }
 
   function simulateVisionAI(turnoverId) {
+    const turnover = operations.turnovers.find((t) => t.id === turnoverId) || operations.turnovers.find((t) => t.status !== 'ready') || operations.turnovers[0];
+    if (!turnover) return;
     const samples = [
       { area: 'Baño', type: 'Foco fundido', priority: 'media', owner: 'Juan eléctrico', cost: 450, maintenance: true },
       { area: 'Sala', type: 'Mancha en sofá', priority: 'alta', owner: 'Tapicería Express', cost: 900, maintenance: true },
-      { area: 'Cocina', type: 'Toalla faltante', priority: 'baja', owner: 'Host team', cost: 220, maintenance: false }
+      { area: 'Cocina', type: 'Toalla faltante', priority: 'baja', owner: 'Host team', cost: 220, maintenance: false },
+      { area: 'Amenidades', type: 'Cerradura con falla', priority: 'crítica', owner: 'Cerrajería Caribe', cost: 1250, maintenance: true }
     ];
-    samples.slice(0, 2).forEach((finding) => addFinding(turnoverId, finding));
-    operations.whatsapp.unshift('Vision AI detectó 2 hallazgos mock');
+    const added = [];
+    samples.some((sample) => {
+      if (added.length >= 3) return true;
+      const duplicate = operations.findings.some((f) => f.turnoverId === turnover.id && f.area === sample.area && f.type === sample.type && f.status !== 'resuelto');
+      if (!duplicate) added.push(sample);
+      return false;
+    });
+    added.forEach((finding) => addFinding(turnover.id, finding));
+    if (!added.length) logOps(`Vision AI no encontró hallazgos nuevos en ${opsProperty(turnover.propertyId).name}`);
+    else logOps(`Vision AI detectó ${added.length} hallazgo${added.length === 1 ? '' : 's'} en ${opsProperty(turnover.propertyId).name}`);
+    saveOperations();
     renderOperationsDashboard();
+  }
+
+  function renderAttentionToday() {
+    const rows = operations.properties.map((property) => {
+      const nextCheckIn = opsDate(property.nextCheckIn);
+      const soon = (nextCheckIn - new Date()) / 86400000 <= 3;
+      const openWo = operations.workOrders.some((wo) => wo.propertyId === property.id && wo.status !== 'resuelto');
+      const critical = operations.findings.some((f) => f.propertyId === property.id && f.priority === 'crítica' && f.status !== 'resuelto');
+      const inspection = operations.turnovers.some((t) => t.propertyId === property.id && t.status === 'inspection_pending');
+      const reasons = [soon && 'check-in próximo', openWo && 'WO abierto', critical && 'hallazgo crítico', inspection && 'inspección pendiente'].filter(Boolean);
+      if (!reasons.length) return '';
+      return `<div class="finding-card"><div><h4>${property.name}</h4><p>${reasons.join(' · ')}</p><div class="ops-badges"><span class="ops-badge ${critical ? 'crit' : 'warn'}">requiere atención</span><span class="ops-badge info">${formatShortDate(nextCheckIn)}</span></div></div></div>`;
+    }).filter(Boolean).join('');
+    setHtml('#opsAttention', `<div class="ops-panel" style="box-shadow:none"><div class="ops-panel-head"><h3>Hoy requiere atención</h3><span class="eyebrow">prioridad operativa</span></div><div class="ops-body">${rows || '<div class="placeholder"><div class="big">Nada urgente</div><div>Las propiedades están sin bloqueos críticos hoy.</div></div>'}</div></div>`);
   }
 
   function renderTurnoverPipeline() {
     const rows = operations.turnovers.map((turnover) => {
       const property = opsProperty(turnover.propertyId);
-      const currentIndex = Math.max(0, Math.min(opsPipelineSteps.length - 1, Math.floor(Math.max(0, opsStatusOrder.indexOf(turnover.status)) * (opsPipelineSteps.length - 1) / (opsStatusOrder.length - 1))));
+      const statusIndex = Math.max(0, opsStatuses.indexOf(turnover.status));
+      const currentIndex = Math.max(0, Math.min(opsPipelineSteps.length - 1, Math.floor(statusIndex * (opsPipelineSteps.length - 1) / (opsStatuses.length - 1))));
       const steps = opsPipelineSteps.map((step, idx) => `<div class="pipe-step ${idx < currentIndex ? 'done' : idx === currentIndex ? statusClass(turnover.status) + ' current' : ''}">${step}</div>`).join('');
       return `<div class="turnover-card">
         <div class="turnover-top">
-          <div><b>${property.name}</b><span>Checkout ${formatShortDate(turnover.checkout)} · Check-in ${formatShortDate(turnover.checkin)}</span></div>
-          <span class="ops-badge ${statusClass(turnover.status)}">${turnover.status}</span>
+          <div><b>${property.name}</b><span>Checkout ${formatShortDate(opsDate(turnover.checkout))} · Check-in ${formatShortDate(opsDate(turnover.checkin))}</span></div>
+          <span class="ops-badge ${statusClass(turnover.status)}">${opsLabel(turnover.status)}</span>
         </div>
         <div class="pipeline-steps">${steps}</div>
         <div class="ops-badges"><span class="ops-badge info">Limpieza: ${safeText(turnover.cleaner)}</span><span class="ops-badge">Inspección: ${safeText(turnover.inspector)}</span></div>
+        <div class="ops-actions" style="justify-content:flex-start"><button class="btn ghost" type="button" onclick="window.advanceTurnoverStatus && window.advanceTurnoverStatus('${turnover.id}')">Avanzar estado</button><button class="btn ghost" type="button" onclick="window.reopenTurnover && window.reopenTurnover('${turnover.id}')">Reabrir</button><button class="btn" type="button" onclick="window.markReady && window.markReady('${turnover.id}')">Marcar lista para check-in</button></div>
       </div>`;
     }).join('');
     setHtml('#opsPipeline', rows || '<div class="placeholder"><div class="big">Sin turnovers</div><div>No hay checkouts activos.</div></div>');
   }
 
   function renderInspectionChecklist() {
-    const turnover = operations.turnovers[0];
+    const turnover = operations.turnovers.find((t) => t.status !== 'ready') || operations.turnovers[0];
     const checklist = turnover?.checklist || {};
-    setHtml('#inspectionChecklist', Object.entries(checklist).map(([area, done]) => `<label class="check-item"><input type="checkbox" ${done ? 'checked' : ''} onchange="window.updateTurnoverStatus && window.updateTurnoverStatus('${turnover.id}','${done ? 'Inspección pendiente' : 'Hallazgos detectados'}')"> ${area}</label>`).join(''));
+    setHtml('#inspectionChecklist', Object.entries(checklist).map(([area, done]) => `<label class="check-item"><input type="checkbox" ${done ? 'checked' : ''} onchange="window.updateTurnoverStatus && window.updateTurnoverStatus('${turnover.id}','${done ? 'inspection_pending' : 'findings_detected'}')"> ${area}</label>`).join(''));
   }
 
   function renderFindings() {
@@ -1110,7 +1309,7 @@
       return `<div class="finding-card">
         <div>
           <h4>${finding.type}</h4>
-          <p>${property.name} · ${finding.area} · vence antes de ${formatShortDate(finding.due)}</p>
+          <p>${property.name} · ${finding.area} · vence antes de ${formatShortDate(opsDate(finding.due))}</p>
           <div class="ops-badges"><span class="ops-badge ${priorityClass(finding.priority)}">${finding.priority}</span><span class="ops-badge ${statusClass(finding.status)}">${finding.status}</span><span class="ops-badge">${toMoney(finding.cost)} MXN</span></div>
         </div>
         ${canConvert ? `<button class="btn ghost" type="button" onclick="window.convertFindingToWorkOrder && window.convertFindingToWorkOrder('${finding.id}')">Crear WO</button>` : '<span class="ops-badge ok">WO listo</span>'}
@@ -1135,19 +1334,19 @@
   }
 
   function renderOwnerHubSummary() {
-    const rows = operations.ownerSummaries.map((summary) => {
-      const property = opsProperty(summary.propertyId);
+    const rows = operations.properties.map((property) => {
+      const summary = operations.ownerSummaries.find((s) => s.propertyId === property.id) || { lastInspection: property.nextCheckIn, recentPhotos: ['Mock'] };
       const open = operations.findings.filter((f) => f.propertyId === property.id && f.status !== 'resuelto').length;
       const resolved = operations.findings.filter((f) => f.propertyId === property.id && f.status === 'resuelto').length;
       const spend = operations.workOrders.filter((wo) => wo.propertyId === property.id).reduce((sum, wo) => sum + Number(wo.cost || 0), 0);
-      return `<div class="owner-row"><b>${property.name}</b><div class="ops-badges"><span class="ops-badge ${open ? 'warn' : 'ok'}">${open} abiertas</span><span class="ops-badge ok">${resolved} resueltas mes</span><span class="ops-badge">${toMoney(spend)} MXN</span><span class="ops-badge info">Última inspección ${formatShortDate(summary.lastInspection)}</span><span class="ops-badge">${property.status}</span></div><div class="mock-photo-grid" style="margin-top:10px">${summary.recentPhotos.map((photo) => `<div class="mock-photo">${photo}</div>`).join('')}</div></div>`;
+      return `<div class="owner-row"><b>${property.name}</b><div class="ops-badges"><span class="ops-badge ${open ? 'warn' : 'ok'}">${open} abiertas</span><span class="ops-badge ok">${resolved} resueltas mes</span><span class="ops-badge">${toMoney(spend)} MXN acumulado</span><span class="ops-badge info">Última inspección ${formatShortDate(opsDate(summary.lastInspection))}</span><span class="ops-badge ${statusClass(property.status)}">${opsLabel(property.status)}</span></div><div class="mock-photo-grid" style="margin-top:10px">${summary.recentPhotos.map((photo) => `<div class="mock-photo">${photo}</div>`).join('')}</div></div>`;
     }).join('');
     setHtml('#ownerHubOps', rows);
   }
 
   function renderOperationsDashboard() {
-    const activeTurnovers = operations.turnovers.filter((t) => t.status !== 'Lista para check-in').length;
-    const ready = operations.turnovers.filter((t) => t.status === 'Lista para check-in').length;
+    const activeTurnovers = operations.turnovers.filter((t) => t.status !== 'ready').length;
+    const ready = operations.turnovers.filter((t) => t.status === 'ready').length;
     const openFindings = operations.findings.filter((f) => f.status !== 'resuelto').length;
     const pendingWos = operations.workOrders.filter((wo) => wo.status !== 'resuelto').length;
     const cost = operations.workOrders.reduce((sum, wo) => sum + Number(wo.cost || 0), 0);
@@ -1157,17 +1356,24 @@
       ['Hallazgos abiertos', openFindings, `${pendingWos} WO pendientes`],
       ['Costo estimado mes', toMoney(cost), 'mantenimiento']
     ].map((c) => `<div class="kpi"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join(''));
+    renderAttentionToday();
     renderTurnoverPipeline();
     renderInspectionChecklist();
     renderFindings();
     renderWorkOrders();
     renderOwnerHubSummary();
-    setHtml('#opsHealthScores', operations.properties.map((property) => `<div class="health-row"><b>${property.name}</b><span class="health-score">${calculatePropertyHealth(property.id)}/100</span></div>`).join(''));
-    setHtml('#whatsappMock', operations.whatsapp.slice(0, 5).map((msg) => `<div class="wa-row"><b>WhatsApp Agent</b>${msg}</div>`).join(''));
+    setHtml('#opsHealthScores', operations.properties.map((property) => `<div class="health-row"><b>${property.name}</b><span class="health-score">${calculatePropertyHealth(property.id)}/100</span><div style="width:100%;font-size:11px;color:var(--muted);margin-top:4px">-10 por WO abierto, -20 por crítico, -5 por inspección incompleta</div></div>`).join(''));
+    setHtml('#whatsappMock', operations.whatsapp.slice(0, 8).map((item) => {
+      const entry = typeof item === 'string' ? { text: item, at: new Date().toISOString() } : item;
+      return `<div class="wa-row"><b>${new Date(entry.at).toLocaleString('es-MX')}</b>${safeText(entry.text)}</div>`;
+    }).join(''));
   }
 
   window.createTurnover = createTurnover;
   window.updateTurnoverStatus = updateTurnoverStatus;
+  window.advanceTurnoverStatus = advanceTurnoverStatus;
+  window.reopenTurnover = reopenTurnover;
+  window.markReady = markReady;
   window.addFinding = addFinding;
   window.convertFindingToWorkOrder = convertFindingToWorkOrder;
   window.updateWorkOrderStatus = updateWorkOrderStatus;
@@ -1178,6 +1384,241 @@
   window.renderFindings = renderFindings;
   window.renderWorkOrders = renderWorkOrders;
   window.renderOwnerHubSummary = renderOwnerHubSummary;
+
+  const whatsappSeed = () => ({
+    activeConversationId: 'villa-coral-cleaning',
+    conversations: [
+      { id: 'villa-coral-cleaning', title: 'Limpieza - Villa Coral', last: 'María: Terminé la limpieza ✅', time: '10:42 AM', pending: 3, avatar: 'VC', participants: '6 participantes' },
+      { id: 'maintenance', title: 'Mantenimiento', last: 'Juan: Foco fundido en baño ppal', time: '10:38 AM', pending: 2, avatar: 'MT', participants: '4 participantes' },
+      { id: 'supervisors', title: 'Supervisores', last: 'Carlos: Inspección lista ✅', time: '10:35 AM', pending: 1, avatar: 'SP', participants: '5 participantes' },
+      { id: 'owners', title: 'Propietarios', last: 'Laura: ¿Cómo va mi villa?', time: '10:20 AM', pending: 0, avatar: 'PR', participants: '3 propietarios' },
+      { id: 'villa-luna-cleaning', title: 'Limpieza - Villa Luna', last: 'Ana: Estoy en camino', time: '09:58 AM', pending: 0, avatar: 'VL', participants: '5 participantes' },
+      { id: 'urgent-maintenance', title: 'Mantenimiento Urgente', last: 'Alejandro: Aire no enfría', time: '09:45 AM', pending: 1, avatar: 'MU', participants: '4 participantes' },
+      { id: 'reception', title: 'Recepción / Check-in', last: 'Recepción: Huésped llegó', time: '09:30 AM', pending: 0, avatar: 'RC', participants: '2 participantes' },
+      { id: 'general-ops', title: 'General - Operaciones', last: 'Tú: Buenos días equipo ☀️', time: '09:15 AM', pending: 0, avatar: 'GO', participants: '8 participantes' }
+    ],
+    messages: {
+      'villa-coral-cleaning': [
+        { from: 'María (Limpieza)', text: 'Terminé la limpieza de Villa Coral ✅', time: '10:41 AM', type: 'in' },
+        { from: 'María', text: 'Subo fotos', time: '10:41 AM', type: 'in', photos: ['Recámara', 'Sala', 'Cocina'] },
+        { from: 'María (Limpieza)', text: 'Falta un foco en el baño principal', time: '10:42 AM', type: 'in' },
+        { from: 'María (Limpieza)', text: 'Y hay una mancha en el sofá de la sala', time: '10:42 AM', type: 'in' },
+        { from: 'Carlos (Supervisor)', text: 'Gracias María, ahora hago inspección', time: '10:43 AM', type: 'out' }
+      ]
+    },
+    events: [
+      { id: 'ev-clean-1', conversationId: 'villa-coral-cleaning', title: 'Limpieza completada', detail: 'Villa Coral', time: '10:41 AM', badge: 'Automático', kind: 'auto', status: 'detectado' },
+      { id: 'ev-foco-1', conversationId: 'villa-coral-cleaning', title: 'Hallazgo: Foco fundido', detail: 'Baño principal · Villa Coral', time: '10:42 AM', badge: 'Hallazgo', kind: 'finding', status: 'pendiente' },
+      { id: 'ev-sofa-1', conversationId: 'villa-coral-cleaning', title: 'Hallazgo: Mancha en sofá', detail: 'Sala · Villa Coral', time: '10:42 AM', badge: 'Hallazgo', kind: 'finding', status: 'pendiente' },
+      { id: 'ev-inspection-1', conversationId: 'villa-coral-cleaning', title: 'Inspección iniciada', detail: 'Villa Coral', time: '10:43 AM', badge: 'Automático', kind: 'auto', status: 'detectado' },
+      { id: 'ev-wo-1', conversationId: 'villa-coral-cleaning', title: 'WO creado automáticamente', detail: 'WO-245', time: '10:44 AM', badge: 'Acción', kind: 'action', status: 'creado' }
+    ],
+    automations: [
+      { id: 'clean-done', label: 'Detectar limpieza completada', active: true },
+      { id: 'detect-findings', label: 'Detectar hallazgos', active: true },
+      { id: 'auto-wo', label: 'Crear WO automáticamente', active: true },
+      { id: 'notify-supervisors', label: 'Notificar a supervisores', active: true },
+      { id: 'checkin-reminders', label: 'Recordatorios de check-in', active: true }
+    ],
+    attention: [
+      { title: 'Villa Luna', detail: 'Aire acondicionado no enfría', meta: 'WO-241 · Crítico · Abierto', level: 'crit' },
+      { title: 'Villa Coral', detail: 'Inspección pendiente', meta: 'Check-in hoy 4:00 PM', level: 'warn' },
+      { title: 'Villa Sol', detail: 'Foco fundido en terraza', meta: 'WO-239 · Medio · Abierto', level: 'warn' }
+    ],
+    quickActions: [
+      { id: 'turnover', title: 'Crear Turnover', sub: 'Nueva salida' },
+      { id: 'cleaning', title: 'Asignar Limpieza', sub: 'A un miembro' },
+      { id: 'inspection', title: 'Iniciar Inspección', sub: 'Checklist' },
+      { id: 'workorder', title: 'Crear Work Order', sub: 'Desde hallazgo' },
+      { id: 'message', title: 'Enviar Mensaje', sub: 'A grupo/equipo' }
+    ],
+    activity: [
+      { text: 'WO-244 resuelto en Villa Sol', type: 'success', at: new Date().toISOString() },
+      { text: 'Limpieza completada en Villa Luna', type: 'success', at: new Date().toISOString() },
+      { text: 'Supervisor asignado a Villa Coral', type: 'info', at: new Date().toISOString() }
+    ]
+  });
+
+  function loadWhatsAppStation() {
+    const seed = whatsappSeed();
+    const saved = localStorage.getItem(WHATSAPP_STORAGE_KEY);
+    if (!saved) return seed;
+    try {
+      const parsed = JSON.parse(saved);
+      return { ...seed, ...parsed, conversations: Array.isArray(parsed.conversations) ? parsed.conversations : seed.conversations, messages: parsed.messages || seed.messages, events: Array.isArray(parsed.events) ? parsed.events : seed.events, automations: Array.isArray(parsed.automations) ? parsed.automations : seed.automations, attention: Array.isArray(parsed.attention) ? parsed.attention : seed.attention, quickActions: Array.isArray(parsed.quickActions) ? parsed.quickActions : seed.quickActions, activity: Array.isArray(parsed.activity) ? parsed.activity : seed.activity };
+    } catch (_) { return seed; }
+  }
+
+  const whatsappState = loadWhatsAppStation();
+  const saveWhatsAppStation = () => localStorage.setItem(WHATSAPP_STORAGE_KEY, JSON.stringify(whatsappState));
+  const activeConversation = () => whatsappState.conversations.find((c) => c.id === whatsappState.activeConversationId) || whatsappState.conversations[0];
+
+  function addWhatsAppActivity(text, type = 'info') {
+    whatsappState.activity.unshift({ text, type, at: new Date().toISOString() });
+    whatsappState.activity = whatsappState.activity.slice(0, 25);
+    saveWhatsAppStation();
+  }
+
+  function detectEventFromMessage(message) {
+    const text = String(message || '').toLowerCase();
+    if (text.includes('foco') || text.includes('mancha') || text.includes('aire') || text.includes('no enfría')) {
+      const title = text.includes('aire') ? 'Hallazgo: Aire no enfría' : text.includes('mancha') ? 'Hallazgo: Mancha detectada' : 'Hallazgo: Foco fundido';
+      const id = `ev-${Date.now().toString().slice(-6)}`;
+      whatsappState.events.unshift({ id, conversationId: whatsappState.activeConversationId, title, detail: `${activeConversation().title.replace('Limpieza - ', '')}`, time: new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' }), badge: 'Hallazgo', kind: 'finding', status: 'pendiente' });
+      addWhatsAppActivity(`IA detectó evento desde mensaje: ${title}`, 'warning');
+    }
+  }
+
+  function simulateIncomingMessage(conversationId, message) {
+    const id = conversationId || whatsappState.activeConversationId;
+    whatsappState.messages[id] = whatsappState.messages[id] || [];
+    whatsappState.messages[id].push({ from: 'Tú', text: safeText(message, 'Mensaje mock'), time: new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' }), type: 'out' });
+    const conv = whatsappState.conversations.find((c) => c.id === id);
+    if (conv) { conv.last = `Tú: ${safeText(message)}`; conv.time = 'ahora'; }
+    detectEventFromMessage(message);
+    saveWhatsAppStation();
+    renderWhatsAppStation();
+  }
+
+  function createMockWorkOrderFromEvent(eventId) {
+    const event = whatsappState.events.find((e) => e.id === eventId);
+    if (!event) return;
+    event.status = 'WO creado';
+    event.badge = 'Acción';
+    const woId = `WO-${240 + whatsappState.activity.length}`;
+    addWhatsAppActivity(`${woId} creado desde WhatsApp Station`, 'success');
+    if (Array.isArray(operations?.workOrders)) {
+      operations.workOrders.unshift({ id: woId, findingId: event.id, turnoverId: 'whatsapp-station', propertyId: 'p-305', description: event.title, category: 'general', priority: event.title.toLowerCase().includes('aire') ? 'crítica' : 'media', owner: 'Equipo operativo', status: 'asignado', cost: 750, photos: ['whatsapp-mock'] });
+      logOps(`${woId} creado desde WhatsApp Station`);
+      saveOperations();
+      renderOperationsDashboard();
+    }
+    saveWhatsAppStation();
+    renderWhatsAppStation();
+  }
+
+  function toggleAutomation(automationId) {
+    const item = whatsappState.automations.find((a) => a.id === automationId);
+    if (!item) return;
+    item.active = !item.active;
+    addWhatsAppActivity(`${item.label}: ${item.active ? 'activada' : 'desactivada'}`, 'info');
+    renderWhatsAppStation();
+  }
+
+  function setActiveWhatsAppConversation(conversationId) {
+    whatsappState.activeConversationId = conversationId;
+    saveWhatsAppStation();
+    renderWhatsAppStation();
+  }
+
+  function sendWhatsAppMock() {
+    const input = $('#wsMessageInput');
+    const text = input?.value?.trim() || 'Mensaje mock enviado desde Propierato';
+    if (input) input.value = '';
+    simulateIncomingMessage(whatsappState.activeConversationId, text);
+  }
+
+  function toggleWorkflowPanel() {
+    $('#wsWorkflowPanel')?.classList.toggle('on');
+  }
+
+  function renderWhatsAppConversations() {
+    setHtml('#wsConversationCount', `${whatsappState.conversations.length} activas`);
+    setHtml('#wsConversations', whatsappState.conversations.map((c) => `<button class="ws-conv ${c.id === whatsappState.activeConversationId ? 'on' : ''}" type="button" onclick="window.setActiveWhatsAppConversation && window.setActiveWhatsAppConversation('${c.id}')"><div class="ws-avatar">${c.avatar}</div><div><div class="ws-conv-title">${c.title}</div><div class="ws-conv-msg">${c.last}</div></div><div class="ws-time">${c.time}${c.pending ? `<span class="ws-count">${c.pending}</span>` : ''}</div></button>`).join(''));
+  }
+
+  function renderWhatsAppMessages(conversationId) {
+    const conv = activeConversation();
+    $('#wsActiveTitle').textContent = conv.title;
+    $('#wsActiveSub').textContent = conv.participants;
+    $('#wsActiveAvatar').textContent = conv.avatar;
+    const messages = whatsappState.messages[conversationId] || [{ from: 'Sistema', text: 'Sin mensajes todavía.', time: 'ahora', type: 'in' }];
+    setHtml('#wsMessages', messages.map((m) => `<div class="ws-msg ${m.type === 'out' ? 'out' : ''}"><b>${m.from}</b>${m.text}${m.photos ? `<div class="ws-photos">${m.photos.map((p) => `<div class="ws-photo">${p}</div>`).join('')}</div>` : ''}<span class="tm">${m.time}</span></div>`).join(''));
+  }
+
+  function renderDetectedEvents(conversationId) {
+    const events = whatsappState.events.filter((e) => e.conversationId === conversationId);
+    setHtml('#wsEvents', events.map((e) => {
+      const isFinding = e.kind === 'finding';
+      const badgeClass = isFinding ? 'warn' : (e.kind === 'action' ? 'info' : 'ok');
+      const icon = isFinding ? '!' : (e.kind === 'action' ? '↯' : '✓');
+      const actions = isFinding && e.status !== 'WO creado'
+        ? `<div class="ws-event-actions"><button class="btn ghost" type="button" onclick="window.createMockWorkOrderFromEvent && window.createMockWorkOrderFromEvent('${e.id}')">Crear WO</button><button class="btn ghost" type="button" onclick="window.addWhatsAppActivity && window.addWhatsAppActivity('Evento asignado: ${e.title}', 'info'); window.renderWhatsAppStation && window.renderWhatsAppStation()">Asignar</button><button class="btn ghost" type="button" onclick="window.resolveWhatsAppEvent && window.resolveWhatsAppEvent('${e.id}')">Marcar resuelto</button><button class="btn ghost" type="button" onclick="window.ignoreWhatsAppEvent && window.ignoreWhatsAppEvent('${e.id}')">Ignorar</button></div>`
+        : `<div class="ws-event-actions"><button class="btn ghost" type="button" onclick="window.addWhatsAppActivity && window.addWhatsAppActivity('Evento revisado: ${e.title}', 'info'); window.renderWhatsAppStation && window.renderWhatsAppStation()">Revisar</button></div>`;
+      return `<div class="ws-event"><div class="ws-event-ic ${isFinding ? 'warn' : e.kind === 'action' ? 'act' : ''}">${icon}</div><div><b>${e.title}</b><p>${e.detail}</p><div class="ops-badges"><span class="ops-badge ${badgeClass}">${e.badge}</span><span class="ops-badge">${e.status}</span></div>${actions}</div><small>${e.time}</small></div>`;
+    }).join('') || '<div class="placeholder"><div class="big">Sin eventos</div><div>La IA no detectó eventos en esta conversación.</div></div>');
+  }
+
+  function resolveWhatsAppEvent(eventId) {
+    const event = whatsappState.events.find((e) => e.id === eventId);
+    if (!event) return;
+    event.status = 'resuelto';
+    addWhatsAppActivity(`Evento resuelto: ${event.title}`, 'success');
+    saveWhatsAppStation();
+    renderWhatsAppStation();
+  }
+
+  function ignoreWhatsAppEvent(eventId) {
+    const event = whatsappState.events.find((e) => e.id === eventId);
+    if (!event) return;
+    event.status = 'ignorado';
+    addWhatsAppActivity(`Evento ignorado: ${event.title}`, 'info');
+    saveWhatsAppStation();
+    renderWhatsAppStation();
+  }
+
+  function renderAISupervisor() {
+    const findings = whatsappState.events.filter((e) => e.kind === 'finding').length;
+    const actions = whatsappState.events.filter((e) => e.kind === 'action' || e.status === 'WO creado').length;
+    setHtml('#wsAISupervisor', `<div class="ws-side-card"><h4>AI Supervisor <span class="ops-badge ok">Activo</span></h4><div class="ws-supervisor">Estoy monitoreando tus conversaciones y ejecutando acciones.</div><div class="ops-badges"><span class="ops-badge ok">6 limpiezas completadas</span><span class="ops-badge warn">4 inspecciones pendientes</span><span class="ops-badge warn">${findings} hallazgos detectados</span><span class="ops-badge info">${actions} WOs creadas</span></div></div>`);
+  }
+
+  function renderAutomations() {
+    setHtml('#wsAutomations', `<div class="ws-side-card"><h4>Automatizaciones activas</h4>${whatsappState.automations.map((a) => `<div class="ws-toggle"><span>${a.label}</span><button class="ws-switch ${a.active ? 'on' : ''}" type="button" aria-label="${a.label}" onclick="window.toggleAutomation && window.toggleAutomation('${a.id}')"></button></div>`).join('')}</div>`);
+  }
+
+  function renderAttentionItems() {
+    setHtml('#wsAttention', `<div class="ws-side-card"><h4>Atención inmediata</h4>${whatsappState.attention.map((a) => `<div class="ws-attn ${a.level === 'warn' ? 'warn' : ''}"><b>${a.title}</b><span>${a.detail}</span><span>${a.meta}</span></div>`).join('')}</div>`);
+  }
+
+  function renderQuickActions() {
+    setHtml('#wsQuickActions', whatsappState.quickActions.map((a) => `<button type="button" onclick="window.addWhatsAppActivity && window.addWhatsAppActivity('${a.title}', 'info'); window.renderWhatsAppStation && window.renderWhatsAppStation()"><b>${a.title}</b><span>${a.sub}</span></button>`).join(''));
+    setHtml('#wsActivity', whatsappState.activity.slice(0, 7).map((a) => `<div><b>${a.text}</b><br><span style="color:var(--muted);font-size:11px">${new Date(a.at).toLocaleString('es-MX')}</span></div>`).join(''));
+  }
+
+  function renderWhatsAppStation() {
+    const messagesToday = Object.values(whatsappState.messages).reduce((sum, list) => sum + (Array.isArray(list) ? list.length : 0), 0);
+    const detected = whatsappState.events.length;
+    const actions = whatsappState.events.filter((e) => e.kind === 'action' || e.status === 'WO creado').length + whatsappState.activity.filter((a) => a.type === 'success').length;
+    setHtml('#wsKpis', [['Mensajes hoy', messagesToday], ['Eventos detectados', detected], ['Acciones automáticas', actions]].map((k) => `<div class="ws-kpi"><b>${k[1]}</b><span>${k[0]}</span></div>`).join(''));
+    renderWhatsAppConversations();
+    renderWhatsAppMessages(whatsappState.activeConversationId);
+    renderDetectedEvents(whatsappState.activeConversationId);
+    renderAISupervisor();
+    renderAutomations();
+    renderAttentionItems();
+    renderQuickActions();
+  }
+
+  window.renderWhatsAppStation = renderWhatsAppStation;
+  window.renderWhatsAppConversations = renderWhatsAppConversations;
+  window.renderWhatsAppMessages = renderWhatsAppMessages;
+  window.renderDetectedEvents = renderDetectedEvents;
+  window.renderAISupervisor = renderAISupervisor;
+  window.renderAutomations = renderAutomations;
+  window.renderAttentionItems = renderAttentionItems;
+  window.renderQuickActions = renderQuickActions;
+  window.addWhatsAppActivity = addWhatsAppActivity;
+  window.simulateIncomingMessage = simulateIncomingMessage;
+  window.detectEventFromMessage = detectEventFromMessage;
+  window.createMockWorkOrderFromEvent = createMockWorkOrderFromEvent;
+  window.resolveWhatsAppEvent = resolveWhatsAppEvent;
+  window.ignoreWhatsAppEvent = ignoreWhatsAppEvent;
+  window.toggleAutomation = toggleAutomation;
+  window.setActiveWhatsAppConversation = setActiveWhatsAppConversation;
+  window.sendWhatsAppMock = sendWhatsAppMock;
+  window.toggleWorkflowPanel = toggleWorkflowPanel;
+
   const hubState = loadFounderHub();
 
   function seedFounderDemo() {
@@ -2098,6 +2539,7 @@
     renderBenchmarkCardsForSidebar();
     renderFounderHub();
     renderProppy();
+    renderWhatsAppStation();
   }
 
   function go(v) {
