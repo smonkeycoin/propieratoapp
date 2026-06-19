@@ -26,7 +26,9 @@
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);
     font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  body.nav-open{overflow:hidden}
   .app{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
+  .mobile-topbar,.mobile-backdrop,.side-close{display:none}
 
   /* sidebar */
   .side{position:sticky;top:0;height:100vh;padding:22px 16px;
@@ -34,8 +36,9 @@
     color:#dff0ec;display:flex;flex-direction:column;gap:6px}
   .brand{display:flex;align-items:center;gap:11px;padding:4px 8px 20px}
   .mark{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
-    background:linear-gradient(150deg,var(--turq),#3ad0bf);color:#06302c;
-    font-family:var(--display);font-weight:600;font-size:22px;box-shadow:0 6px 18px rgba(0,0,0,.22)}
+    background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 6px 18px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.12)}
+  .brand-logo{width:29px;height:29px;display:block;filter:drop-shadow(0 2px 5px rgba(0,0,0,.22))}
   .brand .nm{font-family:var(--display);font-size:20px;font-weight:600;letter-spacing:.2px;color:#fff;line-height:1}
   .brand .sb{font-size:10.5px;color:#8fc7bf;margin-top:3px;letter-spacing:.3px}
   .nav-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6fb3aa;margin:14px 10px 5px}
@@ -227,19 +230,64 @@
     .hub-hero,.hub-actions{display:grid}.hub-grid,.funnel,.lead-card{grid-template-columns:1fr}
     .proppy-float{right:14px;bottom:14px}.proppy-drawer{right:14px;bottom:68px}
   }
+  @media (max-width:767px){
+    html,body{max-width:100%;overflow-x:hidden}
+    .app{display:block}
+    .mobile-topbar{display:flex;position:sticky;top:0;z-index:18;align-items:center;justify-content:space-between;gap:12px;
+      margin:-18px -14px 18px;padding:12px 14px;background:rgba(251,247,239,.96);border-bottom:1px solid var(--line);
+      backdrop-filter:blur(14px)}
+    .mobile-menu{width:42px;height:42px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--marine);
+      font:inherit;font-size:22px;font-weight:700;box-shadow:var(--shadow-sm);cursor:pointer;display:grid;place-items:center}
+    .mobile-title{font-family:var(--display);font-size:18px;font-weight:700;color:var(--marine);display:flex;align-items:center;gap:8px}
+    .mobile-title .brand-logo{width:24px;height:24px;filter:none}
+    .mobile-spacer{width:42px;height:42px}
+    .mobile-backdrop{position:fixed;inset:0;z-index:28;background:rgba(5,30,27,.48);backdrop-filter:blur(2px)}
+    .mobile-backdrop.on{display:block}
+    .side{position:fixed;inset:0 auto 0 0;z-index:30;width:min(84vw,320px);height:100dvh;max-height:100dvh;
+      padding:18px 16px 22px;display:flex;flex-direction:column;align-items:stretch;flex-wrap:nowrap;overflow-y:auto;
+      transform:translateX(-104%);transition:transform .22s ease;box-shadow:22px 0 46px rgba(0,0,0,.22);
+      -webkit-overflow-scrolling:touch}
+    .side.open{transform:translateX(0)}
+    .side-close{position:absolute;right:12px;top:12px;width:38px;height:38px;border:1px solid rgba(255,255,255,.22);
+      border-radius:12px;background:rgba(255,255,255,.10);color:#fff;font:inherit;font-size:24px;line-height:1;cursor:pointer;
+      display:grid;place-items:center}
+    .brand{padding-right:42px}
+    .nav{width:100%}
+    .side .nav-lbl{display:block}
+    .side-foot{display:flex}
+    .nav button{width:100%;min-height:44px}
+    .main{width:100%;max-width:none;padding:18px 14px 44px;overflow-x:hidden}
+    .top{align-items:flex-start}
+    .top .sel{width:100%}
+    .pill{max-width:100%;white-space:normal}
+    .table{min-width:620px}
+    .integration-row{grid-template-columns:32px minmax(0,1fr);align-items:start}
+    .integration-row > div:last-child{grid-column:1 / -1}
+    .integration-row .btn{width:100%;justify-content:center}
+    .proppy-float{right:14px;bottom:14px;z-index:24}
+    .proppy-drawer{left:0;right:0;bottom:0;width:100%;height:78dvh;max-height:80dvh;border-radius:18px 18px 0 0;
+      z-index:35;display:block;transform:translateY(106%);transition:transform .22s ease;box-shadow:0 -18px 48px rgba(0,0,0,.18)}
+    .proppy-drawer.on{transform:translateY(0)}
+    .proppy-body{max-height:calc(78dvh - 128px)}
+    .proppy-form{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+  }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   button:focus-visible,a:focus-visible{outline:2px solid var(--turq);outline-offset:2px}
 </style>
 </head>
 <body>
 <div class="app">
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
   <!-- SIDEBAR -->
-  <aside class="side">
+  <aside class="side" id="side">
+    <button class="side-close" id="sideClose" type="button" aria-label="Cerrar menú">×</button>
     <div class="brand">
       <div class="mark">
-        <svg viewBox="0 0 64 64" width="26" height="26" aria-hidden="true">
-          <polyline points="11,33 32,14 53,33" fill="none" stroke="#0E5E57" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="22,39 29,46 45,28" fill="none" stroke="#16A89A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M10 34 L32 14 L54 34" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 35 L18 52 L46 52 L46 35" fill="none" stroke="#EAFBF8" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" opacity=".96"/>
+          <path d="M23 39 L30 47 L46 28" fill="none" stroke="#27D7C4" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M43 23 L50 17" fill="none" stroke="#8FF4EA" stroke-width="5" stroke-linecap="round"/>
         </svg>
       </div>
       <div><div class="nm">Propierato</div><div class="sb">Airbnb · Riviera Maya</div></div>
@@ -264,6 +312,19 @@
 
   <!-- MAIN -->
   <main class="main">
+    <div class="mobile-topbar">
+      <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Abrir menú">☰</button>
+      <div class="mobile-title">
+        <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M10 34 L32 14 L54 34" fill="none" stroke="#0E5E57" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 35 L18 52 L46 52 L46 35" fill="none" stroke="#15302B" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>
+          <path d="M23 39 L30 47 L46 28" fill="none" stroke="#16A89A" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M43 23 L50 17" fill="none" stroke="#27D7C4" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        Propierato
+      </div>
+      <div class="mobile-spacer" aria-hidden="true"></div>
+    </div>
     <div class="top">
       <div>
         <h1 id="vtitle">Centro de control</h1>
@@ -826,6 +887,24 @@
   }
 
   const saveFounderHub = () => localStorage.setItem(HUB_STORAGE_KEY, JSON.stringify(hubState));
+  const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
+
+  function openMobileNav() {
+    if (!isMobile()) return;
+    $('#side')?.classList.add('open');
+    $('#mobileBackdrop')?.classList.add('on');
+    document.body.classList.add('nav-open');
+  }
+
+  function closeMobileNav() {
+    $('#side')?.classList.remove('open');
+    $('#mobileBackdrop')?.classList.remove('on');
+    document.body.classList.remove('nav-open');
+  }
+
+  function closeProppy() {
+    $('#proppyDrawer')?.classList.remove('on');
+  }
 
   function loadState() {
     const legacy = localStorage.getItem(STORAGE_KEY_LEGACY);
@@ -1711,8 +1790,18 @@
   }
 
   function init() {
-    document.querySelectorAll('#nav button').forEach((b) => b.onclick = () => go(b.dataset.v));
-    document.querySelectorAll('[data-go]').forEach((b) => b.onclick = () => go(b.dataset.go));
+    $('#mobileMenu')?.addEventListener('click', openMobileNav);
+    $('#sideClose')?.addEventListener('click', closeMobileNav);
+    $('#mobileBackdrop')?.addEventListener('click', closeMobileNav);
+    window.addEventListener('resize', () => { if (!isMobile()) closeMobileNav(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileNav();
+        closeProppy();
+      }
+    });
+    document.querySelectorAll('#nav button').forEach((b) => b.onclick = () => { go(b.dataset.v); closeMobileNav(); });
+    document.querySelectorAll('[data-go]').forEach((b) => b.onclick = () => { go(b.dataset.go); closeMobileNav(); });
     document.querySelectorAll('[data-month-offset]').forEach((b) => {
       b.addEventListener('click', () => setSelectedMonth(Number(b.dataset.monthOffset) || 0));
     });
@@ -1771,7 +1860,19 @@
       }
     });
     $('#proppyToggle').addEventListener('click', () => $('#proppyDrawer').classList.toggle('on'));
-    $('#proppyClose').addEventListener('click', () => $('#proppyDrawer').classList.remove('on'));
+    $('#proppyClose').addEventListener('click', closeProppy);
+    let proppyStartY = null;
+    const maybeCloseProppyBySwipe = (endY) => {
+      if (proppyStartY === null) return;
+      if (endY - proppyStartY > 64) closeProppy();
+      proppyStartY = null;
+    };
+    $('#proppyDrawer').addEventListener('touchstart', (e) => { proppyStartY = e.touches[0]?.clientY ?? null; }, { passive: true });
+    $('#proppyDrawer').addEventListener('touchend', (e) => {
+      maybeCloseProppyBySwipe(e.changedTouches[0]?.clientY ?? proppyStartY);
+    }, { passive: true });
+    $('#proppyDrawer').addEventListener('pointerdown', (e) => { if (isMobile()) proppyStartY = e.clientY; });
+    $('#proppyDrawer').addEventListener('pointerup', (e) => { if (isMobile()) maybeCloseProppyBySwipe(e.clientY); });
     $('#proppyForm').addEventListener('submit', (e) => { e.preventDefault(); askProppy($('#proppyInput').value); });
 
     $('#addBenchmark').addEventListener('click', (e) => { e.preventDefault(); addComparable(); });
