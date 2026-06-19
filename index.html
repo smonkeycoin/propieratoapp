@@ -221,7 +221,6 @@
   .activity-list,.alert-list{display:grid;gap:9px}.activity-item,.alert-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px}.alert-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.alert-item.warning{border-color:#ead09a}.alert-item.urgent{border-color:#efb09d}.alert-item.success{border-color:#a9dbc3}.alert-item.info{border-color:#b8ded8}
   .proppy-float{position:fixed;right:20px;bottom:20px;z-index:20;border:0;border-radius:999px;background:var(--marine);color:#fff;padding:12px 17px;font:inherit;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
   .proppy-drawer{position:fixed;right:20px;bottom:76px;width:min(380px,calc(100vw - 28px));max-height:70vh;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);z-index:21;display:none;overflow:hidden}.proppy-drawer.on{display:block}
-  #mobileNavBackdrop,#mobileNavSheet{display:none}
   .proppy-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:linear-gradient(135deg,var(--marine),var(--turq));color:#fff}.proppy-head h3{margin:0;font-size:15px}
   .proppy-body{padding:14px;display:grid;gap:10px;max-height:54vh;overflow:auto}.chat-line{padding:9px 11px;border-radius:12px;background:var(--panel-soft);font-size:13px}.chat-line.user{background:#e6f5ee;margin-left:18px}.chat-line.bot{margin-right:18px}
   .proppy-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
@@ -252,41 +251,6 @@
       transform:translateZ(0);-webkit-transform:translateZ(0)}
     .mobile-backdrop:not(.show):not(.on){pointer-events:none;opacity:0;visibility:hidden}
     .mobile-backdrop.show,.mobile-backdrop.on{display:block;pointer-events:auto;opacity:1;visibility:visible}
-    #mobileNavBackdrop,#mobileNavSheet{display:block}
-    #side{display:none!important;visibility:hidden!important;pointer-events:none!important}
-    #mobileNavBackdrop{position:fixed;inset:0;z-index:2147482990;background:rgba(5,30,27,.50);opacity:0;visibility:hidden;pointer-events:none}
-    body.mobile-nav-open #mobileNavBackdrop{opacity:1;visibility:visible;pointer-events:auto}
-    #mobileNavSheet{
-      position:fixed;
-      top:0;
-      left:0;
-      width:86vw;
-      max-width:360px;
-      height:100vh;
-      height:-webkit-fill-available;
-      z-index:2147483000;
-      transform:translateX(-110%);
-      visibility:hidden;
-      pointer-events:none;
-      background:linear-gradient(180deg,#0f172a,#111827 62%,#0b1220);
-      color:#fff;
-      padding:18px 16px 24px;
-      box-shadow:24px 0 60px rgba(0,0,0,.32);
-      transition:transform .22s ease;
-      overflow-y:auto;
-      -webkit-overflow-scrolling:touch;
-    }
-    body.mobile-nav-open #mobileNavSheet{
-      transform:translateX(0);
-      visibility:visible;
-      pointer-events:auto;
-    }
-    #mobileNavSheet .mobile-nav-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-    #mobileNavSheet .mobile-nav-title{font-family:var(--display);font-size:20px;font-weight:750;letter-spacing:.18px}
-    #mobileNavSheet .mobile-nav-sub{font-size:12px;color:rgba(255,255,255,.64);margin-top:2px}
-    #mobileNavSheet .mobile-nav-close{width:40px;height:40px;border:1px solid rgba(255,255,255,.22);border-radius:12px;background:rgba(255,255,255,.10);color:#fff;font-size:24px;line-height:1}
-    #mobileNavSheet button{width:100%;min-height:48px;margin:0 0 8px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.08);color:#fff;text-align:left;padding:0 14px;font:700 14px var(--ui);pointer-events:auto!important;touch-action:manipulation}
-    #mobileNavSheet button:active{background:rgba(143,244,234,.18);border-color:rgba(143,244,234,.42)}
     .side{position:fixed;inset:0 auto 0 0;left:0;z-index:10011;width:min(84vw,320px);height:100vh;height:-webkit-fill-available;height:100dvh;
       max-height:100vh;max-height:-webkit-fill-available;max-height:100dvh;
       padding:18px 16px 22px;display:flex;flex-direction:column;align-items:stretch;flex-wrap:nowrap;overflow-y:auto;
@@ -322,20 +286,7 @@
   body.debug-mobile #proppyToggle{outline:3px solid #2563eb!important;outline-offset:3px;bottom:186px!important;z-index:13000!important}
   body.debug-mobile #mobileBackdrop{outline:3px solid #facc15!important;outline-offset:-6px}
   body.debug-mobile #side{outline:3px solid #22c55e!important;outline-offset:-6px}
-  body,.app,.shell,.main,.mobile-topbar,.mobile-menu-btn,.proppy-fab,button,a,input,select,textarea{
-    pointer-events:auto!important}
-  .mobile-backdrop:not(.show):not(.on),
-  .sidebar:not(.mobile-open):not(.open),
-  .proppy-sheet:not(.open):not(.on){
-    pointer-events:none!important;visibility:hidden}
-  .mobile-menu,.mobile-menu-btn,.proppy-float,.proppy-fab,button,[data-mobile-menu-open],[data-proppy-open]{pointer-events:auto!important;touch-action:manipulation;cursor:pointer;-webkit-tap-highlight-color:transparent}
-  .hard-unblock-btn{display:none}
-  body.debug-mobile .hard-unblock-btn{display:block}
-  body.mobile-sidebar-open .sidebar{transform:translate3d(0,0,0)!important;-webkit-transform:translate3d(0,0,0)!important;visibility:visible!important;pointer-events:auto!important;z-index:2147483646!important}
-  body.mobile-sidebar-open .sidebar:not(.mobile-open):not(.open){visibility:visible!important;pointer-events:auto!important}
-  body.mobile-sidebar-open .mobile-backdrop{display:block!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important}
-  body.proppy-open .proppy-sheet{display:block!important;transform:translate3d(0,0,0)!important;-webkit-transform:translate3d(0,0,0)!important;visibility:visible!important;pointer-events:auto!important;z-index:2147483646!important}
-  body.proppy-open .proppy-sheet:not(.open):not(.on){visibility:visible!important;pointer-events:auto!important}
+  .mobile-menu,.proppy-float,button,[data-mobile-menu-open],[data-proppy-open]{pointer-events:auto!important;touch-action:manipulation;cursor:pointer;-webkit-tap-highlight-color:transparent}
   .mobile-debug-panel{display:none;position:fixed;left:8px;right:8px;bottom:8px;z-index:12000;
     background:rgba(15,23,42,.94);color:#fff;border:1px solid rgba(143,244,234,.35);border-radius:12px;
     padding:8px;font:11px/1.35 var(--ui);box-shadow:0 12px 36px rgba(0,0,0,.28)}
@@ -348,14 +299,11 @@
 </style>
 </head>
 <body>
-<button id="hardMenuBtn" class="hard-unblock-btn" type="button" style="position:fixed;top:10px;left:10px;z-index:2147483647;padding:10px 12px;border:2px solid #ef4444;border-radius:10px;background:#fff;color:#0f172a;font:700 18px system-ui;pointer-events:auto!important;touch-action:manipulation" onclick="document.body.classList.toggle('mobile-sidebar-open')">☰</button>
-<button id="hardTapBtn" class="hard-unblock-btn" type="button" style="position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:2147483647;padding:10px 12px;border:2px solid #22c55e;border-radius:10px;background:#fff;color:#0f172a;font:700 12px system-ui;pointer-events:auto!important;touch-action:manipulation" onclick="alert('tap ok')">Tap Test</button>
-<button id="hardProppyBtn" class="hard-unblock-btn" type="button" style="position:fixed;top:10px;right:10px;z-index:2147483647;padding:10px 12px;border:2px solid #2563eb;border-radius:10px;background:#fff;color:#0f172a;font:700 13px system-ui;pointer-events:auto!important;touch-action:manipulation" onclick="document.body.classList.toggle('proppy-open')">Proppy</button>
 <div class="app">
-  <div class="mobile-backdrop" id="mobileBackdrop" data-sidebar-backdrop data-mobile-menu-close onclick="document.body.classList.remove('mobile-sidebar-open')"></div>
+  <div class="mobile-backdrop" id="mobileBackdrop" data-sidebar-backdrop data-mobile-menu-close></div>
   <!-- SIDEBAR -->
-  <aside class="side sidebar" id="side">
-    <button class="side-close" id="sideClose" type="button" aria-label="Cerrar menú" data-mobile-menu-close onclick="document.body.classList.remove('mobile-sidebar-open')">×</button>
+  <aside class="side" id="side">
+    <button class="side-close" id="sideClose" type="button" aria-label="Cerrar menú" data-mobile-menu-close>×</button>
     <div class="brand">
       <div class="mark">
         <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
@@ -369,16 +317,16 @@
     </div>
     <div class="nav-lbl">Operación</div>
     <nav class="nav" id="nav">
-      <button class="on" type="button" data-v="inicio" data-nav-item onclick="window.go && window.go('inicio'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('inicio')"><span class="ic">◧</span> Centro de control</button>
-      <button type="button" data-v="mant" data-nav-item onclick="window.go && window.go('mant'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('mant')"><span class="ic">✦</span> Mantenimiento</button>
-      <button type="button" data-v="prov" data-nav-item onclick="window.go && window.go('prov'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('prov')"><span class="ic">✆</span> Proveedores</button>
+      <button class="on" data-v="inicio" data-nav-item><span class="ic">◧</span> Centro de control</button>
+      <button data-v="mant" data-nav-item><span class="ic">✦</span> Mantenimiento</button>
+      <button data-v="prov" data-nav-item><span class="ic">✆</span> Proveedores</button>
       <div class="nav-lbl">Inversión</div>
-      <button type="button" data-v="benchmark" data-nav-item onclick="window.go && window.go('benchmark'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('benchmark')"><span class="ic">🏠</span> Benchmark Airbnb</button>
+      <button data-v="benchmark" data-nav-item><span class="ic">🏠</span> Benchmark Airbnb</button>
       <div class="nav-lbl">Conectores</div>
-      <button type="button" data-v="rep" data-nav-item onclick="window.go && window.go('rep'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('rep')"><span class="ic">✉</span> Reporte al dueño</button>
+      <button data-v="rep" data-nav-item><span class="ic">✉</span> Reporte al dueño</button>
       <div class="nav-lbl">Interno</div>
-      <button type="button" data-v="founderHub" data-nav-item onclick="window.go && window.go('founderHub'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('founderHub')"><span class="ic">◆</span> Founder Hub</button>
-      <button type="button" data-v="proppy" data-nav-item onclick="window.go && window.go('proppy'); document.body.classList.remove('mobile-sidebar-open'); window.__propieratoLastNav && window.__propieratoLastNav('proppy')"><span class="ic">✦</span> Proppy IA</button>
+      <button data-v="founderHub" data-nav-item><span class="ic">◆</span> Founder Hub</button>
+      <button data-v="proppy" data-nav-item><span class="ic">✦</span> Proppy IA</button>
     </nav>
     <div class="side-foot">
       <span class="chip-mx">MXN</span> Factura CFDI · Soporte en español
@@ -388,7 +336,7 @@
   <!-- MAIN -->
   <main class="main">
     <div class="mobile-topbar">
-      <button class="mobile-menu mobile-menu-btn" id="mobileMenu" type="button" aria-label="Abrir menú" data-mobile-menu-open onclick="document.body.classList.add('mobile-nav-open')">☰</button>
+      <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Abrir menú" data-mobile-menu-open onclick="window.openMobileSidebar && window.openMobileSidebar()">☰</button>
       <div class="mobile-title">
         <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
           <path d="M9 34 L32 13 L55 34" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
@@ -708,33 +656,15 @@
   </main>
 </div>
 
-<button class="proppy-float proppy-fab" id="proppyToggle" type="button" data-proppy-open onclick="document.body.classList.toggle('proppy-open')">Proppy</button>
-<div class="proppy-drawer proppy-sheet" id="proppyDrawer">
-  <div class="proppy-head"><h3>Proppy</h3><button class="btn ghost" id="proppyClose" type="button" data-proppy-close onclick="document.body.classList.remove('proppy-open')" style="margin:0;color:#fff;border-color:rgba(255,255,255,.38)">Cerrar</button></div>
+<button class="proppy-float" id="proppyToggle" type="button" data-proppy-open onclick="window.openProppy && window.openProppy()">Proppy</button>
+<div class="proppy-drawer" id="proppyDrawer">
+  <div class="proppy-head"><h3>Proppy</h3><button class="btn ghost" id="proppyClose" type="button" data-proppy-close style="margin:0;color:#fff;border-color:rgba(255,255,255,.38)">Cerrar</button></div>
   <div class="proppy-body" id="proppyChat"></div>
   <form class="proppy-form" id="proppyForm">
     <input class="proppy-input" id="proppyInput" placeholder="Pregunta por resumen, leads, mantenimiento..." autocomplete="off" />
     <button class="btn" type="submit" style="margin:0">Enviar</button>
   </form>
 </div>
-
-<div id="mobileNavBackdrop" onclick="document.body.classList.remove('mobile-nav-open')"></div>
-<nav id="mobileNavSheet" aria-label="Navegación móvil">
-  <div class="mobile-nav-head">
-    <div>
-      <div class="mobile-nav-title">Propierato</div>
-      <div class="mobile-nav-sub">Airbnb · Riviera Maya</div>
-    </div>
-    <button class="mobile-nav-close" type="button" aria-label="Cerrar navegación" onclick="document.body.classList.remove('mobile-nav-open')">×</button>
-  </div>
-  <button type="button" onclick="window.go('inicio'); document.body.classList.remove('mobile-nav-open')">Centro de control</button>
-  <button type="button" onclick="window.go('mant'); document.body.classList.remove('mobile-nav-open')">Mantenimiento</button>
-  <button type="button" onclick="window.go('prov'); document.body.classList.remove('mobile-nav-open')">Proveedores</button>
-  <button type="button" onclick="window.go('benchmark'); document.body.classList.remove('mobile-nav-open')">Benchmark Airbnb</button>
-  <button type="button" onclick="window.go('rep'); document.body.classList.remove('mobile-nav-open')">Reporte al dueño</button>
-  <button type="button" onclick="window.go('founderHub'); document.body.classList.remove('mobile-nav-open')">Founder Hub</button>
-  <button type="button" onclick="window.go('proppy'); document.body.classList.remove('mobile-nav-open')">Proppy IA</button>
-</nav>
 
 <script>
 (() => {
@@ -986,7 +916,6 @@
   const mobileDebugState = {
     lastTap: 'none',
     lastTarget: 'none',
-    lastNav: 'none',
     activeLayer: 'none',
     lastX: 0,
     lastY: 0
@@ -1025,7 +954,6 @@
     panel.querySelector('[data-debug="ua"]').textContent = ua;
     panel.querySelector('[data-debug="tap"]').textContent = mobileDebugState.lastTap;
     panel.querySelector('[data-debug="target"]').textContent = mobileDebugState.lastTarget;
-    panel.querySelector('[data-debug="nav"]').textContent = mobileDebugState.lastNav;
     panel.querySelector('[data-debug="menu"]').textContent = $('#side')?.classList.contains('open') ? 'open' : 'closed';
     panel.querySelector('[data-debug="proppy"]').textContent = $('#proppyDrawer')?.classList.contains('on') ? 'open' : 'closed';
     panel.querySelector('[data-debug="layer"]').textContent = mobileDebugState.activeLayer;
@@ -1042,7 +970,6 @@
           <span>ua</span><b data-debug="ua">-</b>
           <span>lastTap</span><b data-debug="tap">none</b>
           <span>lastTarget</span><b data-debug="target">none</b>
-          <span>lastNav</span><b data-debug="nav">none</b>
           <span>menuState</span><b data-debug="menu">-</b>
           <span>proppyState</span><b data-debug="proppy">-</b>
           <span>active layer</span><b data-debug="layer">none</b>
@@ -1062,26 +989,24 @@
     if (!isMobile()) return;
     $('#side')?.classList.add('open', 'mobile-open');
     $('#mobileBackdrop')?.classList.add('on', 'show');
-    document.body.classList.add('nav-open', 'mobile-sidebar-open');
+    document.body.classList.add('nav-open');
     updateMobileDebugPanel();
   }
 
   function closeMobileNav() {
     $('#side')?.classList.remove('open', 'mobile-open');
     $('#mobileBackdrop')?.classList.remove('on', 'show');
-    document.body.classList.remove('nav-open', 'mobile-sidebar-open');
+    document.body.classList.remove('nav-open');
     updateMobileDebugPanel();
   }
 
   function openProppy() {
     $('#proppyDrawer')?.classList.add('on', 'open');
-    document.body.classList.add('proppy-open');
     updateMobileDebugPanel();
   }
 
   function closeProppy() {
     $('#proppyDrawer')?.classList.remove('on', 'open');
-    document.body.classList.remove('proppy-open');
     updateMobileDebugPanel();
   }
 
@@ -1089,10 +1014,6 @@
   window.closeMobileSidebar = () => { recordMobileDebug('global close menu'); closeMobileNav(); };
   window.openProppy = () => { recordMobileDebug('global open proppy'); openProppy(); };
   window.closeProppy = () => { recordMobileDebug('global close proppy'); closeProppy(); };
-  window.__propieratoLastNav = (view) => {
-    mobileDebugState.lastNav = view || 'none';
-    recordMobileDebug(`nav ${mobileDebugState.lastNav}`);
-  };
   window.__propieratoTapTest = () => {
     recordMobileDebug('tap test');
     alert('tap ok');
@@ -1868,7 +1789,6 @@
     $('#vsub').textContent = sub;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  window.go = go;
 
   function exportState() {
     const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
@@ -2032,9 +1952,37 @@
     recordMobileDebug(`global ${e.type}`, e);
     const target = e.target;
     if (!target?.closest) return;
+    const menuBtn = target.closest('[data-mobile-menu-open]');
+    const proppyBtn = target.closest('[data-proppy-open]');
+    const closeMenu = target.closest('[data-mobile-menu-close]');
+    const closeProppyBtn = target.closest('[data-proppy-close]');
+    const navItem = target.closest('[data-nav-item]');
     const tapTest = target.closest('[data-tap-test]');
     if (tapTest) {
       window.__propieratoTapTest();
+      return;
+    }
+    if (menuBtn) {
+      flashTap(menuBtn);
+      openMobileNav();
+      return;
+    }
+    if (proppyBtn) {
+      flashTap(proppyBtn);
+      openProppy();
+      return;
+    }
+    if (closeMenu) {
+      closeMobileNav();
+      return;
+    }
+    if (closeProppyBtn) {
+      closeProppy();
+      return;
+    }
+    if (navItem?.dataset?.v) {
+      go(navItem.dataset.v);
+      closeMobileNav();
     }
   }
 
@@ -2047,9 +1995,14 @@
     const mobileMenu = $('#mobileMenu');
     const sideClose = $('#sideClose');
     const mobileBackdrop = $('#mobileBackdrop');
-    safeOn(mobileMenu, 'touchend', (e) => recordMobileDebug('hamburger inline fallback', e), { passive: true });
-    safeOn(sideClose, 'touchend', (e) => recordMobileDebug('close menu inline fallback', e), { passive: true });
-    safeOn(mobileBackdrop, 'touchend', (e) => recordMobileDebug('backdrop inline fallback', e), { passive: true });
+    bindTap(mobileMenu, () => {
+      flashTap(mobileMenu);
+      openMobileNav();
+    }, 'hamburger');
+    bindTap(sideClose, () => {
+      closeMobileNav();
+    }, 'close menu');
+    bindTap(mobileBackdrop, closeMobileNav, 'backdrop');
     window.addEventListener('resize', () => { if (!isMobile()) closeMobileNav(); });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -2071,8 +2024,13 @@
       if (endY - proppyStartY > 64) closeProppy();
       proppyStartY = null;
     };
-    safeOn(proppyToggle, 'touchend', (e) => recordMobileDebug('proppy inline fallback', e), { passive: true });
-    safeOn(proppyClose, 'touchend', (e) => recordMobileDebug('close proppy inline fallback', e), { passive: true });
+    bindTap(proppyToggle, () => {
+      flashTap(proppyToggle);
+      openProppy();
+    }, 'proppy fab');
+    bindTap(proppyClose, () => {
+      closeProppy();
+    }, 'close proppy');
     safeOn(proppyDrawer, 'touchstart', (e) => { proppyStartY = e.touches[0]?.clientY ?? null; }, { passive: true });
     safeOn(proppyDrawer, 'touchend', (e) => {
       maybeCloseProppyBySwipe(e.changedTouches[0]?.clientY ?? proppyStartY);
@@ -2090,10 +2048,7 @@
     setupGlobalTapDelegation();
     setupMobileNav();
     setupProppyDrawer();
-    document.querySelectorAll('#nav button').forEach((b) => {
-      b.type = 'button';
-      safeOn(b, 'touchend', (e) => recordMobileDebug(`nav inline ${b.dataset.v || 'unknown'}`, e), { passive: true });
-    });
+    document.querySelectorAll('#nav button').forEach((b) => b.onclick = () => { go(b.dataset.v); closeMobileNav(); });
     document.querySelectorAll('[data-go]').forEach((b) => b.onclick = () => { go(b.dataset.go); closeMobileNav(); });
     document.querySelectorAll('[data-month-offset]').forEach((b) => {
       b.addEventListener('click', () => setSelectedMonth(Number(b.dataset.monthOffset) || 0));
