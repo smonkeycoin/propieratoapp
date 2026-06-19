@@ -50,25 +50,31 @@
   .chip-mx{background:rgba(255,255,255,.12);border-radius:999px;padding:2px 8px;font-weight:600;color:#eafff9}
 
   /* main */
-  .main{padding:26px 30px 60px;max-width:1180px}
+  .main{padding:26px 30px 60px;max-width:1180px;min-width:0}
   .top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
   .top h1{font-family:var(--display);font-weight:600;font-size:30px;margin:0;letter-spacing:.1px}
   .top p{margin:5px 0 0;color:var(--muted);font-size:13.5px}
-  .top .sel{display:flex;gap:8px;align-items:center}
+  .top .sel{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   .pill{background:var(--panel);border:1px solid var(--line);border-radius:999px;
     padding:8px 14px;font-size:12.5px;color:var(--ink);box-shadow:var(--shadow-sm);display:inline-flex;gap:7px;align-items:center}
   .pill b{font-weight:600}
+  .month-btn{cursor:pointer;font:inherit}
+  .month-btn.on{background:var(--marine);color:#fff;border-color:var(--marine)}
   .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
 
   .view{display:none;animation:fade .35s ease}
   .view.on{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);min-width:0}
   .card-h{display:flex;align-items:center;justify-content:space-between;padding:15px 18px 0}
   .card-h h3{margin:0;font-size:14px;font-weight:600;letter-spacing:.2px}
   .card-h .lk{font-size:12px;color:var(--turq);cursor:pointer;font-weight:600;text-decoration:none}
   .eyebrow{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600}
+  .table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .table{width:100%;min-width:680px;border-collapse:collapse}
+  .table th,.table td{padding:9px 10px;border-bottom:1px solid var(--line-soft);text-align:left;font-size:12.5px;vertical-align:middle}
+  .table th{color:var(--muted);font-weight:700;background:var(--panel-soft)}
 
   /* grids */
   .g-hero{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;margin-bottom:18px}
@@ -109,6 +115,13 @@
   .m-row .meta b{display:block;color:var(--ink);font-size:12.5px}
   .tag{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:999px;display:inline-block}
   .t-urg{background:#fbe7e0;color:#bb462b} .t-soon{background:#fbf2dc;color:#9a7411} .t-ok{background:#e6f5ee;color:#1f7d52} .t-bad{background:#fbe7e0;color:#bb462b}
+  .integration-row{display:grid;grid-template-columns:32px 1fr auto;gap:12px;align-items:center;padding:13px 18px;border-top:1px solid var(--line-soft)}
+  .integration-row:first-child{border-top:0}
+  .integration-row .logo{width:32px;height:32px;border-radius:9px;background:var(--panel-soft);display:grid;place-items:center;font-weight:700;color:var(--marine)}
+  .integration-row .name{font-weight:700;font-size:13.5px}
+  .integration-row .status{font-size:11.5px;color:var(--muted);margin-top:1px}
+  .integration-row .btn{margin-top:0}
+  .integration-row.disabled{opacity:.68}
   .note-salitre{margin:0 18px 14px;background:var(--panel-soft);border:1px dashed var(--sand-deep);
     border-radius:10px;padding:9px 12px;font-size:11.5px;color:#7a6a3f;display:flex;gap:8px;align-items:center}
 
@@ -185,11 +198,34 @@
   .bm-cell{display:flex;flex-direction:column;gap:5px}.bm-cell span{font-size:10.5px;color:var(--muted);font-weight:600}.bm-cell b{font-size:13px}
   .bm-remove{height:38px;margin:0;padding:0 12px;border-radius:9px}
   .bm-empty{padding:18px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px;background:#fff}
+  .hub-hero{background:linear-gradient(135deg,#fff,#f6f1e5);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:16px}
+  .hub-hero h2{font-family:var(--display);font-size:28px;margin:0 0 6px}.hub-hero p{margin:0;color:var(--muted)}
+  .owner-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .owner-chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-size:12px}
+  .hub-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .hub-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+  .hub-metric{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow-sm)}
+  .hub-metric .lab{font-size:11px;color:var(--muted)}.hub-metric .val{font-family:var(--display);font-size:25px;font-weight:700;margin-top:4px}.hub-metric .sub{font-size:11px;color:var(--faint);margin-top:3px}
+  .hub-panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden;margin-bottom:16px}
+  .hub-panel-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line-soft)}
+  .hub-panel-head h3{margin:0;font-size:15px}.hub-panel-body{padding:16px 18px}
+  .funnel{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.funnel-col{background:var(--panel-soft);border:1px solid var(--line);border-radius:12px;padding:10px;min-height:130px}.funnel-col h4{margin:0 0 8px;font-size:12px}.funnel-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px;margin-top:8px;font-size:12px}
+  .lead-list{display:grid;gap:10px}.lead-card{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr auto;gap:10px;align-items:end;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .lead-card label{display:flex;flex-direction:column;gap:5px}.lead-card span{font-size:10.5px;color:var(--muted);font-weight:600}.lead-card input,.lead-card select,.lead-card textarea,.proppy-input{width:100%;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);font:inherit;font-size:13px;padding:8px;outline:none}.lead-card textarea{min-height:38px;resize:vertical}
+  .activity-list,.alert-list{display:grid;gap:9px}.activity-item,.alert-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:13px}.alert-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.alert-item.warning{border-color:#ead09a}.alert-item.urgent{border-color:#efb09d}.alert-item.success{border-color:#a9dbc3}.alert-item.info{border-color:#b8ded8}
+  .proppy-float{position:fixed;right:20px;bottom:20px;z-index:20;border:0;border-radius:999px;background:var(--marine);color:#fff;padding:12px 17px;font:inherit;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
+  .proppy-drawer{position:fixed;right:20px;bottom:76px;width:min(380px,calc(100vw - 28px));max-height:70vh;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);z-index:21;display:none;overflow:hidden}.proppy-drawer.on{display:block}
+  .proppy-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:linear-gradient(135deg,var(--marine),var(--turq));color:#fff}.proppy-head h3{margin:0;font-size:15px}
+  .proppy-body{padding:14px;display:grid;gap:10px;max-height:54vh;overflow:auto}.chat-line{padding:9px 11px;border-radius:12px;background:var(--panel-soft);font-size:13px}.chat-line.user{background:#e6f5ee;margin-left:18px}.chat-line.bot{margin-right:18px}
+  .proppy-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
 
   @media (max-width:880px){
     .app{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center}
-    .nav-lbl,.side-foot{display:none}.nav button{width:auto}.g-hero,.g-3,.g-2{grid-template-columns:1fr}.kpis{grid-template-columns:1fr}
+    .main{padding:18px 14px 44px}.nav-lbl,.side-foot{display:none}.nav button{width:auto}.g-hero,.g-3,.g-2{grid-template-columns:1fr}.kpis{grid-template-columns:1fr}
+    .cats{grid-template-columns:1fr}
     .bm-hero,.bm-metric-grid,.bm-form,.bm-scenario-grid,.bm-row,.bm-row.top-row{grid-template-columns:1fr}
+    .hub-hero,.hub-actions{display:grid}.hub-grid,.funnel,.lead-card{grid-template-columns:1fr}
+    .proppy-float{right:14px;bottom:14px}.proppy-drawer{right:14px;bottom:68px}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   button:focus-visible,a:focus-visible{outline:2px solid var(--turq);outline-offset:2px}
@@ -213,8 +249,13 @@
       <button class="on" data-v="inicio"><span class="ic">◧</span> Centro de control</button>
       <button data-v="mant"><span class="ic">✦</span> Mantenimiento</button>
       <button data-v="prov"><span class="ic">✆</span> Proveedores</button>
+      <div class="nav-lbl">Inversión</div>
       <button data-v="benchmark"><span class="ic">🏠</span> Benchmark Airbnb</button>
+      <div class="nav-lbl">Conectores</div>
       <button data-v="rep"><span class="ic">✉</span> Reporte al dueño</button>
+      <div class="nav-lbl">Interno</div>
+      <button data-v="founderHub"><span class="ic">◆</span> Founder Hub</button>
+      <button data-v="proppy"><span class="ic">✦</span> Proppy IA</button>
     </nav>
     <div class="side-foot">
       <span class="chip-mx">MXN</span> Factura CFDI · Soporte en español
@@ -230,7 +271,9 @@
       </div>
       <div class="sel">
         <span class="pill"><span class="dot" style="background:var(--turq)"></span> 8 propiedades</span>
-        <span class="pill"><b>Enero 2025</b> ›</span>
+        <button class="pill month-btn" type="button" data-month-offset="-1" id="monthPrev"></button>
+        <button class="pill month-btn on" type="button" data-month-offset="0" id="monthCurrent"></button>
+        <button class="pill month-btn" type="button" data-month-offset="1" id="monthNext"></button>
       </div>
       <div class="sel" style="margin-top:8px;gap:8px">
         <button class="btn ghost" id="loadDemo">Cargar demo</button>
@@ -243,6 +286,7 @@
 
     <!-- ===== INICIO ===== -->
     <section class="view on" id="inicio">
+      <div class="kpis" id="dashboardKpis"></div>
       <div class="g-hero">
         <!-- portfolio -->
         <div class="card">
@@ -372,11 +416,7 @@
 
     <!-- ===== MANTENIMIENTO ===== -->
     <section class="view" id="mant">
-      <div class="kpis">
-        <div class="kpi"><div class="lab">Preventivos al día</div><div class="val">86%</div><div class="sub">del portafolio</div></div>
-        <div class="kpi"><div class="lab">Órdenes abiertas</div><div class="val">5</div><div class="sub">2 vencen esta semana</div></div>
-        <div class="kpi"><div class="lab">Costo del mes</div><div class="val">$16,213</div><div class="sub">MXN · con factura CFDI</div></div>
-      </div>
+      <div class="kpis" id="maintenanceKpis"></div>
       <div class="card">
         <div class="card-h"><h3>Activos y mantenimiento preventivo</h3><button class="btn ghost">+ Nueva orden</button></div>
         <div class="note-salitre">🌊 Reglas locales activas: filtro A/A cada 45 días en costa · revisión de ánodo de boiler por agua dura · sellado de humedad pre-temporada de lluvias.</div>
@@ -397,14 +437,14 @@
 
     <!-- ===== PROVEEDORES ===== -->
     <section class="view" id="prov">
-      <div class="kpis">
-        <div class="kpi"><div class="lab">Proveedores activos</div><div class="val">7</div><div class="sub">A/A, plomería, alberca, limpieza</div></div>
-        <div class="kpi"><div class="lab">Tiempo de respuesta</div><div class="val">38 min</div><div class="sub">promedio vía WhatsApp</div></div>
-        <div class="kpi"><div class="lab">Evidencias del mes</div><div class="val">94%</div><div class="sub">con foto antes/después</div></div>
-      </div>
+      <div class="kpis" id="providerKpis"></div>
       <div class="card">
         <div class="card-h"><h3>Cuadrilla y proveedores</h3><span class="eyebrow">Todo corre por WhatsApp</span></div>
         <div id="provList"></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <div class="card-h"><h3>Integraciones</h3><span class="eyebrow">Canales y PMS</span></div>
+        <div id="integrationList"></div>
       </div>
     </section>
 
@@ -414,15 +454,15 @@
         <div class="card" style="overflow:hidden">
           <div class="rep-head">
             <div class="eb">Reporte mensual al propietario</div>
-            <h4>Casa Akumal — Enero 2025</h4>
-            <p>Para: Sr. Méndez · Generado por tu administrador</p>
+            <h4 id="reportTitle">Casa Akumal</h4>
+            <p id="reportSubtitle">Para: Sr. Méndez · Generado por tu administrador</p>
           </div>
           <div class="rep-body">
-            <div class="rep-stat"><span>Home Score</span><b>87 / 100 · Estable</b></div>
-            <div class="rep-stat"><span>Mantenimientos realizados</span><b>4 (preventivos)</b></div>
-            <div class="rep-stat"><span>Incidencias resueltas</span><b>1 · fuga menor lavabo</b></div>
-            <div class="rep-stat"><span>Gasto de mantenimiento</span><b>$3,250 MXN</b></div>
-            <div class="rep-stat"><span>Próximo servicio</span><b>Filtro A/A · 12 feb</b></div>
+            <div class="rep-stat"><span>Home Score</span><b id="reportScore">87 / 100 · Estable</b></div>
+            <div class="rep-stat"><span>Mantenimientos realizados</span><b id="reportMaintDone">4 (preventivos)</b></div>
+            <div class="rep-stat"><span>Incidencias resueltas</span><b id="reportIncidents">1 · fuga menor lavabo</b></div>
+            <div class="rep-stat"><span>Gasto de mantenimiento</span><b id="reportMaintCost">$3,250 MXN</b></div>
+            <div class="rep-stat"><span>Próximo servicio</span><b id="reportNextService">Filtro A/A · 12 feb</b></div>
             <button class="btn">⬇ Generar PDF / enviar enlace</button>
           </div>
         </div>
@@ -444,13 +484,109 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== FOUNDER HUB ===== -->
+    <section class="view" id="founderHub">
+      <div class="hub-hero">
+        <div>
+          <h2>Founder Hub</h2>
+          <p>Panel interno Propierato para seguimiento comercial, adopción y operación temprana.</p>
+          <div class="owner-row">
+            <span class="owner-chip">Trino DT — trinopc1@gmail.com</span>
+            <span class="owner-chip">Oscar Galindo — ogalindo.b@gmail.com</span>
+          </div>
+        </div>
+        <div>
+          <span class="tag t-soon">Demo visible · acceso futuro solo Trino / Oscar</span>
+        </div>
+      </div>
+      <div class="hub-actions">
+        <button class="btn" id="hubAddLead">Agregar lead</button>
+        <button class="btn ghost" id="hubSeedDemo">Cargar demo comercial</button>
+        <button class="btn ghost" id="hubExportLeads">Exportar leads JSON</button>
+        <button class="btn ghost" id="hubCopyReport">Copiar reporte interno</button>
+        <button class="btn ghost" id="hubClear">Limpiar Hub</button>
+      </div>
+      <div class="hub-grid" id="hubKpis" style="margin-top:14px"></div>
+      <div class="hub-panel">
+        <div class="hub-panel-head"><h3>Alertas Proppy</h3><span class="eyebrow">Top 3 señales</span></div>
+        <div class="hub-panel-body"><div class="alert-list" id="hubProppyAlerts"></div></div>
+      </div>
+      <div class="hub-panel">
+        <div class="hub-panel-head"><h3>Funnel comercial</h3><span class="eyebrow">Leads por etapa</span></div>
+        <div class="hub-panel-body"><div class="funnel" id="hubFunnel"></div></div>
+      </div>
+      <div class="hub-panel">
+        <div class="hub-panel-head"><h3>Leads</h3><span class="eyebrow">Editable · localStorage</span></div>
+        <div class="hub-panel-body"><div class="lead-list" id="hubLeadList"></div></div>
+      </div>
+      <div class="hub-grid" id="hubProductKpis"></div>
+      <div class="hub-panel">
+        <div class="hub-panel-head"><h3>Actividad reciente</h3><span class="eyebrow">Timeline interno</span></div>
+        <div class="hub-panel-body"><div class="activity-list" id="hubActivity"></div></div>
+      </div>
+    </section>
+
+    <!-- ===== PROPPY IA ===== -->
+    <section class="view" id="proppy">
+      <div class="hub-hero">
+        <div>
+          <h2>Proppy IA</h2>
+          <p>Asistente operativo de Propierato para seguimientos, riesgos, oportunidades y eventos operativos.</p>
+        </div>
+        <span class="tag t-ok">Mock inteligente · sin API real</span>
+      </div>
+      <div class="hub-panel">
+        <div class="hub-panel-head"><h3>Alertas inteligentes</h3><span class="eyebrow">Generadas desde datos locales</span></div>
+        <div class="hub-panel-body"><div class="alert-list" id="proppyAlerts"></div></div>
+      </div>
+      <div class="g-2" style="margin-top:0">
+        <div class="hub-panel">
+          <div class="hub-panel-head"><h3>Seguimientos sugeridos</h3></div>
+          <div class="hub-panel-body"><div id="proppyFollowups"></div></div>
+        </div>
+        <div class="hub-panel">
+          <div class="hub-panel-head"><h3>Resumen operativo del mes</h3></div>
+          <div class="hub-panel-body"><div id="proppyMonthSummary"></div></div>
+        </div>
+      </div>
+      <div class="g-2">
+        <div class="hub-panel">
+          <div class="hub-panel-head"><h3>Preguntas rápidas</h3></div>
+          <div class="hub-panel-body">
+            <div class="hub-actions">
+              <button class="btn ghost" data-proppy-ask="resumen">resumen</button>
+              <button class="btn ghost" data-proppy-ask="leads">leads</button>
+              <button class="btn ghost" data-proppy-ask="mantenimiento">mantenimiento</button>
+              <button class="btn ghost" data-proppy-ask="benchmark">benchmark</button>
+              <button class="btn ghost" data-proppy-ask="integraciones">integraciones</button>
+            </div>
+          </div>
+        </div>
+        <div class="hub-panel">
+          <div class="hub-panel-head"><h3>Bitácora de recomendaciones</h3></div>
+          <div class="hub-panel-body"><div class="activity-list" id="proppyLog"></div></div>
+        </div>
+      </div>
+    </section>
   </main>
+</div>
+
+<button class="proppy-float" id="proppyToggle" type="button">Proppy</button>
+<div class="proppy-drawer" id="proppyDrawer">
+  <div class="proppy-head"><h3>Proppy</h3><button class="btn ghost" id="proppyClose" type="button" style="margin:0;color:#fff;border-color:rgba(255,255,255,.38)">Cerrar</button></div>
+  <div class="proppy-body" id="proppyChat"></div>
+  <form class="proppy-form" id="proppyForm">
+    <input class="proppy-input" id="proppyInput" placeholder="Pregunta por resumen, leads, mantenimiento..." autocomplete="off" />
+    <button class="btn" type="submit" style="margin:0">Enviar</button>
+  </form>
 </div>
 
 <script>
 (() => {
   const STORAGE_KEY = 'propierato.benchmark.airbnb.v1';
   const STORAGE_KEY_LEGACY = 'propierato.benchmark.v1';
+  const HUB_STORAGE_KEY = 'propierato.founderHub.v1';
   const fmt = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
   const fmtPct = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 1 });
 
@@ -486,6 +622,54 @@
     ['🧹', 'Limpieza Maya', 'Turnovers y profunda', '25 min', 't-ok', 'Activo'],
     ['⚡', 'ElectroSur', 'Eléctrico · emergencias', '2.1 h', 't-ok', 'Activo']
   ];
+
+  const monthFmt = new Intl.DateTimeFormat('es-MX', { month: 'long', year: 'numeric' });
+  const shortDateFmt = new Intl.DateTimeFormat('es-MX', { day: 'numeric', month: 'short' });
+  const today = new Date();
+  const defaultSelectedDate = new Date(today.getFullYear(), today.getMonth(), 1);
+  const monthKey = (year, month) => `${year}-${String(month + 1).padStart(2, '0')}`;
+  const addMonths = (date, offset) => new Date(date.getFullYear(), date.getMonth() + offset, 1);
+  const daysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
+  const titleCase = (txt) => String(txt || '').replace(/^\p{Ll}/u, (c) => c.toLocaleUpperCase('es-MX'));
+  const monthLabel = (year, month) => titleCase(monthFmt.format(new Date(year, month, 1)));
+  const dateInMonth = (year, month, day) => new Date(year, month, Math.min(day, daysInMonth(year, month)));
+  const dateKey = (date) => monthKey(date.getFullYear(), date.getMonth());
+  const formatShortDate = (date) => titleCase(shortDateFmt.format(date));
+
+  const monthDemoData = [-1, 0, 1].reduce((acc, offset) => {
+    const date = addMonths(defaultSelectedDate, offset);
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const key = monthKey(year, month);
+    const factor = offset === -1 ? 0.92 : (offset === 1 ? 1.08 : 1);
+    const checkIns = Math.max(8, Math.round(14 * factor));
+    const checkOuts = Math.max(7, Math.round(13 * factor));
+    const occupancy = Math.round(72 * factor);
+    const revenue = Math.round(392000 * factor);
+    const maint = [
+      { icon: '❄️', title: 'Filtro A/A — Casa Akumal', detail: 'Preventivo · salitre', date: dateInMonth(year, month, 12), cost: 850, statusClass: offset === 0 ? 't-urg' : 't-ok', status: offset === 0 ? 'Vence pronto' : 'Programado', closed: offset <= 0 },
+      { icon: '🔥', title: 'Ánodo de boiler — Condo Playa 1', detail: 'Preventivo · agua dura', date: dateInMonth(year, month, 15), cost: 1400, statusClass: 't-soon', status: 'Programado', closed: offset < 0 },
+      { icon: '💧', title: 'Sellado de humedad — Villa Tulum', detail: 'Pre-lluvias', date: dateInMonth(year, month, 22), cost: 2100, statusClass: 't-soon', status: 'Programado', closed: offset < 0 },
+      { icon: '🏊', title: 'Bomba de alberca — Casa del Mar', detail: 'Revisión', date: dateInMonth(year, month, 24), cost: 600, statusClass: 't-ok', status: 'Asignado', closed: offset <= 0 }
+    ];
+    acc[key] = {
+      year,
+      month,
+      revenue,
+      occupancy,
+      checkIns,
+      checkOuts,
+      closedOrders: maint.filter((m) => m.closed).length,
+      openOrders: maint.filter((m) => !m.closed).length,
+      maintCost: maint.reduce((sum, m) => sum + m.cost, 0),
+      providerResponseMin: Math.max(24, Math.round(38 / factor)),
+      evidenceRate: Math.min(99, Math.round(91 * factor)),
+      reportScore: Math.min(96, Math.round(84 * factor)),
+      incidents: offset === -1 ? 2 : (offset === 0 ? 1 : 0),
+      maintenance: maint
+    };
+    return acc;
+  }, {});
 
   const defaultBenchmark = {
     property: {
@@ -525,6 +709,32 @@
     ]
   };
 
+  const integrationDefaults = {
+    guesty: false,
+    hostaway: false,
+    hospitable: false,
+    lodgify: false
+  };
+
+  const funnelStages = ['Lead nuevo', 'Contactado', 'Demo agendada', 'Trial activo', 'Cliente convertido', 'Perdido'];
+  const founderOwners = ['Trino', 'Oscar'];
+  const defaultFounderHub = {
+    product: {
+      registeredUsers: 18,
+      active7: 9,
+      active30: 14,
+      sessionsToday: 7,
+      onlineUsers: 3,
+      benchmarksGenerated: 11,
+      iCalSaved: 5,
+      reportsCopied: 8,
+      propertiesManaged: 64
+    },
+    seenAlerts: [],
+    activity: [],
+    leads: []
+  };
+
   const $ = (s) => document.querySelector(s);
   const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
   const number = (v) => {
@@ -553,7 +763,9 @@
     mant: ['Mantenimiento', 'Preventivo y predictivo, afinado al clima de la costa.'],
     prov: ['Proveedores', 'Tu cuadrilla local, coordinada por WhatsApp.'],
     benchmark: ['Benchmark Airbnb', 'Comparables, escenarios de factibilidad y veredicto financiero.'],
-    rep: ['Reporte al dueño', 'Tu gancho de retención: salud de la propiedad, cada mes.']
+    rep: ['Reporte al dueño', 'Tu gancho de retención: salud de la propiedad, cada mes.'],
+    founderHub: ['Founder Hub', 'Panel interno Propierato para seguimiento comercial, adopción y operación temprana.'],
+    proppy: ['Proppy IA', 'Asistente operativo para seguimientos, riesgos y oportunidades.']
   };
 
   const parseCommission = (mode) => {
@@ -563,6 +775,57 @@
     return 0.03;
   };
   const state = loadState();
+  const hubState = loadFounderHub();
+
+  function seedFounderDemo() {
+    const now = new Date();
+    const day = 24 * 60 * 60 * 1000;
+    return {
+      ...clone(defaultFounderHub),
+      leads: [
+        { id: 'lead-1', name: 'Mariana Ruiz', company: 'Caribe PM', email: 'mariana@caribepm.mx', phone: '+52 984 111 2200', city: 'Tulum', origin: 'Referido', stage: 'Demo agendada', interest: 'Benchmark + reportes', value: 6800, lastContact: new Date(now - day * 2).toISOString().slice(0,10), nextFollowup: new Date(now - day).toISOString().slice(0,10), owner: 'Trino', notes: 'Quiere comparar contra Hostaway.' },
+        { id: 'lead-2', name: 'Luis Cárdenas', company: 'Aldea Rentals', email: 'luis@aldearentals.com', phone: '+52 984 222 8800', city: 'Playa del Carmen', origin: 'LinkedIn', stage: 'Contactado', interest: 'Mantenimiento preventivo', value: 4200, lastContact: new Date(now - day * 5).toISOString().slice(0,10), nextFollowup: new Date(now + day * 2).toISOString().slice(0,10), owner: 'Oscar', notes: 'Enviar demo de reporte al dueño.' },
+        { id: 'lead-3', name: 'Paola Méndez', company: 'Maya Stays', email: 'paola@mayastays.mx', phone: '+52 984 333 1900', city: 'Akumal', origin: 'WhatsApp', stage: 'Trial activo', interest: 'Proppy + alertas', value: 9600, lastContact: new Date(now - day).toISOString().slice(0,10), nextFollowup: new Date(now + day * 3).toISOString().slice(0,10), owner: 'Trino', notes: 'Equipo activo probando benchmark.' },
+        { id: 'lead-4', name: 'Rodrigo Salas', company: 'Costa Admin', email: 'rodrigo@costaadmin.mx', phone: '+52 984 444 7122', city: 'Cancún', origin: 'Evento', stage: 'Lead nuevo', interest: 'Integraciones', value: 5200, lastContact: new Date(now - day * 8).toISOString().slice(0,10), nextFollowup: new Date(now - day * 2).toISOString().slice(0,10), owner: 'Oscar', notes: 'Preguntó por Guesty.' },
+        { id: 'lead-5', name: 'Sofía Tapia', company: 'Nido Tulum', email: 'sofia@nidotulum.co', phone: '+52 984 555 0190', city: 'Tulum', origin: 'Sitio web', stage: 'Cliente convertido', interest: 'Reportes propietario', value: 11800, lastContact: new Date(now - day * 3).toISOString().slice(0,10), nextFollowup: new Date(now + day * 12).toISOString().slice(0,10), owner: 'Trino', notes: 'Primer cliente demo convertido.' },
+        { id: 'lead-6', name: 'Daniela Lara', company: 'Blue Door PM', email: 'daniela@bluedoor.mx', phone: '+52 984 666 3333', city: 'Puerto Morelos', origin: 'Referido', stage: 'Demo agendada', interest: 'Funnel comercial', value: 7400, lastContact: new Date(now - day).toISOString().slice(0,10), nextFollowup: new Date(now + day).toISOString().slice(0,10), owner: 'Oscar', notes: 'Demo el viernes.' },
+        { id: 'lead-7', name: 'Emilio Díaz', company: 'Selva Hosts', email: 'emilio@selvahosts.mx', phone: '+52 984 777 9911', city: 'Tulum', origin: 'Outbound', stage: 'Perdido', interest: 'Precio', value: 3000, lastContact: new Date(now - day * 14).toISOString().slice(0,10), nextFollowup: new Date(now + day * 30).toISOString().slice(0,10), owner: 'Oscar', notes: 'No prioridad este trimestre.' },
+        { id: 'lead-8', name: 'Ana Garza', company: 'Riviera Homes', email: 'ana@rivierahomes.mx', phone: '+52 984 888 1010', city: 'Playa del Carmen', origin: 'Instagram', stage: 'Contactado', interest: 'Benchmark Airbnb', value: 6100, lastContact: new Date(now - day * 4).toISOString().slice(0,10), nextFollowup: new Date(now - day).toISOString().slice(0,10), owner: 'Trino', notes: 'Seguimiento vencido.' }
+      ],
+      activity: [
+        { text: 'Nuevo lead agregado: Mariana Ruiz', at: new Date(now - day * 2).toISOString() },
+        { text: 'Lead movido a demo: Blue Door PM', at: new Date(now - day).toISOString() },
+        { text: 'Benchmark generado para Casa Akumal', at: new Date(now - day).toISOString() },
+        { text: 'Guesty demo conectado', at: new Date(now - day * 3).toISOString() },
+        { text: 'Proppy generó alerta de seguimiento pendiente', at: new Date(now).toISOString() },
+        { text: 'Usuario online demo en Founder Hub', at: new Date(now).toISOString() }
+      ]
+    };
+  }
+
+  function loadFounderHub() {
+    const saved = localStorage.getItem(HUB_STORAGE_KEY);
+    if (!saved) {
+      const seeded = seedFounderDemo();
+      localStorage.setItem(HUB_STORAGE_KEY, JSON.stringify(seeded));
+      return seeded;
+    }
+    try {
+      const parsed = JSON.parse(saved);
+      return {
+        ...clone(defaultFounderHub),
+        ...parsed,
+        product: { ...defaultFounderHub.product, ...(parsed.product || {}) },
+        seenAlerts: Array.isArray(parsed.seenAlerts) ? parsed.seenAlerts : [],
+        activity: Array.isArray(parsed.activity) ? parsed.activity : [],
+        leads: Array.isArray(parsed.leads) ? parsed.leads : []
+      };
+    } catch {
+      return seedFounderDemo();
+    }
+  }
+
+  const saveFounderHub = () => localStorage.setItem(HUB_STORAGE_KEY, JSON.stringify(hubState));
 
   function loadState() {
     const legacy = localStorage.getItem(STORAGE_KEY_LEGACY);
@@ -607,11 +870,24 @@
         // seguir a defaults
       }
     }
-    return clone(defaultBenchmark);
+    return normalizeState(defaultBenchmark);
   }
 
   function normalizeState(parsed) {
+    let selectedMonth = Number.isInteger(parsed.selectedMonth)
+      ? clamp(parsed.selectedMonth, 0, 11)
+      : defaultSelectedDate.getMonth();
+    let selectedYear = Number.isInteger(parsed.selectedYear)
+      ? parsed.selectedYear
+      : defaultSelectedDate.getFullYear();
+    if (!monthDemoData[monthKey(selectedYear, selectedMonth)]) {
+      selectedMonth = defaultSelectedDate.getMonth();
+      selectedYear = defaultSelectedDate.getFullYear();
+    }
     return {
+      selectedMonth,
+      selectedYear,
+      integrations: { ...integrationDefaults, ...(parsed.integrations || {}) },
       property: { ...defaultBenchmark.property, ...(parsed.property || {}) },
       comparables: Array.isArray(parsed.comparables)
         ? parsed.comparables
@@ -629,7 +905,146 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   };
 
-  function renderScenarioData(property = state.property) {
+  const selectedDate = () => new Date(state.selectedYear, state.selectedMonth, 1);
+  const selectedKey = () => monthKey(state.selectedYear, state.selectedMonth);
+  const selectedDays = () => daysInMonth(state.selectedYear, state.selectedMonth);
+  const monthData = () => monthDemoData[selectedKey()] || {
+    year: state.selectedYear,
+    month: state.selectedMonth,
+    revenue: 0,
+    occupancy: 0,
+    checkIns: 0,
+    checkOuts: 0,
+    closedOrders: 0,
+    openOrders: 0,
+    maintCost: 0,
+    providerResponseMin: 0,
+    evidenceRate: 0,
+    reportScore: 0,
+    incidents: 0,
+    maintenance: []
+  };
+
+  function setSelectedMonth(offset) {
+    const next = addMonths(defaultSelectedDate, offset);
+    state.selectedMonth = next.getMonth();
+    state.selectedYear = next.getFullYear();
+    rerenderAll();
+    saveState();
+  }
+
+  function renderMonthSelector() {
+    [-1, 0, 1].forEach((offset) => {
+      const date = addMonths(defaultSelectedDate, offset);
+      const btn = document.querySelector(`[data-month-offset="${offset}"]`);
+      if (!btn) return;
+      btn.innerHTML = `<b>${monthLabel(date.getFullYear(), date.getMonth())}</b>`;
+      btn.classList.toggle('on', state.selectedMonth === date.getMonth() && state.selectedYear === date.getFullYear());
+    });
+  }
+
+  function renderMonthKpis() {
+    const data = monthData();
+    $('#dashboardKpis').innerHTML = [
+      ['Ingresos', toMoney(data.revenue), monthLabel(data.year, data.month)],
+      ['Ocupación', toPercent(data.occupancy), `${data.checkIns} check-ins · ${data.checkOuts} check-outs`],
+      ['Órdenes cerradas', String(data.closedOrders), `${data.openOrders} abiertas · ${toMoney(data.maintCost)} mantenimiento`]
+    ].map((c) => `<div class="kpi"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('');
+
+    $('#maintenanceKpis').innerHTML = [
+      ['Preventivos al día', toPercent(data.maintenance.length ? (data.closedOrders / data.maintenance.length) * 100 : 0), 'del portafolio'],
+      ['Órdenes abiertas', String(data.openOrders), data.openOrders ? 'pendientes del mes' : 'sin pendientes'],
+      ['Costo del mes', toMoney(data.maintCost), 'MXN · con factura CFDI']
+    ].map((c) => `<div class="kpi"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('');
+
+    $('#providerKpis').innerHTML = [
+      ['Proveedores activos', '7', 'A/A, plomería, alberca, limpieza'],
+      ['Tiempo de respuesta', `${data.providerResponseMin} min`, 'promedio vía WhatsApp'],
+      ['Evidencias del mes', toPercent(data.evidenceRate), 'con foto antes/después']
+    ].map((c) => `<div class="kpi"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('');
+  }
+
+  function renderOwnerReport() {
+    const data = monthData();
+    const nextService = data.maintenance.find((m) => !m.closed) || data.maintenance[0];
+    $('#reportTitle').textContent = `Casa Akumal — ${monthLabel(data.year, data.month)}`;
+    $('#reportSubtitle').textContent = `Para: Sr. Méndez · Generado por tu administrador`;
+    $('#reportScore').textContent = `${data.reportScore} / 100 · ${data.reportScore >= 82 ? 'Estable' : 'Revisar'}`;
+    $('#reportMaintDone').textContent = `${data.closedOrders} (preventivos)`;
+    $('#reportIncidents').textContent = `${data.incidents} · ${data.incidents ? 'incidencias resueltas' : 'sin incidencias'}`;
+    $('#reportMaintCost').textContent = `${toMoney(data.maintCost)} MXN`;
+    $('#reportNextService').textContent = nextService ? `${nextService.title.split(' — ')[0]} · ${formatShortDate(nextService.date)}` : 'Sin servicios programados';
+  }
+
+  function benchmarkMonthProperty() {
+    const data = monthData();
+    return {
+      ...state.property,
+      occupancy: data.occupancy || state.property.occupancy,
+      daysPerMonth: selectedDays()
+    };
+  }
+
+  function hubKpis() {
+    const leads = hubState.leads || [];
+    const now = new Date();
+    const m = now.getMonth();
+    const y = now.getFullYear();
+    const newThisMonth = leads.filter((l) => {
+      const d = new Date(l.lastContact);
+      return d.getMonth() === m && d.getFullYear() === y;
+    }).length;
+    const converted = leads.filter((l) => l.stage === 'Cliente convertido').length;
+    const demos = leads.filter((l) => l.stage === 'Demo agendada').length;
+    const mrr = leads.filter((l) => l.stage === 'Cliente convertido').reduce((sum, l) => sum + number(l.value), 0);
+    return {
+      total: leads.length,
+      newThisMonth,
+      demos,
+      converted,
+      activeUsers: hubState.product.active30,
+      onlineUsers: hubState.product.onlineUsers,
+      pmsConnected: state.integrations.guesty ? 1 : 0,
+      propertiesManaged: hubState.product.propertiesManaged,
+      mrr,
+      conversionRate: leads.length ? (converted / leads.length) * 100 : 0
+    };
+  }
+
+  function pendingFollowups() {
+    const todayKey = new Date().toISOString().slice(0, 10);
+    return (hubState.leads || []).filter((l) => l.nextFollowup && l.nextFollowup <= todayKey && !['Cliente convertido','Perdido'].includes(l.stage));
+  }
+
+  function proppyAlertsAll() {
+    const data = monthData();
+    const scenarios = renderScenarioData();
+    const real = scenarios[0];
+    const alerts = [];
+    if (data.checkIns) alerts.push({ id: 'checkins', severity: 'info', title: `Tienes ${data.checkIns} check-ins próximos esta semana`, description: 'Prioriza mensajes de llegada y coordinación con limpieza.', action: 'Revisar calendario operativo' });
+    if (data.openOrders) alerts.push({ id: 'maintenance-open', severity: 'warning', title: `Hay ${data.openOrders} mantenimientos abiertos`, description: 'Algunos servicios siguen pendientes en el mes seleccionado.', action: 'Revisar mantenimiento' });
+    if (real.verdict !== 'viable') alerts.push({ id: 'benchmark-margin', severity: 'urgent', title: 'La propiedad evaluada está por debajo del margen objetivo', description: `Escenario real: ${toMoneySigned(real.netMonth)} al mes.`, action: 'Ajustar ADR, costos u ocupación' });
+    if (!state.integrations.guesty) alerts.push({ id: 'guesty-missing', severity: 'warning', title: 'Aún no conectas Guesty', description: 'La demo puede verse más fuerte con un PMS conectado.', action: 'Conectar Guesty demo' });
+    const pending = pendingFollowups();
+    if (pending.length) alerts.push({ id: 'lead-followup', severity: 'urgent', title: `Tienes ${pending.length} leads pendientes de seguimiento`, description: pending.map((l) => l.company).slice(0,3).join(' · '), action: 'Contactar leads vencidos' });
+    if (data.occupancy < 70) alerts.push({ id: 'low-occupancy', severity: 'warning', title: 'La ocupación del mes está debajo del objetivo', description: `${toPercent(data.occupancy)} vs objetivo de 70%.`, action: 'Revisar pricing y promociones' });
+    if (data.revenue > 400000) alerts.push({ id: 'revenue-win', severity: 'success', title: 'Buen mes: ingresos sobre objetivo', description: `${toMoney(data.revenue)} proyectados para ${monthLabel(data.year, data.month)}.`, action: 'Documentar aprendizajes del mes' });
+    return alerts.filter((a) => !(hubState.seenAlerts || []).includes(a.id));
+  }
+
+  function proppyAnswer(prompt) {
+    const q = String(prompt || '').toLowerCase();
+    const data = monthData();
+    const real = renderScenarioData()[0];
+    if (q.includes('resumen')) return `Resumen ${monthLabel(data.year, data.month)}: ingresos ${toMoney(data.revenue)}, ocupación ${toPercent(data.occupancy)}, ${data.checkIns} check-ins, ${data.openOrders} mantenimientos abiertos y ${pendingFollowups().length} leads por seguir.`;
+    if (q.includes('lead')) return pendingFollowups().length ? `Leads pendientes: ${pendingFollowups().map((l) => `${l.company} (${l.owner})`).join(', ')}.` : 'No tienes leads vencidos ahora. Mantén seguimiento en demos y trials activos.';
+    if (q.includes('mantenimiento')) return `Mantenimiento: ${data.openOrders} abiertas, ${data.closedOrders} cerradas y costo mensual ${toMoney(data.maintCost)}.`;
+    if (q.includes('benchmark')) return `Benchmark: ${real.verdict}, utilidad mensual ${toMoneySigned(real.netMonth)}, margen ${toPercent(real.margin)}.`;
+    if (q.includes('integraciones') || q.includes('guesty') || q.includes('ical')) return `Integraciones: Guesty ${state.integrations.guesty ? 'conectado' : 'no conectado'}, iCal demo ${hubState.product.iCalSaved} guardados.`;
+    return 'Puedo ayudarte con resumen, leads, mantenimiento, benchmark o integraciones.';
+  }
+
+  function renderScenarioData(property = benchmarkMonthProperty()) {
     return (state.scenarios || defaultBenchmark.scenarios).map((s) => {
       const days = clamp(number(property.daysPerMonth), 20, 31);
       const adjOccupancy = clamp((number(property.occupancy) / 100) * (1 + s.occupancyAdj), 0.05, 0.98);
@@ -695,7 +1110,7 @@
       const adr = number(c.adr || 0);
       const occ = number(c.occupancy);
       const area = Math.max(1, number(c.areaM2) || 1);
-      const days = clamp(number(state.property.daysPerMonth), 20, 31);
+      const days = selectedDays();
       const monthly = adr * days * clamp(occ / 100, 0.05, 0.98);
       totalAdr += adr;
       totalOcc += occ;
@@ -715,12 +1130,13 @@
 
   function computePropertyScore() {
     const metric = computeMarketMetrics();
-    const propertyMonthly = number(state.property.adr) * clamp(number(state.property.daysPerMonth), 20, 31) * clamp(number(state.property.occupancy), 1, 95) / 100;
+    const data = monthData();
+    const propertyMonthly = number(state.property.adr) * selectedDays() * clamp(data.occupancy || number(state.property.occupancy), 1, 95) / 100;
     const propertyRentPerM2 = propertyMonthly / Math.max(1, number(state.property.areaM2));
     const marketGap = metric.avgRentPerM2 ? ((propertyRentPerM2 / metric.avgRentPerM2) - 1) * 100 : 0;
-    const score = Math.round(clamp(64 + (marketGap * 0.8) + (clamp(number(state.property.occupancy), 20, 95) - 65) * 0.5, 58, 98));
+    const score = Math.round(clamp(64 + (marketGap * 0.8) + (clamp(data.occupancy || number(state.property.occupancy), 20, 95) - 65) * 0.5, 58, 98));
     const benchmarkPos = state.comparables.filter((c) => {
-      const monthly = number(c.adr) * clamp(number(state.property.daysPerMonth), 20, 31) * clamp(number(c.occupancy), 5, 100) / 100;
+      const monthly = number(c.adr) * selectedDays() * clamp(number(c.occupancy), 5, 100) / 100;
       const cRentM2 = monthly / Math.max(1, number(c.areaM2));
       return cRentM2 >= propertyRentPerM2;
     }).length;
@@ -733,8 +1149,9 @@
 
   function renderLists() {
     const metric = computePropertyScore();
+    const data = monthData();
     $('#propList').innerHTML = props.map((p) => {
-      const score = p[1] === state.property.name ? metric.score : p[3];
+      const score = p[1] === state.property.name ? data.reportScore : p[3];
       const scoreCls = score >= 90 ? 's-ok' : score >= 75 ? 's-mid' : 's-bad';
       return `<div class="prop-row">
         <div class="pin">${p[0]}</div>
@@ -746,17 +1163,37 @@
     $('#cats').innerHTML = cats.map((c) => `<div class="cat"><span class="lab">${c[0]}</span>
       <span class="bar"><i style="width:${c[1]}%;background:${c[2]}"></i></span><span class="v">${c[1]}</span></div>`).join('');
 
-    const prevTemplate = (m) => `<div class="m-row"><div class="ic">${m[0]}</div>
-      <div><div class="t">${m[1]}</div><div class="s">${m[2]}</div></div>
-      <div class="meta"><b>${m[3]}</b>${m[4]} MXN · <span class="tag ${m[5]}">${m[6]}</span></div></div>`;
-    $('#prevList').innerHTML = prev.map(prevTemplate).join('');
-    $('#mantFull').innerHTML = prev.concat([
-      ['🧯', 'Detector de humo — Suite Aldea', 'Revisión anual', '28 feb', '$300', 't-ok', 'Asignado']
-    ]).map(prevTemplate).join('');
+    const prevTemplate = (m) => `<div class="m-row"><div class="ic">${m.icon}</div>
+      <div><div class="t">${m.title}</div><div class="s">${m.detail}</div></div>
+      <div class="meta"><b>${formatShortDate(m.date)}</b>${toMoney(m.cost)} MXN · <span class="tag ${m.statusClass}">${m.closed ? 'Cerrado' : m.status}</span></div></div>`;
+    const maintenanceRows = data.maintenance.length
+      ? data.maintenance.map(prevTemplate).join('')
+      : '<div class="placeholder"><div class="big">Sin mantenimientos</div><div>No hay servicios programados para este mes.</div></div>';
+    $('#prevList').innerHTML = maintenanceRows;
+    $('#mantFull').innerHTML = maintenanceRows;
 
     $('#provList').innerHTML = provs.map((p) => `<div class="m-row"><div class="ic">${p[0]}</div>
       <div><div class="t">${p[1]}</div><div class="s">${p[2]}</div></div>
       <div class="meta">resp. <b>${p[3]}</b><span class="tag ${p[4]}">${p[5]}</span></div></div>`).join('');
+
+    const integrations = [
+      { key: 'guesty', logo: 'G', name: 'Guesty', soon: false },
+      { key: 'hostaway', logo: 'H', name: 'Hostaway', soon: true },
+      { key: 'hospitable', logo: 'Hp', name: 'Hospitable', soon: true },
+      { key: 'lodgify', logo: 'L', name: 'Lodgify', soon: true }
+    ];
+    $('#integrationList').innerHTML = integrations.map((item) => {
+      const connected = Boolean(state.integrations?.[item.key]);
+      const status = item.soon ? 'Próximamente' : (connected ? 'Conectado' : 'No conectado');
+      const action = item.soon
+        ? '<span class="tag t-soon">Próximamente</span>'
+        : `<button class="btn ghost" type="button" data-connect="${item.key}">${connected ? 'Desconectar' : 'Conectar'}</button>`;
+      return `<div class="integration-row ${item.soon ? 'disabled' : ''}">
+        <div class="logo">${item.logo}</div>
+        <div><div class="name">${item.name}</div><div class="status">${status}</div></div>
+        <div>${action}</div>
+      </div>`;
+    }).join('');
   }
 
   function renderPropertyInputs(selector) {
@@ -813,7 +1250,7 @@
     const headers = ['Comparable', 'm²', 'ADR', 'Ocupación', 'Zona', 'Distancia', 'Condición', 'Mensual', ''];
     if (isBenchmarkView) {
       const rows = (state.comparables || []).map((b, idx) => {
-        const monthly = number(b.adr) * clamp(number(state.property.daysPerMonth), 20, 31) * clamp(number(b.occupancy), 5, 100) / 100;
+        const monthly = number(b.adr) * selectedDays() * clamp(number(b.occupancy), 5, 100) / 100;
         return `<div class="bm-row">
           <div>
             <input data-comp="${idx}" data-field="name" type="text" value="${safeText(b.name)}" class="bm-input" aria-label="Nombre comparable">
@@ -831,7 +1268,7 @@
       table.innerHTML = rows || '<div class="bm-empty">Sin datos. Agrega comparables para construir el benchmark.</div>';
     } else {
     const rows = (state.comparables || []).map((b, idx) => {
-      const monthly = number(b.adr) * clamp(number(state.property.daysPerMonth), 20, 31) * clamp(number(b.occupancy), 5, 100) / 100;
+      const monthly = number(b.adr) * selectedDays() * clamp(number(b.occupancy), 5, 100) / 100;
       return `<tr>
         <td><input data-comp="${idx}" data-scope="${opts.scope || 'home'}" data-field="name" type="text" value="${safeText(b.name)}" style="${inputStyle}"></td>
         <td><input data-comp="${idx}" data-scope="${opts.scope || 'home'}" data-field="areaM2" type="number" value="${safeText(number(b.areaM2))}" style="${inputStyle}"></td>
@@ -879,7 +1316,7 @@
     const rows = (state.topProperties || []).slice(0, 5).map((p) => {
       const adr = number(p.adr);
       const area = Math.max(1, number(p.areaM2));
-      const monthly = adr * clamp(number(state.property.daysPerMonth), 20, 31) * clamp(number(p.occupancy), 5, 100) / 100;
+      const monthly = adr * selectedDays() * clamp(number(p.occupancy), 5, 100) / 100;
       const gap = metric.avgAdr ? ((adr / metric.avgAdr) - 1) * 100 : 0;
       if (isBenchmarkView) {
         return `<div class="bm-row top-row">
@@ -975,7 +1412,7 @@
 
     const summaryCards = [
       ['Airbnb ADR', toMoney(number(state.property.adr)), 'Precio promedio por noche'],
-      ['Ocupación media', toPercent(number(state.property.occupancy)), 'Promedio editable'],
+      ['Ocupación media', toPercent(monthData().occupancy || number(state.property.occupancy)), monthLabel(state.selectedYear, state.selectedMonth)],
       ['Benchmark', `${propertyMetric.marketGap >= 0 ? '+' : ''}${fmtPct.format(propertyMetric.marketGap)}%`, 'vs mercado editable'],
       ['Ingresos mkt (propiedad)', toMoney(propertyMetric.propertyMonthly), 'Con días y ocupación actual']
     ];
@@ -990,7 +1427,7 @@
 
     refreshRing(propertyMetric.score);
     $('#summaryText').textContent =
-      `Benchmark Airbnb (${state.property.name}): ADR ${toMoney(state.property.adr)} y ocupación ${toPercent(number(state.property.occupancy))}. ` +
+      `Benchmark Airbnb (${state.property.name}): ADR ${toMoney(state.property.adr)} y ocupación ${toPercent(monthData().occupancy || number(state.property.occupancy))}. ` +
       `Escenario real: ${toMoney(scenarios[0].netMonth)}/mes · Aspiracional: ${toMoney(scenarios[1].netMonth)}/mes · Techo: ${toMoney(scenarios[2].netMonth)}/mes. ` +
       `Mejor escenario: ${best.name} con utilidad anual ${toMoney(best.netYear)}.`;
   }
@@ -1022,7 +1459,7 @@
     <div class="bm-metric-grid">
       ${[
         ['ADR', toMoney(number(state.property.adr)), 'Precio promedio por noche'],
-        ['Ocupación', toPercent(number(state.property.occupancy)), 'Escenario real'],
+        ['Ocupación', toPercent(monthData().occupancy || number(state.property.occupancy)), monthLabel(state.selectedYear, state.selectedMonth)],
         ['Ingreso mensual', toMoney(real.grossMonthly), 'Antes de costos'],
         ['Margen', toPercent(real.margin), 'Utilidad / ingreso'],
         ['Costos', toMoney(real.totalCosts + real.commission), 'Con comisión Airbnb'],
@@ -1045,6 +1482,80 @@
       `Comparativa renta tradicional muestra ${(scenarios[0].vsTraditionalMonth >= 0 ? 'ventaja' : 'desventaja')} en escenario real.`;
   }
 
+  function renderFounderHub() {
+    const k = hubKpis();
+    $('#hubKpis').innerHTML = [
+      ['Leads totales', k.total, 'pipeline completo'],
+      ['Leads nuevos este mes', k.newThisMonth, monthLabel(today.getFullYear(), today.getMonth())],
+      ['Demos agendadas', k.demos, 'próximas conversaciones'],
+      ['Conversiones', k.converted, `${toPercent(k.conversionRate)} tasa conversión`],
+      ['Usuarios activos', k.activeUsers, 'últimos 30 días'],
+      ['Usuarios online demo', k.onlineUsers, 'sesión interna'],
+      ['PMs conectados', k.pmsConnected, 'integraciones demo'],
+      ['Propiedades bajo gestión', k.propertiesManaged, 'potencial pipeline'],
+      ['MRR estimado', toMoney(k.mrr), 'clientes convertidos'],
+      ['Tasa conversión', toPercent(k.conversionRate), 'lead a cliente']
+    ].map((c) => `<div class="hub-metric"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">${c[2]}</div></div>`).join('');
+
+    $('#hubProductKpis').innerHTML = [
+      ['Usuarios registrados', hubState.product.registeredUsers],
+      ['Activos 7 días', hubState.product.active7],
+      ['Activos 30 días', hubState.product.active30],
+      ['Sesiones hoy', hubState.product.sessionsToday],
+      ['Usuarios online', hubState.product.onlineUsers],
+      ['Benchmark generados', hubState.product.benchmarksGenerated],
+      ['Integraciones demo conectadas', state.integrations.guesty ? 1 : 0],
+      ['iCal guardados', hubState.product.iCalSaved],
+      ['Reportes copiados/exportados', hubState.product.reportsCopied]
+    ].map((c) => `<div class="hub-metric"><div class="lab">${c[0]}</div><div class="val">${c[1]}</div><div class="sub">Producto demo</div></div>`).join('');
+
+    $('#hubFunnel').innerHTML = funnelStages.map((stage) => {
+      const leads = hubState.leads.filter((l) => l.stage === stage);
+      return `<div class="funnel-col"><h4>${stage} · ${leads.length}</h4>${leads.map((l) => `<div class="funnel-card"><b>${safeText(l.company)}</b><br>${safeText(l.name)} · ${toMoney(l.value)}</div>`).join('')}</div>`;
+    }).join('');
+
+    $('#hubLeadList').innerHTML = hubState.leads.map((l, idx) => `<div class="lead-card">
+      <label><span>Nombre</span><input data-lead="${idx}" data-field="name" value="${safeText(l.name)}"></label>
+      <label><span>Empresa</span><input data-lead="${idx}" data-field="company" value="${safeText(l.company)}"></label>
+      <label><span>Email</span><input data-lead="${idx}" data-field="email" value="${safeText(l.email)}"></label>
+      <label><span>Teléfono</span><input data-lead="${idx}" data-field="phone" value="${safeText(l.phone)}"></label>
+      <label><span>Ciudad</span><input data-lead="${idx}" data-field="city" value="${safeText(l.city)}"></label>
+      <label><span>Origen</span><input data-lead="${idx}" data-field="origin" value="${safeText(l.origin)}"></label>
+      <label><span>Etapa</span><select data-lead="${idx}" data-field="stage">${funnelStages.map((s) => `<option ${l.stage === s ? 'selected' : ''}>${s}</option>`).join('')}</select></label>
+      <label><span>Interés</span><input data-lead="${idx}" data-field="interest" value="${safeText(l.interest)}"></label>
+      <label><span>Valor mensual</span><input data-lead="${idx}" data-field="value" type="number" value="${number(l.value)}"></label>
+      <label><span>Último contacto</span><input data-lead="${idx}" data-field="lastContact" type="date" value="${safeText(l.lastContact, '')}"></label>
+      <label><span>Próximo seguimiento</span><input data-lead="${idx}" data-field="nextFollowup" type="date" value="${safeText(l.nextFollowup, '')}"></label>
+      <label><span>Responsable</span><select data-lead="${idx}" data-field="owner">${founderOwners.map((o) => `<option ${l.owner === o ? 'selected' : ''}>${o}</option>`).join('')}</select></label>
+      <label style="grid-column:span 4"><span>Notas</span><textarea data-lead="${idx}" data-field="notes">${safeText(l.notes, '')}</textarea></label>
+      <button class="btn ghost" type="button" data-remove-lead="${idx}">Eliminar</button>
+    </div>`).join('') || '<div class="placeholder"><div class="big">Sin leads</div><div>Carga demo comercial o agrega un lead.</div></div>';
+
+    const alerts = proppyAlertsAll();
+    $('#hubProppyAlerts').innerHTML = renderAlerts(alerts.slice(0, 3));
+    const activity = [...hubState.activity];
+    if (pendingFollowups().length) activity.unshift({ text: 'Proppy detectó seguimiento pendiente', at: new Date().toISOString() });
+    $('#hubActivity').innerHTML = activity.slice(0, 10).map((a) => `<div class="activity-item"><b>${safeText(a.text)}</b><div class="status">${new Date(a.at).toLocaleString('es-MX')}</div></div>`).join('');
+  }
+
+  function renderAlerts(alerts) {
+    return alerts.length ? alerts.map((a) => `<div class="alert-item ${a.severity}">
+      <div><b>${a.title}</b><div class="status">${a.description}</div><div class="status">Acción sugerida: ${a.action}</div></div>
+      <button class="btn ghost" type="button" data-seen-alert="${a.id}">Marcar visto</button>
+    </div>`).join('') : '<div class="activity-item">Sin alertas pendientes.</div>';
+  }
+
+  function renderProppy() {
+    const alerts = proppyAlertsAll();
+    $('#proppyAlerts').innerHTML = renderAlerts(alerts);
+    $('#proppyFollowups').innerHTML = pendingFollowups().map((l) => `<div class="activity-item"><b>${l.company}</b><div>${l.name} · ${l.owner} · ${safeText(l.nextFollowup)}</div></div>`).join('') || '<div class="activity-item">No hay seguimientos vencidos.</div>';
+    $('#proppyMonthSummary').innerHTML = `<div class="activity-item">${proppyAnswer('resumen')}</div>`;
+    $('#proppyLog').innerHTML = hubState.activity.slice(0, 8).map((a) => `<div class="activity-item">${safeText(a.text)}</div>`).join('');
+    if (!$('#proppyChat').innerHTML.trim()) {
+      $('#proppyChat').innerHTML = `<div class="chat-line bot">Soy Proppy. Vi ${alerts.length} señales operativas y puedo ayudarte con resumen, leads, mantenimiento, benchmark o integraciones.</div>${alerts.slice(0,3).map((a) => `<div class="chat-line bot">${a.title}</div>`).join('')}`;
+    }
+  }
+
   function refreshRing(score) {
     const ring = $('.score-wrap .ctr b');
     const path = Array.from(document.querySelectorAll('.score-wrap svg circle')).find((el) => el.getAttribute('stroke') === 'url(#g)');
@@ -1059,7 +1570,10 @@
   }
 
   function rerenderAll() {
+    renderMonthSelector();
+    renderMonthKpis();
     renderLists();
+    renderOwnerReport();
     renderPropertyInputs('#propertyForm');
     renderPropertyInputs('#bmPropertyForm');
     renderComparables('#benchmarkTable');
@@ -1070,6 +1584,8 @@
     renderFactibilidad('#bmScenarioGrid', '#bmFactTable');
     renderSummary();
     renderBenchmarkCardsForSidebar();
+    renderFounderHub();
+    renderProppy();
   }
 
   function go(v) {
@@ -1094,20 +1610,25 @@
   function copySummary() {
     const txt = $('#bmExecText').textContent || $('#summaryText').textContent || '';
     if (!txt.trim()) return;
+    const fallbackCopy = () => {
+      const t = document.createElement('textarea');
+      t.value = txt;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand('copy');
+      t.remove();
+    };
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(txt);
+      navigator.clipboard.writeText(txt).catch(fallbackCopy);
       return;
     }
-    const t = document.createElement('textarea');
-    t.value = txt;
-    document.body.appendChild(t);
-    t.select();
-    document.execCommand('copy');
-    t.remove();
+    fallbackCopy();
   }
 
   function setDemo() {
-    Object.assign(state, clone(defaultBenchmark));
+    const selectedMonth = state.selectedMonth;
+    const selectedYear = state.selectedYear;
+    Object.assign(state, normalizeState({ ...clone(defaultBenchmark), selectedMonth, selectedYear }));
     rerenderAll();
     saveState();
   }
@@ -1115,7 +1636,7 @@
   function reset() {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(STORAGE_KEY_LEGACY);
-    Object.assign(state, clone(defaultBenchmark));
+    Object.assign(state, normalizeState(defaultBenchmark));
     rerenderAll();
   }
 
@@ -1134,9 +1655,124 @@
     saveState();
   }
 
+  function addLead() {
+    hubState.leads.unshift({
+      id: `lead-${Date.now()}`,
+      name: 'Nuevo lead',
+      company: 'Empresa',
+      email: 'lead@empresa.com',
+      phone: '',
+      city: 'Riviera Maya',
+      origin: 'Manual',
+      stage: 'Lead nuevo',
+      interest: 'Benchmark Airbnb',
+      value: 4500,
+      lastContact: new Date().toISOString().slice(0,10),
+      nextFollowup: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().slice(0,10),
+      owner: 'Trino',
+      notes: ''
+    });
+    hubState.activity.unshift({ text: 'Nuevo lead agregado', at: new Date().toISOString() });
+    saveFounderHub();
+    renderFounderHub();
+    renderProppy();
+  }
+
+  function exportLeads() {
+    const blob = new Blob([JSON.stringify(hubState.leads, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `propierato-leads-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function copyInternalReport() {
+    const k = hubKpis();
+    const txt = `Founder Hub Propierato: ${k.total} leads, ${k.demos} demos agendadas, ${k.converted} conversiones, MRR estimado ${toMoney(k.mrr)}, ${pendingFollowups().length} seguimientos pendientes.`;
+    const fallback = () => {
+      const t = document.createElement('textarea');
+      t.value = txt;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand('copy');
+      t.remove();
+    };
+    if (navigator.clipboard?.writeText) navigator.clipboard.writeText(txt).catch(fallback);
+    else fallback();
+  }
+
+  function askProppy(text) {
+    const q = safeText(text, '').trim();
+    if (!q) return;
+    $('#proppyChat').insertAdjacentHTML('beforeend', `<div class="chat-line user">${q}</div><div class="chat-line bot">${proppyAnswer(q)}</div>`);
+    $('#proppyInput').value = '';
+    $('#proppyChat').scrollTop = $('#proppyChat').scrollHeight;
+  }
+
   function init() {
     document.querySelectorAll('#nav button').forEach((b) => b.onclick = () => go(b.dataset.v));
     document.querySelectorAll('[data-go]').forEach((b) => b.onclick = () => go(b.dataset.go));
+    document.querySelectorAll('[data-month-offset]').forEach((b) => {
+      b.addEventListener('click', () => setSelectedMonth(Number(b.dataset.monthOffset) || 0));
+    });
+    $('#integrationList').addEventListener('click', (e) => {
+      const key = e.target.dataset?.connect;
+      if (!key) return;
+      state.integrations[key] = !state.integrations[key];
+      renderLists();
+      renderProppy();
+      renderFounderHub();
+      saveState();
+    });
+    $('#hubAddLead').addEventListener('click', addLead);
+    $('#hubSeedDemo').addEventListener('click', () => { Object.assign(hubState, seedFounderDemo()); saveFounderHub(); rerenderAll(); });
+    $('#hubExportLeads').addEventListener('click', exportLeads);
+    $('#hubCopyReport').addEventListener('click', copyInternalReport);
+    $('#hubClear').addEventListener('click', () => { if (confirm('¿Limpiar Founder Hub?')) { Object.assign(hubState, clone(defaultFounderHub)); hubState.leads = []; hubState.activity = []; saveFounderHub(); rerenderAll(); } });
+    $('#hubLeadList').addEventListener('input', (e) => {
+      const idx = Number(e.target.dataset?.lead);
+      const field = e.target.dataset?.field;
+      if (Number.isNaN(idx) || !field || !hubState.leads[idx]) return;
+      hubState.leads[idx][field] = field === 'value' ? number(e.target.value) : e.target.value;
+      saveFounderHub();
+    });
+    $('#hubLeadList').addEventListener('change', (e) => {
+      const idx = Number(e.target.dataset?.lead);
+      const field = e.target.dataset?.field;
+      if (Number.isNaN(idx) || !field || !hubState.leads[idx]) return;
+      hubState.leads[idx][field] = field === 'value' ? number(e.target.value) : e.target.value;
+      hubState.activity.unshift({ text: `Lead actualizado: ${hubState.leads[idx].company}`, at: new Date().toISOString() });
+      saveFounderHub();
+      renderFounderHub();
+      renderProppy();
+    });
+    $('#hubLeadList').addEventListener('click', (e) => {
+      const idx = Number(e.target.dataset?.removeLead);
+      if (Number.isNaN(idx)) return;
+      hubState.leads.splice(idx, 1);
+      hubState.activity.unshift({ text: 'Lead eliminado', at: new Date().toISOString() });
+      saveFounderHub();
+      renderFounderHub();
+      renderProppy();
+    });
+    document.body.addEventListener('click', (e) => {
+      const alertId = e.target.dataset?.seenAlert;
+      if (alertId) {
+        hubState.seenAlerts = Array.from(new Set([...(hubState.seenAlerts || []), alertId]));
+        saveFounderHub();
+        renderFounderHub();
+        renderProppy();
+      }
+      const ask = e.target.dataset?.proppyAsk;
+      if (ask) {
+        $('#proppyDrawer').classList.add('on');
+        askProppy(ask);
+      }
+    });
+    $('#proppyToggle').addEventListener('click', () => $('#proppyDrawer').classList.toggle('on'));
+    $('#proppyClose').addEventListener('click', () => $('#proppyDrawer').classList.remove('on'));
+    $('#proppyForm').addEventListener('submit', (e) => { e.preventDefault(); askProppy($('#proppyInput').value); });
 
     $('#addBenchmark').addEventListener('click', (e) => { e.preventDefault(); addComparable(); });
     $('#bmAddComparable').addEventListener('click', (e) => { e.preventDefault(); addComparable(); });
