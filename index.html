@@ -23,9 +23,10 @@
     --r:16px; --r-sm:11px;
   }
   *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;width:100%;min-height:100%;height:-webkit-fill-available;overflow-x:hidden;-webkit-overflow-scrolling:touch}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);
-    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+    font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;width:100%;min-height:100vh;min-height:-webkit-fill-available;
+    overflow-x:hidden;-webkit-overflow-scrolling:touch;}
   body.nav-open{overflow:hidden}
   .app{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
   .mobile-topbar,.mobile-backdrop,.side-close{display:none}
@@ -240,18 +241,21 @@
       backdrop-filter:blur(14px)}
     .mobile-menu{width:42px;height:42px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--marine);
       font:inherit;font-size:22px;font-weight:700;box-shadow:var(--shadow-sm);cursor:pointer;display:grid;place-items:center;
-      position:relative;z-index:10010;pointer-events:auto}
+      position:relative;z-index:10010;pointer-events:auto;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    .mobile-menu.tap-debug,.proppy-float.tap-debug{font-size:12px;letter-spacing:.01em}
     .mobile-title{font-family:var(--display);font-size:18px;font-weight:700;letter-spacing:.25px;color:var(--marine);display:flex;align-items:center;gap:8px}
     .mobile-title .brand-logo{width:30px;height:30px;padding:3px;border-radius:10px;background:linear-gradient(145deg,#0F172A,#111827 52%,#0B1220);
       border:1px solid rgba(14,94,87,.18);filter:drop-shadow(0 2px 5px rgba(14,94,87,.18))}
     .mobile-spacer{width:42px;height:42px}
-    .mobile-backdrop{position:fixed;inset:0;z-index:10000;background:rgba(5,30,27,.48);backdrop-filter:blur(2px)}
+    .mobile-backdrop{position:fixed;inset:0;left:0;right:0;z-index:10000;background:rgba(5,30,27,.48);backdrop-filter:blur(2px);
+      transform:translateZ(0);-webkit-transform:translateZ(0)}
     .mobile-backdrop.on{display:block}
-    .side{position:fixed;inset:0 auto 0 0;z-index:10011;width:min(84vw,320px);height:100dvh;max-height:100dvh;
+    .side{position:fixed;inset:0 auto 0 0;left:0;z-index:10011;width:min(84vw,320px);height:100vh;height:-webkit-fill-available;height:100dvh;
+      max-height:100vh;max-height:-webkit-fill-available;max-height:100dvh;
       padding:18px 16px 22px;display:flex;flex-direction:column;align-items:stretch;flex-wrap:nowrap;overflow-y:auto;
-      transform:translateX(-104%);transition:transform .22s ease;box-shadow:22px 0 46px rgba(0,0,0,.22);
+      transform:translate3d(-104%,0,0);-webkit-transform:translate3d(-104%,0,0);transition:transform .22s ease;box-shadow:22px 0 46px rgba(0,0,0,.22);
       -webkit-overflow-scrolling:touch}
-    .side.open{transform:translateX(0);z-index:10012}
+    .side.open{transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);z-index:10012}
     .side-close{position:absolute;right:12px;top:12px;width:38px;height:38px;border:1px solid rgba(255,255,255,.22);
       border-radius:12px;background:rgba(255,255,255,.10);color:#fff;font:inherit;font-size:24px;line-height:1;cursor:pointer;
       display:grid;place-items:center}
@@ -268,10 +272,10 @@
     .integration-row{grid-template-columns:32px minmax(0,1fr);align-items:start}
     .integration-row > div:last-child{grid-column:1 / -1}
     .integration-row .btn{width:100%;justify-content:center}
-    .proppy-float{right:14px;bottom:14px;z-index:10020;position:fixed;pointer-events:auto}
-    .proppy-drawer{left:0;right:0;bottom:0;width:100%;height:78dvh;max-height:80dvh;border-radius:18px 18px 0 0;
-      z-index:10021;display:block;transform:translateY(106%);transition:transform .22s ease;box-shadow:0 -18px 48px rgba(0,0,0,.18);pointer-events:auto}
-    .proppy-drawer.on{transform:translateY(0)}
+    .proppy-float{right:14px;bottom:14px;z-index:10020;position:fixed;pointer-events:auto;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+    .proppy-drawer{position:fixed;left:0;right:0;bottom:0;width:100%;height:78vh;height:78dvh;max-height:80vh;max-height:80dvh;border-radius:18px 18px 0 0;
+      z-index:10021;display:block;transform:translate3d(0,106%,0);-webkit-transform:translate3d(0,106%,0);transition:transform .22s ease;box-shadow:0 -18px 48px rgba(0,0,0,.18);pointer-events:auto}
+    .proppy-drawer.on{transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0)}
     .proppy-body{max-height:calc(78dvh - 128px)}
     .proppy-form{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
   }
@@ -1798,20 +1802,51 @@
     el.addEventListener(eventName, handler, options);
   }
 
+  function flashTap(el) {
+    if (!el) return;
+    const original = el.dataset.tapLabel || el.textContent;
+    el.dataset.tapLabel = original;
+    el.classList.add('tap-debug');
+    el.textContent = 'abriendo...';
+    window.setTimeout(() => {
+      el.textContent = el.dataset.tapLabel || original;
+      el.classList.remove('tap-debug');
+    }, 500);
+  }
+
+  function bindTap(el, handler) {
+    if (!el) return;
+    let lastTouch = 0;
+    const run = (e) => {
+      const now = Date.now();
+      if (e.type === 'click' && now - lastTouch < 650) return;
+      if (e.type !== 'click') {
+        if (now - lastTouch < 450) return;
+        lastTouch = now;
+      }
+      e.stopPropagation();
+      handler(e);
+    };
+    safeOn(el, 'touchend', run, { passive: true });
+    safeOn(el, 'pointerup', (e) => {
+      if (e.pointerType === 'mouse') return;
+      run(e);
+    });
+    safeOn(el, 'click', run);
+  }
+
   function setupMobileNav() {
     const mobileMenu = $('#mobileMenu');
     const sideClose = $('#sideClose');
     const mobileBackdrop = $('#mobileBackdrop');
-    safeOn(mobileMenu, 'click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
+    bindTap(mobileMenu, () => {
+      flashTap(mobileMenu);
       openMobileNav();
     });
-    safeOn(sideClose, 'click', (e) => {
-      e.preventDefault();
+    bindTap(sideClose, () => {
       closeMobileNav();
     });
-    safeOn(mobileBackdrop, 'click', closeMobileNav);
+    bindTap(mobileBackdrop, closeMobileNav);
     window.addEventListener('resize', () => { if (!isMobile()) closeMobileNav(); });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -1833,12 +1868,11 @@
       if (endY - proppyStartY > 64) closeProppy();
       proppyStartY = null;
     };
-    safeOn(proppyToggle, 'click', (e) => {
-      e.preventDefault();
+    bindTap(proppyToggle, () => {
+      flashTap(proppyToggle);
       proppyDrawer?.classList.toggle('on');
     });
-    safeOn(proppyClose, 'click', (e) => {
-      e.preventDefault();
+    bindTap(proppyClose, () => {
       closeProppy();
     });
     safeOn(proppyDrawer, 'touchstart', (e) => { proppyStartY = e.touches[0]?.clientY ?? null; }, { passive: true });
