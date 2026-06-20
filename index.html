@@ -44,6 +44,27 @@
   @media (max-width:1180px){.ws-layout{grid-template-columns:1fr 1.2fr}.ws-side{grid-column:auto}.ws-events-panel .ws-panel-body{max-height:none}.ws-chat-panel{min-height:620px}.ws-flow-grid,.ws-quick{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:767px){.app{background:var(--bg)}.main{max-width:none}.ws-layout,.ws-flow-grid,.ws-quick{grid-template-columns:1fr}.ws-hero{grid-template-columns:1fr}.ws-hero-side{justify-content:flex-start}.ws-chat-panel{min-height:auto}.ws-chat{min-height:430px}.ws-panel{border-radius:15px}.ws-kpis{width:100%}.ws-kpi{flex:1;min-width:96px}.ws-title h3{font-size:23px}}
 
+  /* WhatsApp Station safe 3-column layout */
+  *{box-sizing:border-box}
+  #whatsappStation{display:none;min-width:0;overflow:hidden}
+  #whatsappStation.on{display:flex;flex-direction:column;gap:10px;min-height:calc(100vh - 62px);max-height:calc(100vh - 62px);overflow:hidden}
+  #whatsappStation .ws-hero{flex:0 0 auto;margin-bottom:0;padding:12px 14px;border-radius:15px;grid-template-columns:minmax(0,1fr) auto;min-width:0;overflow:hidden}
+  #whatsappStation .ws-title{min-width:0;align-items:center}.ws-title p{font-size:12.5px;line-height:1.35;max-width:720px}.ws-wa-icon{width:36px;height:36px;font-size:21px;flex:0 0 auto}.ws-title h3{font-size:22px}.ws-hero-side{gap:8px;min-width:0;flex-wrap:wrap}.ws-kpis{gap:7px;flex-wrap:wrap}.ws-kpi{min-width:92px;padding:7px 10px;border-radius:12px}.ws-kpi b{font-size:19px}.ws-kpi span{font-size:10px}.ws-hero .btn{padding:8px 12px;font-size:12px;margin-top:0;white-space:nowrap}
+  #whatsappStation .ws-quickbar{flex:0 0 auto;min-width:0;overflow:hidden}.ws-quickbar .ws-quick{display:flex;gap:8px;flex-wrap:wrap;overflow:visible}.ws-quickbar .ws-quick button{min-width:max-content;padding:7px 10px;border-radius:999px;font-size:11.5px}.ws-quickbar .ws-quick b{display:inline;margin:0 4px 0 0}.ws-quickbar .ws-quick span{color:var(--muted)}
+  .app .main{max-width:none;width:100%}
+  #whatsappStation .ws-layout{flex:1 1 auto;min-height:0;height:calc(100vh - 214px);display:grid;grid-template-columns:minmax(230px,270px) minmax(360px,1fr) minmax(270px,320px);gap:12px;align-items:stretch;overflow:hidden;min-width:0}.ws-layout>*{min-width:0}.ws-layout>.ws-panel,.ws-layout>.ws-right-panel{height:100%;min-height:0;overflow:hidden}.ws-panel{min-width:0}.ws-panel-head{min-height:44px;padding:10px 12px}.ws-panel-head h3{font-size:13.5px}.ws-panel-body{padding:9px;min-height:0;min-width:0}
+  #wsConversations{overflow:auto;height:calc(100% - 44px);align-content:start}.ws-conv{min-height:56px;padding:8px;min-width:0}.ws-avatar{width:34px;height:34px;flex:0 0 auto}.ws-avatar:after{width:14px;height:14px;font-size:8px}.ws-conv>div{min-width:0}.ws-conv-msg{max-width:100%;min-width:0}.ws-count{height:16px;min-width:16px;font-size:9px}
+  .ws-chat-panel{display:flex!important;flex-direction:column;min-height:0!important;height:100%;overflow:hidden}.ws-chat-head{min-height:54px;padding:10px 12px;flex:0 0 auto}.ws-tabs{padding:8px 10px;flex:0 0 auto}.ws-tabs button{padding:5px 10px;font-size:11px}.ws-chat{min-height:0!important;height:auto;flex:1 1 auto;overflow:hidden;padding:10px}.ws-chat #wsMessages{overflow:auto;min-height:0;flex:1;padding-right:4px}.ws-msg{font-size:12.4px;padding:8px 10px;margin:5px 0}.ws-photo{height:58px}.ws-input{flex:0 0 auto;margin:8px 2px 0;padding:5px 7px}.ws-send{width:30px;height:30px}
+  .ws-right-panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 36px rgba(14,94,87,.07);display:flex;flex-direction:column;min-width:0}.ws-right-radio{display:none}.ws-right-tabs{display:flex;gap:6px;padding:9px;border-bottom:1px solid var(--line-soft);flex:0 0 auto}.ws-right-tabs label{flex:1;text-align:center;border:1px solid var(--line);border-radius:999px;padding:7px 8px;font-size:11.5px;font-weight:800;color:var(--muted);cursor:pointer;background:#fff}.ws-right-content{display:none;min-height:0;overflow:auto;padding:9px;flex:1 1 auto}.ws-right-content .ws-panel-body{padding:0}.ws-right-content .ws-panel-head{padding:0 0 8px;border:0;background:transparent;min-height:0}#wsTabIA:checked~.ws-right-tabs label[for="wsTabIA"],#wsTabSupervisor:checked~.ws-right-tabs label[for="wsTabSupervisor"],#wsTabActivity:checked~.ws-right-tabs label[for="wsTabActivity"]{background:#efe9ff;color:#5b3fd0;border-color:#d8cdfb}#wsTabIA:checked~.ws-tab-ia,#wsTabSupervisor:checked~.ws-tab-supervisor,#wsTabActivity:checked~.ws-tab-activity{display:block}
+  .ws-event{padding:9px;gap:8px;grid-template-columns:32px minmax(0,1fr);align-items:start;position:relative}.ws-event-ic{width:32px;height:32px}.ws-event b{font-size:12px}.ws-event p{font-size:10.8px}.ws-event small{position:absolute;right:10px;top:10px;font-size:9.5px}.ws-event-actions{gap:5px;margin-top:7px}.ws-event-actions .btn{padding:5px 7px;font-size:10px}
+  .ws-side-card{padding:10px}.ws-side-card h4{font-size:12.5px}.ws-toggle{padding:6px 0;font-size:11.5px}.ws-attn{padding:8px;margin-top:6px}.ws-activity{max-height:none;overflow:visible}.ws-activity div{padding:8px;font-size:11.5px;background:#fbfdfb}
+  .ws-bottom{display:none!important}.ws-workflow{position:fixed;inset:74px 24px 24px 260px;z-index:11000;margin:0;overflow:auto;background:rgba(251,247,239,.72);backdrop-filter:blur(10px);padding:14px;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.18)}.ws-workflow:not(.on){display:none!important}.ws-workflow.on{display:block}.ws-flow-grid{grid-template-columns:repeat(4,minmax(180px,1fr))}.ws-flow{padding:11px}.ws-node{padding:8px;font-size:11.5px}.ws-arrow{padding:3px 0}
+  @media (min-width:1501px){#whatsappStation .ws-layout{grid-template-columns:minmax(250px,285px) minmax(460px,1.35fr) minmax(280px,315px) minmax(290px,330px)}.ws-right-panel{display:contents}.ws-right-panel .ws-right-tabs,.ws-right-panel .ws-right-radio{display:none}.ws-right-content{display:block;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 36px rgba(14,94,87,.07);overflow:auto;padding:9px}.ws-tab-activity{display:none!important}.ws-tab-supervisor{grid-column:4}.ws-tab-ia{grid-column:3}.ws-tab-supervisor,.ws-tab-ia{height:100%;min-width:0}.ws-tab-activity{display:none}}
+  @media (max-width:1500px) and (min-width:1101px){#whatsappStation .ws-layout{grid-template-columns:minmax(230px,270px) minmax(360px,1fr) minmax(270px,320px)}}
+  @media (max-width:1100px) and (min-width:801px){#whatsappStation{max-height:none;overflow:visible}#whatsappStation .ws-layout{height:auto;grid-template-columns:minmax(230px,.85fr) minmax(340px,1.15fr)}.ws-right-panel{grid-column:1/-1;min-height:420px}.ws-layout>.ws-panel{min-height:520px}.ws-workflow{inset:70px 18px 18px 18px}.ws-flow-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:800px){#whatsappStation{max-height:none;overflow:visible}#whatsappStation .ws-hero{grid-template-columns:1fr}.ws-hero-side{justify-content:flex-start}.ws-kpis{width:100%}.ws-kpi{min-width:0;flex:1}#whatsappStation .ws-layout{height:auto;grid-template-columns:1fr}.ws-layout>.ws-panel,.ws-layout>.ws-right-panel{min-height:auto;height:auto}.ws-chat-panel{min-height:520px!important}.ws-right-panel{min-height:430px}.ws-workflow{inset:64px 10px 10px 10px;padding:10px}.ws-flow-grid{grid-template-columns:1fr}.ws-quickbar .ws-quick button{font-size:11px}}
+
+
 
   /* sidebar */
   .side{position:sticky;top:0;height:100vh;padding:22px 16px;
@@ -636,7 +657,7 @@
           <div class="ws-wa-icon">◔</div>
           <div>
             <h3>WhatsApp Workflow Station</h3>
-            <p>Tu operación, en el canal que todos usan. IA que entiende, organiza y ejecuta. WhatsApp no se reemplaza. Se convierte en operación estructurada.</p>
+            <p>Tu operación, en el canal que todos usan. IA que entiende, organiza y ejecuta.</p>
           </div>
         </div>
         <div class="ws-hero-side">
@@ -657,6 +678,7 @@
           </div>
         </div>
       </div>
+      <div class="ws-quickbar"><div class="ws-quick" id="wsQuickActions"></div></div>
       <div class="ws-layout">
         <div class="ws-panel">
           <div class="ws-panel-head"><h3>Conversaciones</h3><span class="ops-badge info" id="wsConversationCount">0 activas</span></div>
@@ -667,17 +689,15 @@
           <div class="ws-tabs"><button class="on" type="button">Todos</button><button type="button">Mensajes</button><button type="button">Eventos</button><button type="button">Acciones</button></div>
           <div class="ws-chat"><div id="wsMessages"></div><div class="ws-input"><input id="wsMessageInput" placeholder="Escribe un mensaje..." autocomplete="off"><button class="ws-send" type="button" onclick="window.sendWhatsAppMock && window.sendWhatsAppMock()">➤</button></div></div>
         </div>
-        <div class="ws-panel ws-events-panel">
-          <div class="ws-panel-head"><h3>Eventos detectados por IA</h3><span class="eyebrow">accionables</span></div>
-          <div class="ws-panel-body"><div class="ops-list" id="wsEvents"></div></div>
+        <div class="ws-right-panel">
+          <input class="ws-right-radio" id="wsTabIA" name="wsRightTab" type="radio" checked>
+          <input class="ws-right-radio" id="wsTabSupervisor" name="wsRightTab" type="radio">
+          <input class="ws-right-radio" id="wsTabActivity" name="wsRightTab" type="radio">
+          <div class="ws-right-tabs"><label for="wsTabIA">IA</label><label for="wsTabSupervisor">Supervisor</label><label for="wsTabActivity">Actividad</label></div>
+          <div class="ws-right-content ws-tab-ia"><div class="ws-panel-head"><h3>Eventos detectados por IA</h3><span class="eyebrow">accionables</span></div><div class="ops-list" id="wsEvents"></div></div>
+          <div class="ws-right-content ws-tab-supervisor"><div id="wsAISupervisor"></div><div id="wsAutomations"></div><div id="wsAttention"></div></div>
+          <div class="ws-right-content ws-tab-activity"><div class="ws-panel-head"><h3>Actividad reciente</h3><span class="eyebrow">bitácora</span></div><div class="ws-activity" id="wsActivity"></div></div>
         </div>
-        <div class="ws-side">
-          <div class="ws-panel"><div class="ws-panel-body"><div id="wsAISupervisor"></div><div id="wsAutomations"></div><div id="wsAttention"></div></div></div>
-          <div class="ws-panel"><div class="ws-panel-head"><h3>Actividad reciente</h3><span class="eyebrow">bitácora</span></div><div class="ws-panel-body"><div class="ws-activity" id="wsActivity"></div></div></div>
-        </div>
-      </div>
-      <div class="ws-bottom">
-        <div class="ws-panel"><div class="ws-panel-head"><h3>Acciones rápidas</h3><span class="eyebrow">operación diaria</span></div><div class="ws-panel-body"><div class="ws-quick" id="wsQuickActions"></div></div></div>
       </div>
     </section>
 
